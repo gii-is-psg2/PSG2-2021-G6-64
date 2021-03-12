@@ -13,6 +13,23 @@
         <version>2.2.4.RELEASE</version>
     </parent>
     <name>petclinic</name>
+    
+    
+<developers>
+    <developer>
+      <id>jdoe</id>
+      <name>John Doe</name>
+      <email>jdoe@example.com</email>
+      <url>http://www.example.com/jdoe</url>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+
+
 
     <properties>
 
