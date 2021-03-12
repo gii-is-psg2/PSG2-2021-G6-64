@@ -13,7 +13,19 @@
         <version>2.2.4.RELEASE</version>
     </parent>
     <name>petclinic</name>
-
+    
+	<developers>
+	    <developer>
+	      <id>borrondom</id>
+	      <name>Borja Rondan Dominguez</name>
+	      <email>borrondom@gmail.com</email>
+	      <url>https://github.com/borjar20</url>
+	      <roles>
+	        <role>developer</role>
+	      </roles>
+	   </developer>
+	</developers>
+	  
     <properties>
 
         <!-- Generic properties -->
