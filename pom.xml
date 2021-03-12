@@ -16,10 +16,11 @@
     
     
 <developers>
+
     <developer>
-      <id>jdoe</id>
-      <name>John Doe</name>
-      <email>jdoe@example.com</email>
+      <id>ismlunati</id>
+      <name>Ismael Luna Atienza</name>
+      <email>isma2bto@gmail.com</email>
       <url>http://www.example.com/jdoe</url>
       <roles>
         <role>architect</role>
@@ -27,9 +28,6 @@
       </roles>
     </developer>
   </developers>
-
-
-
 
     <properties>
 
