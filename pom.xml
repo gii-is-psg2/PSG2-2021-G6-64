@@ -30,6 +30,15 @@
 	        <role>developer</role>
 	      </roles>
 	   </developer>
+	   <developer>
+	      <id>marramfer</id>
+	      <name>Marina Ramiro Fernández</name>
+	      <email>marinaramirofde@gmail.com</email>
+	      <url>https://github.com/marinaramirofde</url>
+	      <roles>
+	        <role>developer</role>
+	      </roles>
+	   </developer>
 	</developers>
 	  
 >>>>>>> 9d4a748 (#6 Añadido informacion usuario)
