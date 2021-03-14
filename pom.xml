@@ -19,6 +19,7 @@
 	
 =======
     <name>petclinic</name>
+<<<<<<< HEAD
     
 	<developers>
 	    <developer>
@@ -42,6 +43,27 @@
 	</developers>
 	  
 >>>>>>> 9d4a748 (#6 Añadido informacion usuario)
+=======
+
+	<developers>
+	    <developer>
+	      <id>alvalfric</id>
+	      <name>Álvaro Jesús Alférez Richarte</name>
+	      <email>alvalfric@alum.us.es</email>
+	      <url>https://github.com/alvalfric</url>
+	      <organization>Proceso Software y Gestión II</organization>
+      	  <organizationUrl>https://github.com/gii-is-psg2</organizationUrl>
+	      <roles>
+	        <role>developer</role>
+	      </roles>
+	      <timezone>Europe/Madrid</timezone>
+	      <properties>
+	        <picUrl>https://imgur.com/hE2pznZ</picUrl>
+	      </properties>
+	   </developer>
+	</developers>
+
+>>>>>>> 076ccb7 (Uploading developer information of Álvaro #5)
     <properties>
 
         <!-- Generic properties -->
