@@ -1,32 +1,29 @@
 project:
-  name: 'PSG2-2021-GX-XY Petclinic'
+  name: 'PSG2-2021-G6-64 Petclinic'
   owner: 'L6'
   teamId: '64'
   identities:
     github:
-      url: 'https://github.com/gii-is-psg2/spring-petclinic'
+      url: 'https://github.com/gii-is-psg2/PSG2-2021-G6-64'
   members:
     member1:
-      name: 'José María'
-      surname: 'García' 
-      githubUsername: 'josemgarcia'
+      name: 'Ismael'
+      surname: 'Luna' 
+      githubUsername: 'ismlunati'
     member2:
-      name: 'Jose Antonio'
-      surname: 'Parejo'
-      githubUsername: 'japarejo'
+      name: 'Borja'
+      surname: 'Rondan'
+      githubUsername: 'borrondom'
     member3:
-      name: 'Antonio'
-      surname: 'Ruiz'
-      githubUsername: 'antonioruizcortes'
+      name: 'Alvaro Jesús'
+      surname: 'Alférez'
+      githubUsername: 'alvalfric'
     member4:
-      name: 'Carlos'
-      surname: 'Müller'
-      githubUsername: 'cmullercejas'
+      name: 'Marina'
+      surname: 'Ramiro'
+      githubUsername: 'marramfer12'
     member5:
-      name: 'Lola'
-      surname: 'De Acuña'
-      githubUsername: 'loladacuna'
-    member6:
-      name: 'Alfonso'
-      surname: 'Márquez'
-      githubUsername: 'alfedu'
+      name: 'Bogdan'
+      surname: 'Stefan'
+      githubUsername: 'bogste'
+    
