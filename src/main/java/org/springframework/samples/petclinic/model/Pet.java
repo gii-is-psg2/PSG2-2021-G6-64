@@ -15,9 +15,12 @@
  */
 package org.springframework.samples.petclinic.model;
 
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
-import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,15 +30,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import org.springframework.beans.support.MutableSortDefinition;
+import org.springframework.beans.support.PropertyComparator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Simple business object representing a pet.
@@ -64,7 +63,7 @@ public class Pet extends NamedEntity {
 	private Set<Visit> visits;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
-	private Set<HotelRoom> hotelRooms;
+	private Set<@Valid HotelRoom> hotelRooms;
 	
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
@@ -111,27 +110,27 @@ public class Pet extends NamedEntity {
 		getVisitsInternal().add(visit);
 		visit.setPet(this);
 	}
-	
-	protected Set<HotelRoom> getHotelRoomsInternal() {
-		if (this.hotelRooms == null) {
-			this.hotelRooms = new HashSet<>();
-		}
-		return this.hotelRooms;
-	}
-
-	protected void setHotelRoomssInternal(Set<HotelRoom> hotelRooms) {
-		this.hotelRooms = hotelRooms;
-	}
-
-	public List<HotelRoom> getHotelRooms() {
-		List<HotelRoom> sortedHotelRooms = new ArrayList<>(getHotelRoomsInternal());
-		PropertyComparator.sort(sortedHotelRooms, new MutableSortDefinition("date", false, false));
-		return Collections.unmodifiableList(sortedHotelRooms);
-	}
-
-	public void addHotelRooms(HotelRoom hotelRoom) {
-		getHotelRoomsInternal().add(hotelRoom);
-		hotelRoom.setPet(this);
-	}
+//	
+//	protected Set<HotelRoom> getHotelRoomsInternal() {
+//		if (this.hotelRooms == null) {
+//			this.hotelRooms = new HashSet<>();
+//		}
+//		return this.hotelRooms;
+//	}
+//
+//	protected void setHotelRoomssInternal(Set<HotelRoom> hotelRooms) {
+//		this.hotelRooms = hotelRooms;
+//	}
+//
+//	public List<HotelRoom> getHotelRooms() {
+//		List<HotelRoom> sortedHotelRooms = new ArrayList<>(getHotelRoomsInternal());
+//		PropertyComparator.sort(sortedHotelRooms, new MutableSortDefinition("date", false, false));
+//		return Collections.unmodifiableList(sortedHotelRooms);
+//	}
+//
+//	public void addHotelRooms(HotelRoom hotelRoom) {
+//		getHotelRoomsInternal().add(hotelRoom);
+//		hotelRoom.setPet(this);
+//	}
 
 }

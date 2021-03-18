@@ -62,7 +62,7 @@
                 <th>Start Date</th>
                 <th>Finish Date</th>
             </tr>
-            <c:forEach var="hotelRoom" items="${hotelRoom.pet.hotelRooms}">
+            <c:forEach var="hotelRoom" items="${hotelRooms}">
                 <c:if test="${!hotelRoom['new']}">
                     <tr>
 						<td><c:out value="${hotelRoom.name}"/></td>

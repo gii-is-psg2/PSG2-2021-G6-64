@@ -48,9 +48,11 @@ public class PetService {
 
 	@Autowired
 	public PetService(PetRepository petRepository,
-			VisitRepository visitRepository) {
+			VisitRepository visitRepository,
+			HotelRoomRepository hotelRoomRepository) {
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
+		this.hotelRoomRepository = hotelRoomRepository;
 	}
 
 	@Transactional(readOnly = true)
@@ -63,11 +65,6 @@ public class PetService {
 		visitRepository.save(visit);
 	}
 	
-	@Transactional
-	public void saveHotelRoom(HotelRoom hotelRoom) throws DataAccessException {
-		hotelRoomRepository.save(hotelRoom);
-	}
-
 	@Transactional(readOnly = true)
 	public Pet findPetById(int id) throws DataAccessException {
 		return petRepository.findById(id);
@@ -86,9 +83,4 @@ public class PetService {
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
 	}
-
-	public Collection<HotelRoom> findBookedRoomsByPetId(int petId) {
-		return hotelRoomRepository.findByPetId(petId);
-	}
-	
 }
