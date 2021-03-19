@@ -11,39 +11,57 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @icon-font-path:    "../../webjars/bootstrap/fonts/";
 
+/* --------------- ESTILO G4-G4 ----------------- */
+
+// PALETA DE MARRONES: 
+@spring-brown1:#2a1909;
+@spring-brown2:#513114;
+@spring-brown3:#794719;
+@spring-brown4:#9b6028;
+@spring-brown5:#daa15e;
+@spring-brown6:#A52A2A;
+@spring-brown7:#EADDCA;
+@spring-brown8:#483C32; 
+@spring-brown9:#E5AA70;
+@spring-brown10:#C4A484;
+
+// PALETA DE FÁBRICA:
 @spring-light-red:  #ffe8e8;     /* @spring-green: #6db33f; */
 @spring-dark-green: #5fa134;
 @spring-brown:      #34302D;
 @spring-grey:       #838789;
 @spring-light-grey: #f1f1f1;
 
-@body-bg:                           @spring-light-grey;
-@text-color:                        @spring-brown;
-@link-color:                        @spring-dark-green;
-@link-hover-color:                  @spring-dark-green;
+/* --------------- COMPONENTES DE LA WEB --------------- */
 
-@navbar-default-link-color:         @spring-light-grey;
-@navbar-default-link-active-color:  @spring-light-grey;
-@navbar-default-link-hover-color:   @spring-light-grey;
-@navbar-default-link-hover-bg:      @spring-light-red;     /* @spring-green; */
-@navbar-default-toggle-icon-bar-bg: @spring-light-grey;
+@body-bg:                           @spring-brown7;
+@text-color:                        @spring-brown;
+@link-color:                        @spring-brown6;
+@link-hover-color:                  @spring-brown5;
+
+@navbar-default-link-color:         @spring-brown5;
+@navbar-default-link-active-color:  @spring-brown5;
+@navbar-default-link-hover-color:   @spring-brown4;
+@navbar-default-link-hover-bg:      @spring-brown4;     /* @spring-green; */
+@navbar-default-toggle-icon-bar-bg: @spring-brown5;
 @navbar-default-toggle-hover-bg:    transparent;
-@navbar-default-link-active-bg:     @spring-light-red;     /* @spring-green; */
+@navbar-default-link-active-bg:     @spring-brown5;     /* @spring-green; */
 
 @border-radius-base:             0;
 @border-radius-large:            0;
 @border-radius-small:            0;
 
-@btn-default-color:              @spring-light-grey;
+@btn-default-color:              @spring-brown10;
 @btn-default-bg:                 @spring-brown;
-@btn-default-border:             @spring-light-red;     /* @spring-green; */
+@btn-default-border:             @spring-brown1;     /* @spring-green; */
 
-@nav-tabs-active-link-hover-color:        @spring-light-grey;
-@nav-tabs-active-link-hover-bg:           @spring-brown;
-@nav-tabs-active-link-hover-border-color: @spring-brown;
-@nav-tabs-border-color:                   @spring-brown;
+@nav-tabs-active-link-hover-color:        @spring-brown5;
+@nav-tabs-active-link-hover-bg:           @spring-brown5;
+@nav-tabs-active-link-hover-border-color: @spring-brown5;
+@nav-tabs-border-color:                   @spring-brown5;
 
 @pagination-active-bg:                    @spring-brown;
 @pagination-active-border:                @spring-light-red;     /* @spring-green; */
@@ -51,7 +69,7 @@
 
 .table > thead > tr > th {
   background-color: lighten(@spring-brown, 3%);
-  color: @spring-light-grey;
+  color: @spring-brown7;
 }
 
 .table-filter {
@@ -60,7 +78,7 @@
 }
 
 .nav > li > a {
-  color: @spring-grey;
+  color: @spring-brown9;
 }
 
 .btn-default {
@@ -76,11 +94,12 @@
   &:active,
   &.active,
   .open .dropdown-toggle& {
-    background-color: @spring-brown;
+    background-color: @spring-brown7;
     border-color: @spring-brown;
   }
 }
 
+/* --------------- FIN PARTE CON COLOR --------------- */
 
 .container .text-muted {
   margin: 20px 0;
@@ -125,7 +144,7 @@ h1 {
 }
 
 .splash {
-  background: @spring-light-red;     /* @spring-green; */
+  background: @spring-brown4;     /* @spring-green; */
   color: @spring-brown;
   display: none;
 }
@@ -197,7 +216,7 @@ table td.action-column {
 
 .container-details-table th {
   background-color: lighten(@spring-brown, 3%);
-  color: @spring-light-grey;
+  color: @spring-brown4;
 }
 
 .status-help-content-table td {
