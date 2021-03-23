@@ -36,51 +36,8 @@ public class HotelRoom extends BaseEntity {
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate finishDate;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "pet_id")
-	private Pet pet;
-
-//	public HotelRoom() {
-//		this.startDate = LocalDate.now();
-//		this.finishDate = LocalDate.now();
-//	}
-//	
-//	public String getName() {
-//		return this.name;
-//	}
-//
-//	public void setDescription(String name) {
-//		this.name = name;
-//	}
-//	
-//	public LocalDate getStartDate() {
-//		return this.startDate;
-//	}
-//
-//	public void setDate(LocalDate date) {
-//		this.startDate = date;
-//	}
-//
-//	public LocalDate getFinishDate() {
-//		return this.finishDate;
-//	}
-//
-//	public void setFinishDate(LocalDate date) {
-//		this.finishDate = date;
-//	}
-//	
-//
-//	public Pet getPet() {
-//		return this.pet;
-//	}
-//
-//	public void setPet(Pet pet) {
-//		this.pet = pet;
-//	}
-//
-//	@Override
-//	public String toString() {
-//		return "HotelRoom [name=" + name + ", startDate=" + startDate + ", finishDate=" + finishDate + "]";
-//	}
-	
+	private Pet pet;	
 }

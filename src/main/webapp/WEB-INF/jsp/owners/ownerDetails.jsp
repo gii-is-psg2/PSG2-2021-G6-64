@@ -92,6 +92,7 @@
                                 <a href="${fn:escapeXml(visitUrl)}">Add Visit</a>
                             </td>
                         </tr>
+                        <c:if test="${isCurrentOwner}">
                         <tr>
 							<th>Hotel Rooms</th>
                         </tr>
@@ -104,6 +105,7 @@
                                 <a href="${fn:escapeXml(hotelRoomUrl)}">Book a Room</a>
                             </td>
                         </tr>
+                        </c:if>
                     </table>
                 </td>
             </tr>
