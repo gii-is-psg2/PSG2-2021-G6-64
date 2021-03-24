@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="vets">
@@ -12,6 +13,7 @@
         <tr>
             <th>Name</th>
             <th>Specialties</th>
+            <th>Edit</th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +28,14 @@
                     </c:forEach>
                     <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
                 </td>
+                <td>
+	                <spring:url value="/vet/{vetId}/edit" var="editVetUrl">
+	                 	<spring:param name="vetId" value="${vet.id}"/>
+	                </spring:url>
+	                <a href="${fn:escapeXml(editVetUrl)}">
+	                	<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+	                </a>	
+                </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -33,9 +43,11 @@
 
     <table class="table-buttons">
         <tr>
-            <td>
-                <a href="<spring:url value="/vets.xml" htmlEscape="true" />">View as XML</a>
-            </td>            
+        	<td>
+        		<spring:url value="/vet/new" var="newVetUrl">
+                </spring:url>
+                <a href="${fn:escapeXml(newVetUrl)}" class="btn btn-default">New Vet</a>
+        	</td>          
         </tr>
     </table>
 </petclinic:layout>
