@@ -31,13 +31,13 @@
 				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
 					title="find owners">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					<span>Find owners</span>
+					<span>Encontrar propietarios</span>
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'vets'}" url="/vets"
 					title="veterinarians">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Veterinarians</span>
+					<span>Veterinarios</span>
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
@@ -54,7 +54,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
 					<li><a href="<c:url value="/login" />">Login</a></li>
-					<li><a href="<c:url value="/users/new" />">Register</a></li>
+					<li><a href="<c:url value="/users/new" />">Registrarse</a></li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -77,7 +77,7 @@
 											</p>
 											<p class="text-left">
 												<a href="<c:url value="/logout" />"
-													class="btn btn-primary btn-block btn-sm">Logout</a>
+													class="btn btn-primary btn-block btn-sm">Cerrar sesión</a>
 											</p>
 										</div>
 									</div>
