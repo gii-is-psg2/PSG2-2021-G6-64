@@ -37,17 +37,13 @@
         <spring:param name="ownerId" value="${owner.id}"/>
     </spring:url>
 
-  <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">AÃ±adir Nueva Mascota</a>
+  <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Añadir Nueva Mascota</a>
     
     <spring:url value="{ownerId}/delete" var="deleteUrl">
         <spring:param name="ownerId" value="${owner.id}"/>
     </spring:url>
-	 <a href="${fn:escapeXml(deleteUrl)}" class="btn btn-default">Borrar DueÃ±o</a>
+	 <a href="${fn:escapeXml(deleteUrl)}" class="btn btn-default">Borrar Propietario</a>
 
-    <spring:url value="{ownerId}/pets/new" var="addUrl">
-        <spring:param name="ownerId" value="${owner.id}"/>
-    </spring:url>
-    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default">Add New Pet</a>
     
     <br/>
     <br/>
@@ -73,7 +69,7 @@
                         <thead>
                         <tr>
                             <th>Fecha de visita</th>
-                            <th>DescripciÃ³n</th>
+                            <th>Descripción</th>
                         </tr>
                         </thead>
                         <c:forEach var="visit" items="${pet.visits}">
@@ -98,7 +94,7 @@
                                     <spring:param name="ownerId" value="${owner.id}"/>
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
-                                <a href="${fn:escapeXml(deletePetUrl)}">Delete Pet</a>
+                                <a href="${fn:escapeXml(deletePetUrl)}">Eliminar Mascota</a>
                             </td>
                             
                             
@@ -108,12 +104,12 @@
                                     <spring:param name="ownerId" value="${owner.id}"/>
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
-                                <a href="${fn:escapeXml(visitUrl)}">AÃ±adir Visita</a>
+                                <a href="${fn:escapeXml(visitUrl)}">Añadir Visita</a>
                             </td>
                         </tr>
                         <c:if test="${isCurrentOwner}">
                         <tr>
-							<th>Hotel Rooms</th>
+							<th>Habitaciones Reservadas</th>
                         </tr>
                         <tr>
 							<td>
@@ -121,7 +117,7 @@
                                     <spring:param name="ownerId" value="${owner.id}"/>
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
-                                <a href="${fn:escapeXml(hotelRoomUrl)}">Book a Room</a>
+                                <a href="${fn:escapeXml(hotelRoomUrl)}">Reservar Habitación</a>
                             </td>
                         </tr>
                         </c:if>

@@ -38,7 +38,6 @@ class VetControllerTests {
 
 	private static final int TEST_VET_ID = 1;
 	
-	
 	@Autowired
 	private VetController vetController;
 
@@ -48,7 +47,6 @@ class VetControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
 
-	private static final int TEST_VET_ID = 1;
 	@BeforeEach
 	void setup() {
 

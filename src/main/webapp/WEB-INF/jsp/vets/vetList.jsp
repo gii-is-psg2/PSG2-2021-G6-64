@@ -15,6 +15,7 @@
             <th>Nombre</th>
             <th>Especialidades</th>
             <th>Editar</th>
+            <th>Eliminar</th>
         </tr>
         </thead>
         <tbody>
@@ -40,7 +41,9 @@
                 <spring:url value="vets/{vetId}/delete" var="deleteVetUrl">
         		<spring:param name="vetId" value="${vet.id}"/>
     			</spring:url>
-   				 <a href="${fn:escapeXml(deleteVetUrl)}" class="btn btn-default">Delete Pet</a>
+   				 <a href="${fn:escapeXml(deleteVetUrl)}">
+   				 	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+   				 </a>
                  </td>
             </tr>
         </c:forEach>
