@@ -34,13 +34,12 @@ public class HotelRoomService {
 		boolean checkPetHasBookedRoomForDate = false;
 		Collection<HotelRoom> roomsWithTheSameName = this.findAllByHotelRoomName(hotelRoom.getName());
 		Collection<HotelRoom> bookedRoomsByPetId = this.findBookedRoomsByPetId(hotelRoom.getPet().getId());
-
 		for(HotelRoom room: roomsWithTheSameName) {
 			if(hotelRoom.getStartDate().isBefore(room.getFinishDate()) || hotelRoom.getStartDate().isEqual(room.getFinishDate())) {
 				checkRoomIsBooked = true;
 			}
 		}
-		
+
 		for(HotelRoom room: bookedRoomsByPetId) {
 			if(hotelRoom.getStartDate().isBefore(room.getFinishDate()) || hotelRoom.getStartDate().isEqual(room.getFinishDate())) {
 				checkPetHasBookedRoomForDate = true;
@@ -48,10 +47,13 @@ public class HotelRoomService {
 		}
 		
 		if(checkRoomIsBooked) {
+			System.out.println("entra1");
         	throw new DuplicatedHotelRoomForDateException();
 		} else if(checkPetHasBookedRoomForDate) {
+			System.out.println("entra2");
         	throw new DuplicatedHotelRoomForDateException();
         } else {
+        	System.out.println("intentaguardar");
 			hotelRoomRepository.save(hotelRoom);
 		}
 	}

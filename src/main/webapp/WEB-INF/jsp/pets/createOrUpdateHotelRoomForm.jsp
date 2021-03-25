@@ -45,10 +45,9 @@
                 <petclinic:inputField label="Start date" name="startDate"/>
                 <petclinic:inputField label="Finish date" name="finishDate"/>
             </div>
-
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <input type="hidden" name="petId" value="${hotelRoom.pet.id}"/>
+                <input type="hidden" name="pet" value="${hotelRoom.pet.id}"/>
                     <button class="btn btn-default" type="submit">Book Room</button>
                 </div>
             </div>

@@ -35,7 +35,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
 	private UserRepository userRepository;
-
+	private OwnerService ownerService;
+	
 	@Autowired
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;

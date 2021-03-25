@@ -13,6 +13,7 @@ import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.service.HotelRoomService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
+import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedHotelRoomForDateException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -41,9 +42,9 @@ public class HotelRoomController {
 	
 	@GetMapping(value = "/owners/{ownerId}/pets/{petId}/hotel-rooms/new")
 	public String initNewHotelRoomForm(@PathVariable("petId") final int petId, @PathVariable("ownerId") final int ownerId, final ModelMap modelMap) {
-		if(currentLoggedUserIsOwnerOfThePet(ownerId) == false) {
+		if(!this.ownerService.findCurrentOwner().equals(this.ownerService.findOwnerById(ownerId))) {
 			return "redirect:/owners/{ownerId}";
-		} 
+		}
 			
 		HotelRoom hotelRoom = new HotelRoom();
 		Pet pet = this.petService.findPetById(petId);
@@ -52,17 +53,16 @@ public class HotelRoomController {
 		
 		modelMap.addAttribute("hotelRoom", hotelRoom);
 		modelMap.addAttribute("hotelRooms", hotelRooms);
-		modelMap.addAttribute("petId", petId);
-		
+		modelMap.addAttribute("pet", pet);
+
 		return "pets/createOrUpdateHotelRoomForm";
 	}
 	
 	@PostMapping(value = "/owners/{ownerId}/pets/{petId}/hotel-rooms/new")
 	public String processNewHotelRoomForm(@PathVariable("petId") final int petId, @Valid final HotelRoom hotelRoom, 
 			final BindingResult result, final ModelMap modelMap) throws DataAccessException, DuplicatedHotelRoomForDateException {
-		Pet pet = this.petService.findPetById(petId);
-		hotelRoom.setPet(pet);
-		List<HotelRoom> hotelRooms = new ArrayList<>(this.hotelRoomService.findByPetId(pet.getId()));
+		List<HotelRoom> hotelRooms = new ArrayList<>(this.hotelRoomService.findByPetId(petId));
+		
 		modelMap.addAttribute("hotelRooms", hotelRooms);
 
 		if (result.hasErrors()) {
@@ -76,13 +76,13 @@ public class HotelRoomController {
 		} else if(petHasBookedRoom(hotelRoom)) {
 			result.rejectValue("startDate", "error.startDate", "Esta mascota ya tiene una habitación reservada para la fecha indicada");
 			return "pets/createOrUpdateHotelRoomForm";
-		}else {
+		} else {
 			this.hotelRoomService.saveHotelRoom(hotelRoom);
 			return "redirect:/owners/{ownerId}";
 		}
 	}
 		
-	public boolean roomIsBooked(HotelRoom newHotelRoom) {
+	private boolean roomIsBooked(HotelRoom newHotelRoom) {
 		boolean result = false;
 		List<HotelRoom> roomsWithTheSameName = new ArrayList<>(hotelRoomService.findAllByHotelRoomName(newHotelRoom.getName()));
 		
@@ -95,7 +95,7 @@ public class HotelRoomController {
 		return result;
 	}
 	
-	public boolean petHasBookedRoom(HotelRoom newHotelRoom) {
+	private boolean petHasBookedRoom(HotelRoom newHotelRoom) {
 		boolean result = false;
 		List<HotelRoom> bookedRoomsByPetId = new ArrayList<>(hotelRoomService.findBookedRoomsByPetId(newHotelRoom.getPet().getId()));
 
@@ -104,17 +104,6 @@ public class HotelRoomController {
 				result = true;
 			}
 		}
-		
-		return result;
-	}
-	
-	private boolean currentLoggedUserIsOwnerOfThePet(Integer ownerId) {
-		boolean result = false;
-		Owner owner = this.ownerService.findOwnerById(ownerId);
-		
-		if(owner.getUser().getUsername().equals(SecurityContextHolder.getContext().getAuthentication().getName())) {
-			result= true;
-		} 
 		
 		return result;
 	}
