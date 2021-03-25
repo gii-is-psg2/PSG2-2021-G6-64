@@ -72,6 +72,23 @@ public class VetController {
 		return "vets/vetList";
 	}
 
+
+	@GetMapping(value = { "/vets/{vetId}/delete" })
+	public String deleteVet(@PathVariable("vetId") int vetId) {
+		// Here we are returning an object of type 'Vets' rather than a collection of Vet
+		// objects
+		// so it is simpler for Object-Xml mapping
+		Vet vet= this.vetService.findVetById(vetId);
+		this.vetService.deleteVet(vet);
+		
+		
+		
+		return "redirect:/vets";
+	}
+	
+	
+	
+	
 	@GetMapping(value = { "/vets.xml"})
 	public @ResponseBody Vets showResourcesVetList() {
 		// Here we are returning an object of type 'Vets' rather than a collection of Vet

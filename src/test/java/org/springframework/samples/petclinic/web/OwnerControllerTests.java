@@ -191,5 +191,16 @@ class OwnerControllerTests {
 				.andExpect(model().attribute("owner", hasProperty("telephone", is("6085551023"))))
 				.andExpect(view().name("owners/ownerDetails"));
 	}
+        
+        
+   @WithMockUser(value = "spring")
+   @Test
+    void testDeleteOwner() throws Exception {
+    		mockMvc.perform(get("/owners/{ownerId}/delete", TEST_OWNER_ID)).andExpect(status().isFound())
+    				.andExpect(view().name("redirect:/owners/find"));
+    	}
+        
+        
+        
 
 }

@@ -57,6 +57,11 @@ public class VetService {
 	public Vet saveVet(Vet vet) throws DataAccessException {
 		return vetRepository.save(vet);
 	}	
+	
+	@Transactional
+	public void deleteVet(Vet vet) throws DataAccessException {
+		
+		vetRepository.deleteById(vet.getId());
 
 	@Transactional(readOnly = true)
 	public List<Specialty> findSpecialty()throws DataAccessException{
@@ -67,4 +72,13 @@ public class VetService {
 	public Specialty findSpecialtyByName(String name)throws DataAccessException{
 		return vetRepository.findSpecialtyByName(name).orElseGet(null);
 	}
+}
+	
+	@Transactional(readOnly = true)
+	public Vet findVetById(int id) throws DataAccessException {
+		return vetRepository.findById(id);
+	}
+
+	
+	
 }
