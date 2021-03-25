@@ -45,7 +45,7 @@ class OwnerControllerTests {
 	private OwnerController ownerController;
 
 	@MockBean
-	private OwnerService clinicService;
+	private OwnerService ownerService;
         
         @MockBean
 	private UserService userService;
@@ -68,7 +68,7 @@ class OwnerControllerTests {
 		george.setAddress("110 W. Liberty St.");
 		george.setCity("Madison");
 		george.setTelephone("6085551023");
-		given(this.clinicService.findOwnerById(TEST_OWNER_ID)).willReturn(george);
+		given(this.ownerService.findOwnerById(TEST_OWNER_ID)).willReturn(george);
 	}
 
 	@WithMockUser(value = "spring")
@@ -114,7 +114,7 @@ class OwnerControllerTests {
 	@WithMockUser(value = "spring")
         @Test
 	void testProcessFindFormSuccess() throws Exception {
-		given(this.clinicService.findOwnerByLastName("")).willReturn(Lists.newArrayList(george, new Owner()));
+		given(this.ownerService.findOwnerByLastName("")).willReturn(Lists.newArrayList(george, new Owner()));
 
 		mockMvc.perform(get("/owners")).andExpect(status().isOk()).andExpect(view().name("owners/ownersList"));
 	}
@@ -122,7 +122,7 @@ class OwnerControllerTests {
 	@WithMockUser(value = "spring")
         @Test
 	void testProcessFindFormByLastName() throws Exception {
-		given(this.clinicService.findOwnerByLastName(george.getLastName())).willReturn(Lists.newArrayList(george));
+		given(this.ownerService.findOwnerByLastName(george.getLastName())).willReturn(Lists.newArrayList(george));
 
 		mockMvc.perform(get("/owners").param("lastName", "Franklin")).andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/owners/" + TEST_OWNER_ID));

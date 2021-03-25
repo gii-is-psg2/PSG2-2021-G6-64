@@ -14,8 +14,10 @@
         <tr>
             <th>Nombre</th>
             <th>Especialidades</th>
+    		<security:authorize access="hasAnyRole('admin')">
             <th>Editar</th>
             <th>Eliminar</th>
+            </security:authorize>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +32,7 @@
                     </c:forEach>
                     <c:if test="${vet.nrOfSpecialties == 0}">ninguno</c:if>
                 </td>
+    			<security:authorize access="hasAnyRole('admin')">
                 <td>
 	                <spring:url value="/vet/{vetId}/edit" var="editVetUrl">
 	                 	<spring:param name="vetId" value="${vet.id}"/>
@@ -45,6 +48,7 @@
    				 	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
    				 </a>
                  </td>
+                 </security:authorize>
             </tr>
         </c:forEach>
         </tbody>
@@ -52,13 +56,13 @@
 
     <table class="table-buttons">
         <tr>
-
+    		<security:authorize access="hasAnyRole('admin')">
         	<td>
         		<spring:url value="/vet/new" var="newVetUrl">
                 </spring:url>
                 <a href="${fn:escapeXml(newVetUrl)}" class="btn btn-default">Nuevo Veterinario</a>
         	</td>          
-
+			</security:authorize>
             <td>
                 <a href="<spring:url value="/vets.xml" htmlEscape="true" />">Ver como XML</a>
             </td>            
