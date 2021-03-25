@@ -13,7 +13,7 @@ project:
     member2:
       name: 'Borja'
       surname: 'Rondan'
-      githubUsername: 'borrondom'
+      githubUsername: 'borjar20'
     member3:
       name: 'Alvaro Jesús'
       surname: 'Alférez'
@@ -21,8 +21,8 @@ project:
     member4:
       name: 'Marina'
       surname: 'Ramiro'
-      githubUsername: 'marramfer12'
+      githubUsername: 'marinaramirofde'
     member5:
       name: 'Bogdan'
       surname: 'Stefan'
-      githubUsername: 'bogste'
+      githubUsername: 'bogdanstefan'

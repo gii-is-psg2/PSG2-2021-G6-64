@@ -25,6 +25,7 @@ import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.VetService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -147,8 +148,19 @@ public class OwnerController {
 	@GetMapping("/owners/{ownerId}")
 	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
+		mav.addObject("isCurrentOwner", currentLoggedUserIsOwner(ownerId));
 		mav.addObject(this.ownerService.findOwnerById(ownerId));
 		return mav;
 	}
-
+	
+	private boolean currentLoggedUserIsOwner(Integer ownerId) {
+		boolean result = false;
+		Owner owner = this.ownerService.findOwnerById(ownerId);
+		
+		if(owner.getUser().getUsername().equals(SecurityContextHolder.getContext().getAuthentication().getName())) {
+			result= true;
+		} 
+		
+		return result;
+	}
 }
