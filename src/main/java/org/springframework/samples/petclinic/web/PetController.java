@@ -50,13 +50,13 @@ public class PetController {
 
 	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
-	private final PetService petService;
+		private final PetService petService;
         private final OwnerService ownerService;
 
 	@Autowired
 	public PetController(PetService petService, OwnerService ownerService) {
 		this.petService = petService;
-                this.ownerService = ownerService;
+        this.ownerService = ownerService;
 	}
 
 	@ModelAttribute("types")
@@ -150,5 +150,30 @@ public class PetController {
 			return "redirect:/owners/{ownerId}";
 		}
 	}
+    	
+        
+        @GetMapping(value = "/pets/{petId}/delete")
+    	public String deletePet(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId) {
+        	
+        	Pet pet = this.petService.findPetById(petId);
+        	Owner owner = this.ownerService.findOwnerById(ownerId);
+        	owner.removePet(pet);
+    		this.petService.deletePet(pet);
+    		
+    		return "redirect:/owners/{ownerId}";
+    	}
+
+        /**
+         *
+         * @param pet
+         * @param result
+         * @param petId
+         * @param model
+         * @param owner
+         * @param model
+         * @return
+         */
+        
+        
 
 }

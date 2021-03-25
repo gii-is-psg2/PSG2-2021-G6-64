@@ -60,6 +60,16 @@ public class PetService {
 		visitRepository.save(visit);
 	}
 
+	
+	@Transactional
+	public void deletePet(Pet pet) throws DataAccessException {
+		petRepository.deleteById(pet.getId());
+		
+	}
+
+	
+	
+	
 	@Transactional(readOnly = true)
 	public Pet findPetById(int id) throws DataAccessException {
 		return petRepository.findById(id);

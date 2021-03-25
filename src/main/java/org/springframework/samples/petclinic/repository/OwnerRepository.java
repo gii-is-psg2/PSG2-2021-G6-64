@@ -39,6 +39,9 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	 * @see BaseEntity#isNew
 	 */
 	void save(Owner owner) throws DataAccessException;
+	
+	
+	void deleteById(Integer Id) throws DataAccessException;
 
 	/**
 	 * Retrieve <code>Owner</code>s from the data store by last name, returning all owners

@@ -33,6 +33,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 		excludeAutoConfiguration= SecurityConfiguration.class)
 class VetControllerTests {
 
+	private static final int TEST_VET_ID = 1;
+	
+	
 	@Autowired
 	private VetController vetController;
 
@@ -48,7 +51,7 @@ class VetControllerTests {
 		Vet james = new Vet();
 		james.setFirstName("James");
 		james.setLastName("Carter");
-		james.setId(1);
+		james.setId(TEST_VET_ID);
 		Vet helen = new Vet();
 		helen.setFirstName("Helen");
 		helen.setLastName("Leary");
@@ -74,5 +77,13 @@ class VetControllerTests {
 				.andExpect(content().contentType(MediaType.APPLICATION_XML_VALUE))
 				.andExpect(content().node(hasXPath("/vets/vetList[id=1]/id")));
 	}
+	
+	  @WithMockUser(value = "spring")
+	    @Test
+	     void testDeleteVet() throws Exception {
+	     		mockMvc.perform(get("/vets/{vetId}/delete", TEST_VET_ID)).andExpect(status().isFound())
+	     				.andExpect(view().name("redirect:/vets"));
+	     	}
+	         
 
 }
