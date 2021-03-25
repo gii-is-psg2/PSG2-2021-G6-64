@@ -5,7 +5,7 @@
 <!-- %@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %-->  
 
 <petclinic:layout pageName="home">
-    <h2>Welcome to the PSG2-2021-G6-64 Petclinic</h2>
+    <h2>Bienvenido a PSG2-2021-G6-64 Petclinic</h2>   <%-- Welcome to the PSG2-2021-G6-64 Petclinic --%>
     <div class="row">
         <div class="col-md-12">
             <spring:url value="/resources/images/Pet.png" htmlEscape="true" var="petsImage"/>
