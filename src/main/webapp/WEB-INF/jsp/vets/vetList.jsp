@@ -6,14 +6,14 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="vets">
-    <h2>Veterinarians</h2>
+    <h2>Veterinarios</h2>
 
     <table id="vetsTable" class="table table-striped">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Specialties</th>
-            <th>Edit</th>
+            <th>Nombre</th>
+            <th>Especialidades</th>
+            <th>Editar</th>
         </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
                     <c:forEach var="specialty" items="${vet.specialties}">
                         <c:out value="${specialty.name} "/>
                     </c:forEach>
-                    <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
+                    <c:if test="${vet.nrOfSpecialties == 0}">ninguno</c:if>
                 </td>
                 <td>
 	                <spring:url value="/vet/{vetId}/edit" var="editVetUrl">
@@ -43,11 +43,17 @@
 
     <table class="table-buttons">
         <tr>
+
         	<td>
         		<spring:url value="/vet/new" var="newVetUrl">
                 </spring:url>
-                <a href="${fn:escapeXml(newVetUrl)}" class="btn btn-default">New Vet</a>
+                <a href="${fn:escapeXml(newVetUrl)}" class="btn btn-default">Nuevo Veterinario</a>
         	</td>          
+
+            <td>
+                <a href="<spring:url value="/vets.xml" htmlEscape="true" />">Ver como XML</a>
+            </td>            
+
         </tr>
     </table>
 </petclinic:layout>

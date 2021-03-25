@@ -57,7 +57,7 @@
 			</roles>
 		</developer>
 		<developer>
-			<id>marramfer</id>
+			<id>marramfer12</id>
 			<name>Marina Ramiro Fernández</name>
 			<email>marinaramirofde@gmail.com</email>
 			<url>https://github.com/marinaramirofde</url>
@@ -193,8 +193,11 @@
 			<artifactId>junit</artifactId>
 			<groupId>junit</groupId>
 		</dependency>
-		<!-- Development tools> <dependency> <groupId>org.projectlombok</groupId> 
-			<artifactId>lombok</artifactId> </dependency -->
+		<!-- Development tools>  -->
+		<dependency>
+			<groupId>org.projectlombok</groupId> 
+			<artifactId>lombok</artifactId> 
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
