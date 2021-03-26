@@ -29,6 +29,7 @@ import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -104,7 +105,11 @@ public class VetController {
 
 	@PreAuthorize("hasRole('admin')")
 	@PostMapping(value = {"/vet/new"})
-	public String processCreationForm(@Valid Vet vet,@Valid String[] specialties, BindingResult result) {
+	public String processCreationForm(
+			@ModelAttribute("vet") @Valid  Vet vet, 
+			BindingResult result,
+			Model model,
+			String[] specialties) {	
 		if (result.hasErrors()) {
 			return VIEWS_VET_CREATE_OR_UPDATE_FORM;
 		}
@@ -136,19 +141,26 @@ public class VetController {
 
 	@PreAuthorize("hasRole('admin')")
 	@PostMapping(value = "/vet/{vetId}/edit")
-	public String processUpdateOwnerForm(@Valid Vet vet,@Valid String[] specialties, BindingResult result,
+	public String processUpdateOwnerForm(
+			@Valid Vet vet, 
+			BindingResult result,
+			Model model,
+			String[] specialties,
 			@PathVariable("vetId") int vetId) {
+		
 		if (result.hasErrors()) {
 			return VIEWS_VET_CREATE_OR_UPDATE_FORM;
-		}
+		} 
 		else {
 			vet.setId(vetId);
-			int i = specialties.length;
-			while (i > 0) {
-				i -= 1;
-				Specialty specialty = this.vetService.findSpecialtyByName(specialties[i]);
-				if(specialty!= null) {
-					vet.addSpecialty(specialty);
+			if(specialties != null) {
+				int i = specialties.length;
+				while (i > 0) {
+					i -= 1;
+					Specialty specialty = this.vetService.findSpecialtyByName(specialties[i]);
+					if(specialty!= null) {
+						vet.addSpecialty(specialty);
+					}
 				}
 			}
 			this.vetService.saveVet(vet);
