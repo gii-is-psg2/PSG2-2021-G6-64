@@ -38,6 +38,7 @@ class HotelRoomControllerTests {
 
 	private static final int TEST_OWNER_ID = 1;
 	private static final int TEST_PET_ID = 1;
+
 	
 	@Autowired
 	private HotelRoomController hotelRoomController;
@@ -48,6 +49,9 @@ class HotelRoomControllerTests {
 	@MockBean
 	private PetService petService;
 
+	@MockBean
+	private OwnerService ownerService;
+	
 	@MockBean
 	private HotelRoomService hotelRoomService;
 	

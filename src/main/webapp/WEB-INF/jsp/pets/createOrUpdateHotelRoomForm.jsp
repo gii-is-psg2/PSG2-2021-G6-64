@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <petclinic:layout pageName="owners">
@@ -25,10 +26,10 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Birth Date</th>
-                <th>Type</th>
-                <th>Owner</th>
+                <th><fmt:message key="name"/></th>
+                <th><fmt:message key="birth"/></th>
+                <th><fmt:message key="type"/></th>
+                <th><fmt:message key="owner.owner"/></th>
             </tr>
             </thead>
             <tr>
@@ -41,25 +42,28 @@
 
         <form:form modelAttribute="hotelRoom" class="form-horizontal">
             <div class="form-group has-feedback">
-                <petclinic:inputField label="Room name" name="name"/>
-                <petclinic:inputField label="Start date" name="startDate"/>
-                <petclinic:inputField label="Finish date" name="finishDate"/>
+            	<fmt:message var="room" key="hotel.room"/>
+            	<fmt:message var="start" key="hotel.start"/>
+            	<fmt:message var="finish" key="hotel.finish"/>
+                <petclinic:inputField label="${room}" name="name"/>
+                <petclinic:inputField label="${start}" name="startDate"/>
+                <petclinic:inputField label="${finish}" name="finishDate"/>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                <input type="hidden" name="pet" value="${hotelRoom.pet.id}"/>
-                    <button class="btn btn-default" type="submit">Book Room</button>
+                    <input type="hidden" name="pet" value="${hotelRoom.pet.id}"/>
+                    <button class="btn btn-default" type="submit"><fmt:message key="hotel.book"/></button>
                 </div>
             </div>
         </form:form>
 
         <br/>
-        <b>Previous Hotel Rooms Booked</b>
+        <b><fmt:message key="hotel.booked"/></b>
         <table class="table table-striped">
             <tr>
-                <th>Room Name</th>
-                <th>Start Date</th>
-                <th>Finish Date</th>
+                <th><fmt:message key="hotel.room"/></th>
+                <th><fmt:message key="hotel.start"/></th>
+                <th><fmt:message key="hotel.finish"/></th>
             </tr>
             <c:forEach var="hotelRoom" items="${hotelRooms}">
                 <c:if test="${!hotelRoom['new']}">

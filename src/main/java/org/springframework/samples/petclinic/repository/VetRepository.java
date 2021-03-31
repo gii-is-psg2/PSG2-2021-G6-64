@@ -24,6 +24,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
@@ -46,6 +47,18 @@ public interface VetRepository extends CrudRepository<Vet, Integer>{
 	 * @return a <code>Collection</code> of <code>Vet</code>s
 	 */
 	Collection<Vet> findAll() throws DataAccessException;
+	
+	
+	
+	
+	Vet save(Vet vet) throws DataAccessException;
+	
+	
+	void deleteById(Integer Id) throws DataAccessException;
+	
+
+	@Query("SELECT vet FROM Vet vet WHERE vet.id =:id")
+	Optional<Vet> findById(@Param("id") int id);
 
 	@Query("SELECT spec FROM Specialty spec ORDER BY spec.name")
 	List<Specialty> findSpecialty() throws DataAccessException;
@@ -53,3 +66,4 @@ public interface VetRepository extends CrudRepository<Vet, Integer>{
 	@Query("SELECT spec FROM Specialty spec WHERE spec.name = :name")
 	Optional<Specialty> findSpecialtyByName(@Param("name") String name) throws DataAccessException;
 }
+

@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
+import org.springframework.samples.petclinic.service.AuthoritiesService;
+import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
@@ -36,23 +38,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 		excludeAutoConfiguration= SecurityConfiguration.class)
 class VetControllerTests {
 
-	@Autowired
-	private VetController vetController;
-
+	private static final int TEST_VET_ID = 1;
+	
 	@MockBean
 	private VetService clinicService;
+	
+	@MockBean
+	private  UserService userService;
+	
+	@MockBean
+	private  AuthoritiesService authoritiesService;
 
 	@Autowired
 	private MockMvc mockMvc;
 
-	private static final int TEST_VET_ID = 1;
 	@BeforeEach
 	void setup() {
 
 		Vet james = new Vet();
 		james.setFirstName("James");
 		james.setLastName("Carter");
-		james.setId(1);
+		james.setId(TEST_VET_ID);
 		Vet helen = new Vet();
 		helen.setFirstName("Helen");
 		helen.setLastName("Leary");
@@ -80,6 +86,13 @@ class VetControllerTests {
 				.andExpect(content().node(hasXPath("/vets/vetList[id=1]/id")));
 	}
 	
+  @WithMockUser(value = "spring")
+	    @Test
+	     void testDeleteVet() throws Exception {
+	     		mockMvc.perform(get("/vets/{vetId}/delete", TEST_VET_ID)).andExpect(status().isFound())
+	     				.andExpect(view().name("redirect:/vets"));
+	     	}
+	         
     @WithMockUser(value = "spring")
 	@Test
 	void testInitCreationForm() throws Exception {
@@ -119,5 +132,4 @@ class VetControllerTests {
 				.andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/vets"));
 	}
-
 }

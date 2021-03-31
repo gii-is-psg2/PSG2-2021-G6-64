@@ -1,6 +1,7 @@
 <%@ page session="false" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
@@ -14,16 +15,16 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <h2><c:if test="${visit['new']}">Nueva </c:if>Visita</h2>
+        <h2><c:if test="${visit['new']}"><fmt:message key="new"/> </c:if><b> </b><fmt:message key="visit.visit"/></h2>
 
-        <b>Mascota</b>
+        <b><fmt:message key="pet.pet"/></b>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Fecha de nacimiento</th>
-                <th>Tipo</th>
-                <th>Propietario</th>
+                <th><fmt:message key="name"/></th>
+                <th><fmt:message key="birth"/></th>
+                <th><fmt:message key="type"/></th>
+                <th><fmt:message key="owner.owner"/></th>
             </tr>
             </thead>
             <tr>
@@ -36,24 +37,26 @@
 
         <form:form modelAttribute="visit" class="form-horizontal">
             <div class="form-group has-feedback">
-                <petclinic:inputField label="Fecha" name="date"/>
-                <petclinic:inputField label="Descripción" name="description"/>
+                <fmt:message var="date" key="date"/>
+                <fmt:message var="desc" key="desc"/>
+                <petclinic:inputField label="${date}" name="date"/>
+                <petclinic:inputField label="${desc}" name="description"/>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <input type="hidden" name="petId" value="${visit.pet.id}"/>
-                    <button class="btn btn-default" type="submit">Añadir Visita</button>
+                    <button class="btn btn-default" type="submit"><fmt:message key="visit.add"/></button>
                 </div>
             </div>
         </form:form>
 
         <br/>
-        <b>Visitas Anteriores</b>
+        <b><fmt:message key="visit.old"/></b>
         <table class="table table-striped">
             <tr>
-                <th>Fecha</th>
-                <th>Descripción</th>
+                <th><fmt:message key="date"/></th>
+                <th><fmt:message key="desc"/></th>
             </tr>
             <c:forEach var="visit" items="${visit.pet.visits}">
                 <c:if test="${!visit['new']}">
