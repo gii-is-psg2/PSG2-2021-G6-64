@@ -14,8 +14,6 @@
 
 @icon-font-path:    "../../webjars/bootstrap/fonts/";
 
-/* --------------- ESTILO G4-G4 ----------------- */
-
 // PALETA DE MARRONES: 
 @spring-brown1:#2a1909;
 @spring-brown2:#513114;
@@ -27,62 +25,71 @@
 @spring-brown8:#483C32; 
 @spring-brown9:#E5AA70;
 @spring-brown10:#C4A484;
+@spring-brown11: #806050;
+@spring-brown12: #a87e6a;
+@spring-brown13: #fcf0de;
+@spring-brown14: #b58960;
+@spring-brown15: #fcf2e3;
+@spring-brown16: #631818;
 
-// PALETA DE FÁBRICA:
-@spring-light-red:  #ffe8e8;     /* @spring-green: #6db33f; */
-@spring-dark-green: #5fa134;
+// Cambiar esto:
+@spring-green:      #D08E68;
+@spring-dark-green: #563929;
 @spring-brown:      #34302D;
-@spring-grey:       #838789;
+@spring-grey:       #9b6028;
 @spring-light-grey: #f1f1f1;
 
-/* --------------- COMPONENTES DE LA WEB --------------- */
+// Para detectar la zona:
+@spring-fluor: #b8ff45;
+
+// GENERALES --------------------------------------------
 
 @body-bg:                           @spring-brown7;
 @text-color:                        @spring-brown;
-@link-color:                        @spring-brown6;
-@link-hover-color:                  @spring-brown5;
+@link-color:                        @spring-brown11;
+@link-hover-color:                  @spring-brown6;
 
-@navbar-default-link-color:         @spring-brown5;
-@navbar-default-link-active-color:  @spring-brown5;
-@navbar-default-link-hover-color:   @spring-brown4;
-@navbar-default-link-hover-bg:      @spring-brown4;     /* @spring-green; */
-@navbar-default-toggle-icon-bar-bg: @spring-brown5;
-@navbar-default-toggle-hover-bg:    transparent;
-@navbar-default-link-active-bg:     @spring-brown5;     /* @spring-green; */
+// BARRA DE NAVEGACIÓN -------------------------------------
+
+// Letra barra navg
+@navbar-default-link-color:       @spring-brown7;
+
+// Página activa
+@navbar-default-link-active-bg:    @spring-brown7;
+
+// Letra página activa
+@navbar-default-link-active-color:  @spring-brown1;
+
+// Letra navg encima
+@navbar-default-link-hover-color:   @spring-brown1;
+
+// Barra navg encima
+@navbar-default-link-hover-bg:      @spring-brown10;
+
+// Icono menú 
+@navbar-default-toggle-icon-bar-bg: @spring-brown14;
+@navbar-default-toggle-hover-bg:    transparente;
+
+
+// BORDES ----------------------------------------------
 
 @border-radius-base:             0;
 @border-radius-large:            0;
 @border-radius-small:            0;
 
-@btn-default-color:              @spring-brown10;
-@btn-default-bg:                 @spring-brown;
-@btn-default-border:             @spring-brown1;     /* @spring-green; */
+// BOTONES --------------------------------------------
 
-@nav-tabs-active-link-hover-color:        @spring-brown5;
-@nav-tabs-active-link-hover-bg:           @spring-brown5;
-@nav-tabs-active-link-hover-border-color: @spring-brown5;
-@nav-tabs-border-color:                   @spring-brown5;
+// Letra botones
+@btn-default-color:             @spring-brown7;
 
-@pagination-active-bg:                    @spring-brown;
-@pagination-active-border:                @spring-light-red;     /* @spring-green; */
-@table-border-color:                      @spring-brown;
+// Fondo botones
+@btn-default-bg:                 @spring-brown1;
 
-.table > thead > tr > th {
-  background-color: lighten(@spring-brown, 3%);
-  color: @spring-brown7;
-}
-
-.table-filter {
-  background-color: @spring-brown;
-  padding: 9px 12px;
-}
-
-.nav > li > a {
-  color: @spring-brown9;
-}
+// Borde botones
+@btn-default-border:             @spring-brown10;
 
 .btn-default {
-  border-width: 2px;
+  border-width: 4px;
   transition: border 0.15s;
   -webkit-transition: border 0.15s;
   -moz-transition: border 0.15s;
@@ -94,12 +101,63 @@
   &:active,
   &.active,
   .open .dropdown-toggle& {
-    background-color: @spring-brown7;
-    border-color: @spring-brown;
+    background-color: @spring-brown16;
+    border-color: @spring-brown6;
   }
 }
 
-/* --------------- FIN PARTE CON COLOR --------------- */
+
+// PAGINACIÓN ---------------------------------------------------- 
+
+@pagination-active-bg:                    @spring-brown;
+@pagination-active-border:                @spring-green;
+
+// TABLAS ----------------------------------------------------- 
+
+@table-border-color:                      @spring-brown;
+
+.table > thead > tr > th {
+  background-color: #563929; //lighten(@spring-brown, 3%);
+  color: @spring-light-grey;
+}
+
+// Tabla horizontal
+.table > tbody> tr > th {
+	
+  background-color: @spring-brown15; 
+  color: @spring-brown16;
+}
+
+.table-filter {
+  background-color: @spring-fluor;
+  padding: 9px 12px;
+}
+
+// Apartados tabla
+table td {
+  background-color: @spring-brown15;
+  vertical-align: middle;
+}
+
+table td .progress {
+  margin-bottom: 0;
+}
+
+table td.action-column {
+  width: 1px;
+}
+
+// POR CATALOGAR <<<<<<<<<<<<<<<<<
+
+@nav-tabs-active-link-hover-color:        @spring-light-grey;
+@nav-tabs-active-link-hover-bg:           @spring-brown;
+@nav-tabs-active-link-hover-border-color: @spring-brown;
+@nav-tabs-border-color:                   @spring-brown;
+
+.nav > li > a {
+  color:  @spring-fluor;
+}
+
 
 .container .text-muted {
   margin: 20px 0;
@@ -118,6 +176,22 @@ code {
 
 h1 {
   margin-bottom: 15px
+}
+
+h2 {
+  background-color: @spring-brown8 ;
+  color: @spring-brown15;
+  padding: 10px;
+  width: auto; 
+  margin-left: 4px;
+  margin-right:  4px;
+  opacity: 5;
+}
+
+.imagen1{
+	vertical-align: middle;
+display: flex;
+  justify-content: center;
 }
 
 .index-page--subtitle {
@@ -144,7 +218,7 @@ h1 {
 }
 
 .splash {
-  background: @spring-brown4;     /* @spring-green; */
+  background: @spring-green;
   color: @spring-brown;
   display: none;
 }
@@ -160,17 +234,7 @@ h1 {
   margin: 30px 0 0;
 }
 
-table td {
-  vertical-align: middle;
-}
 
-table td .progress {
-  margin-bottom: 0;
-}
-
-table td.action-column {
-  width: 1px;
-}
 
 .help-block {
   color: lighten(@text-color, 50%); // lighten the text some for contrast
@@ -216,7 +280,7 @@ table td.action-column {
 
 .container-details-table th {
   background-color: lighten(@spring-brown, 3%);
-  color: @spring-brown4;
+  color: @spring-light-grey;
 }
 
 .status-help-content-table td {
