@@ -49,8 +49,6 @@ class HotelRoomControllerTests {
 	@MockBean
 	private PetService petService;
 
-	@MockBean
-	private OwnerService ownerService;
 	
 	@MockBean
 	private HotelRoomService hotelRoomService;
