@@ -21,6 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
+
+import org.springframework.samples.petclinic.repository.PetRepository;
+import org.springframework.samples.petclinic.repository.VetRepository;
+import org.springframework.samples.petclinic.repository.VisitRepository;
+import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -52,11 +57,12 @@ public class OwnerService {
 	public Owner findOwnerById(int id) throws DataAccessException {
 		return ownerRepository.findById(id);
 	}
-
+	
 	@Transactional(readOnly = true)
 	public Owner findOwnerByUsername(String username) throws DataAccessException {
 		return ownerRepository.findByUsername(username);
 	}
+
 	
 	@Transactional(readOnly = true)
 	public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException {
@@ -71,7 +77,22 @@ public class OwnerService {
 		userService.saveUser(owner.getUser());
 		//creating authorities
 		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
-	}		
+    
+	}
+	
+	@Transactional
+	public Owner findCurrentOwner() throws DataAccessException {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+
+		if (principal instanceof UserDetails) {
+			username = ((UserDetails) principal).getUsername();
+		} else {
+			username = principal.toString();
+		}
+		Owner owner = this.findOwnerByUsername(username);
+		return owner;
+	}
 	
 	@Transactional
 	public void deleteOwner(Owner owner) throws DataAccessException {
@@ -86,19 +107,6 @@ public class OwnerService {
 		//authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
 	}	
 
-	@Transactional
-	public Owner findCurrentOwner() throws DataAccessException {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username;
-
-		if (principal instanceof UserDetails) {
-			username = ((UserDetails) principal).getUsername();
-		} else {
-			username = principal.toString();
-		}
-		Owner owner = this.findOwnerByUsername(username);
-		return owner;
-	}
 	
 	public boolean ownerIsLoggedOwnerById(Integer ownerId) {
 		if(this.findCurrentOwner() == null) {
