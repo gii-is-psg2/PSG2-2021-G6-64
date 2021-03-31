@@ -52,6 +52,13 @@ public interface PetRepository extends Repository<Pet, Integer> {
 	 * @param pet the <code>Pet</code> to save
 	 * @see BaseEntity#isNew
 	 */
+	
+	
+	void deleteById(Integer Id) throws DataAccessException;
+	
 	void save(Pet pet) throws DataAccessException;
+	
+	
+	
 
 }

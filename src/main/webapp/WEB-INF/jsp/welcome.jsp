@@ -5,8 +5,9 @@
 <!-- %@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %-->  
 
 <petclinic:layout pageName="home">
-    <h2>Bienvenido a Petclinic</h2>
+    <h2><fmt:message key="welcome"/></h2> 
     <h3> PSG2-2021-G6-64 </h3>
+
     <div class="row">
         <div class="col-md-12">
         	<div class = imagen1>

@@ -4,6 +4,7 @@
 
 <petclinic:layout pageName="error">
 
+
 <h1 style=" color: red;">Se ha producido un error</h1>
 	<div class=imagen1>
     <spring:url value="/resources/images/error-404.jpg" var="petsImage"/>
