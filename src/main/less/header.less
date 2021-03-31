@@ -1,17 +1,33 @@
+
+/* ESTILO G4-G4 */
+
+// PALETA DE MARRONES: 
+@spring-brown1:#2a1909;
+@spring-brown2:#513114;
+@spring-brown3:#794719;
+@spring-brown4:#9b6028;
+@spring-brown5:#daa15e;
+@spring-brown6:#A52A2A;
+@spring-brown7:#EADDCA;
+@spring-brown8:#483C32; 
+@spring-brown9:#E5AA70;
+@spring-brown10:#C4A484;
+
+
 .navbar {
-  border-top: 4px solid #2a1909;  /* #6db33f; */
-  background-color: #794719;
-  margin-bottom: 0px;
-  border-bottom: 0;
+  border-top: 0px solid @spring-brown14;  /* #6db33f; */
+  background-color: #2a1909;
+  margin-bottom: 3px;
+  border-bottom: 3px;
   border-left: 0;
   border-right: 0;
 }
 
 .navbar a.navbar-brand {
-  background: url("../images/spring-logo-dataflow.png") -1px -1px no-repeat;
-  margin: 12px 0 6px;
-  width: 229px;
-  height: 46px;
+  background: url("/resources/images/pixlr-bg-result.png") 0px -17px no-repeat; 
+  margin: 1px 0 6px;
+  width: 200px;
+  height: 60px;
   display: inline-block;
   text-decoration: none;
   padding: 0;
@@ -19,9 +35,9 @@
 
 .navbar a.navbar-brand span {
   display: block;
-  width: 229px;
-  height: 46px;
-  background: url("../images/spring-logo-dataflow.png") -1px -48px no-repeat;
+  width: 200px;
+  height: 60px;
+  background: url("../resources/images/sleep.png") no-repeat;
   opacity: 0;
   -moz-transition: opacity 0.12s ease-in-out;
   -webkit-transition: opacity 0.12s ease-in-out;
@@ -29,11 +45,11 @@
 }
 
 .navbar a:hover.navbar-brand span {
-  opacity: 1;
+  opacity: 10;
 }
 
 .navbar li > a, .navbar-text {
-  font-family: "montserratregular", sans-serif;
+  font-family: Arial, "Times New Roman", sans-serif;
   text-shadow: none;
   font-size: 14px;
 
@@ -57,7 +73,7 @@
 
 .navbar li:hover > a {
   color: #794719;
-  background-color: #C4A484;   /* #6db33f; */
+  background-color: #C4A484;  /* #6db33f; */
 }
 
 .navbar-toggle {
