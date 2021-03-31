@@ -17,6 +17,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.model.Pet;
+import org.springframework.samples.petclinic.service.HotelRoomService;
+import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -29,12 +31,15 @@ class HotelRoomControllerTests {
 
 	private static final int TEST_PET_ID = 1;
 
-	@Autowired
-	private HotelRoomController hotelRoomController;
-
 	@MockBean
 	private PetService clinicService;
 
+	@MockBean
+	private OwnerService ownerService;
+	
+	@MockBean
+	private HotelRoomService hotelRoomService;
+	
 	@Autowired
 	private MockMvc mockMvc;
 

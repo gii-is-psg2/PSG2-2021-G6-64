@@ -51,17 +51,14 @@ public interface VetRepository extends CrudRepository<Vet, Integer>{
 	
 	
 	
-	void save(Vet vet) throws DataAccessException;
+	Vet save(Vet vet) throws DataAccessException;
 	
 	
 	void deleteById(Integer Id) throws DataAccessException;
 	
-	
-	
-	
-	
+
 	@Query("SELECT vet FROM Vet vet WHERE vet.id =:id")
-	public Vet findById(@Param("id") int id);
+	Optional<Vet> findById(@Param("id") int id);
 
 	@Query("SELECT spec FROM Specialty spec ORDER BY spec.name")
 	List<Specialty> findSpecialty() throws DataAccessException;

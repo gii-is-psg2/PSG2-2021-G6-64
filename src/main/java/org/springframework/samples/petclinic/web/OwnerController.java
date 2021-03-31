@@ -25,6 +25,8 @@ import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.VetService;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -46,10 +48,14 @@ public class OwnerController {
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
 	private final OwnerService ownerService;
+	private final UserService userService;
+	private final AuthoritiesService authoritiesService;
 
 	@Autowired
 	public OwnerController(OwnerService ownerService, UserService userService, AuthoritiesService authoritiesService) {
+		this.userService = userService;
 		this.ownerService = ownerService;
+		this.authoritiesService = authoritiesService;
 	}
 
 	@InitBinder
@@ -112,6 +118,10 @@ public class OwnerController {
 
 	@GetMapping(value = "/owners/{ownerId}/edit")
 	public String initUpdateOwnerForm(@PathVariable("ownerId") int ownerId, Model model) {
+		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId)) {
+			return "redirect:/owners/{ownerId}";
+		}
+		
 		Owner owner = this.ownerService.findOwnerById(ownerId);
 		model.addAttribute(owner);
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
@@ -120,6 +130,10 @@ public class OwnerController {
 	@PostMapping(value = "/owners/{ownerId}/edit")
 	public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result,
 			@PathVariable("ownerId") int ownerId) {
+		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId)) {
+			return "redirect:/owners/{ownerId}";
+		}
+		
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 		}
@@ -129,15 +143,13 @@ public class OwnerController {
 			return "redirect:/owners/{ownerId}";
 		}
 	}
-
-	/**
-	 * Custom handler for displaying an owner.
-	 * @param ownerId the ID of the owner to display
-	 * @return a ModelMap with the model attributes for the view
-	 */
 	
+	@PreAuthorize("hasRole('admin')")
 	@GetMapping(value = "/owners/{ownerId}/delete")
 	public String deleteOwnerForm(@PathVariable("ownerId") int ownerId) {
+//		if(!this.userService.currentUserIsAdmin()) {
+//			return "redirect:/owners/{ownerId}";
+//		}
 		
 		Owner owner = this.ownerService.findOwnerById(ownerId);
 		this.ownerService.deleteOwner(owner);
@@ -148,19 +160,11 @@ public class OwnerController {
 	@GetMapping("/owners/{ownerId}")
 	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
-		mav.addObject("isCurrentOwner", currentLoggedUserIsOwner(ownerId));
+//		mav.addObject("isAdmin", this.userService.currentUserIsAdmin());
+		mav.addObject("isCurrentOwner", this.ownerService.ownerIsLoggedOwnerById(ownerId));
 		mav.addObject(this.ownerService.findOwnerById(ownerId));
 		return mav;
 	}
 	
-	private boolean currentLoggedUserIsOwner(Integer ownerId) {
-		boolean result = false;
-		Owner owner = this.ownerService.findOwnerById(ownerId);
-		
-		if(owner.getUser().getUsername().equals(SecurityContextHolder.getContext().getAuthentication().getName())) {
-			result= true;
-		} 
-		
-		return result;
-	}
+	
 }

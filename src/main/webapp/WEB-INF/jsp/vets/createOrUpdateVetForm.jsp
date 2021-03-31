@@ -13,11 +13,13 @@
     </h2>
     <form:form modelAttribute="vet" class="form-horizontal" id="add-vet-form">
         <div class="form-group has-feedback">
-   		
-            <petclinic:inputField label="First Name" name="firstName"/>
-            <petclinic:inputField label="Last Name" name="lastName"/>
+   		    <fmt:message var="name" key="name"/>
+            <fmt:message var="surname" key="surname"/>
+            <fmt:message var="specialtys" key="specialtys"/>
+            <petclinic:inputField label="${name}" name="firstName"/>
+            <petclinic:inputField label="${surname}" name="lastName"/>
             <div class="control-group">
-                  <petclinic:selectField name="specialties" label="Specialties" names="${specialities}" size="3" multiple="true"/>
+                  <petclinic:selectField name="specialties" label="${specialtys}" names="${specialities}" size="3" multiple="true"/>
             </div>
         </div>
         <div class="form-group">
