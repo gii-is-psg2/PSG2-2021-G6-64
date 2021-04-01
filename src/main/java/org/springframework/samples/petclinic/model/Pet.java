@@ -110,6 +110,13 @@ public class Pet extends NamedEntity {
 		getVisitsInternal().add(visit);
 		visit.setPet(this);
 	}
+	
+	public boolean removeVisit(Visit visit) {
+		return getVisitsInternal().remove(visit);
+	}
+
+	
+	
 //	
 //	protected Set<HotelRoom> getHotelRoomsInternal() {
 //		if (this.hotelRooms == null) {
