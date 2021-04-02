@@ -163,6 +163,27 @@ public class PetController {
     		return "redirect:/owners/{ownerId}";
     	}
 
+   
+
+        @GetMapping(value = "/pets/{petId}/visit/{visitId}/delete")
+    	public String deletePetVisit(@PathVariable("visitId") int visitId, @PathVariable("petId") int petId, @PathVariable("ownerId") int ownerId) {
+        	Pet mascota= this.petService.findPetById(petId);
+        	Visit visita= this.petService.findVisitById(visitId);
+        	
+        	mascota.removeVisit(visita);
+        	this.petService.deleteVisit(visita);
+        	
+    		return "redirect:/owners/{ownerId}";
+    	}
+
+        
+        
+        
+        
+        
+        
+        
+        
         /**
          *
          * @param pet

@@ -64,6 +64,12 @@ public class PetService {
 	public void saveVisit(Visit visit) throws DataAccessException {
 		visitRepository.save(visit);
 	}
+	
+	@Transactional
+	public void deleteVisit(Visit visit) throws DataAccessException {
+		visitRepository.delete(visit);
+	}
+
 
 	@Transactional
 	public void deletePet(Pet pet) throws DataAccessException {
@@ -76,6 +82,15 @@ public class PetService {
 		return petRepository.findById(id);
 	}
 
+	
+	@Transactional(readOnly = true)
+	public Visit findVisitById(int id) throws DataAccessException {
+		return visitRepository.findById(id);
+	}
+
+	
+	
+	
 	@Transactional(rollbackFor = DuplicatedPetNameException.class)
 	public void savePet(Pet pet) throws DataAccessException, DuplicatedPetNameException {
 			Pet otherPet=pet.getOwner().getPetwithIdDifferent(pet.getName(), pet.getId());
