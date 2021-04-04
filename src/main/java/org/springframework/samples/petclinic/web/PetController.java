@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -157,6 +158,11 @@ public class PetController {
         	
         	Pet pet = this.petService.findPetById(petId);
         	Owner owner = this.ownerService.findOwnerById(ownerId);
+        	
+        	if(!petCanBeDeleted(pet)) {
+        		return "redirect:/owners/{ownerId}";
+        	}
+        	
         	owner.removePet(pet);
     		this.petService.deletePet(pet);
     		
@@ -170,31 +176,33 @@ public class PetController {
         	Pet mascota= this.petService.findPetById(petId);
         	Visit visita= this.petService.findVisitById(visitId);
         	
+        	if(!visitCanBeDeleted(visita) || !this.ownerService.findCurrentOwner().equals(mascota.getOwner())) {
+        		return "redirect:/owners/{ownerId}";
+        	}
+        	
         	mascota.removeVisit(visita);
         	this.petService.deleteVisit(visita);
         	
     		return "redirect:/owners/{ownerId}";
     	}
 
+        private boolean petCanBeDeleted(Pet pet) {
+        	boolean result = false;
+        	
+        	if(pet.getOwner().equals(this.ownerService.findCurrentOwner())) {
+        		result = true;
+        	}
+        	
+        	return result;
+        }
         
-        
-        
-        
-        
-        
-        
-        
-        /**
-         *
-         * @param pet
-         * @param result
-         * @param petId
-         * @param model
-         * @param owner
-         * @param model
-         * @return
-         */
-        
-        
-
+        private boolean visitCanBeDeleted(Visit visit) {
+        	boolean result = false;
+        	
+        	if(!visit.getDate().isBefore(LocalDate.now())) {
+        		result = true;
+        	}
+        	
+        	return result;
+        }
 }

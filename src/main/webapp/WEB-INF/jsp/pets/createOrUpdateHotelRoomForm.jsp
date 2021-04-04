@@ -20,7 +20,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <h2><c:if test="${hotelRoom['new']}">New </c:if>Hotel Room Booking</h2>
+        <h2><c:if test="${hotelRoom['new']}"><fmt:message key="new-female"/><b> </b></c:if><fmt:message key="hotel.room.booking"/></h2>
 
         <b>Pet</b>
         <table class="table table-striped">
