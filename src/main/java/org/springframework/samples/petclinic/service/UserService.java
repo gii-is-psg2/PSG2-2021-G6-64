@@ -15,8 +15,9 @@
  */
 package org.springframework.samples.petclinic.service;
 
-
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -35,7 +36,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
 	private UserRepository userRepository;
-
+	private OwnerService ownerService;
+	
 	@Autowired
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -46,8 +48,13 @@ public class UserService {
 		user.setEnabled(true);
 		userRepository.save(user);
 	}
-	
+
 	public Optional<User> findUser(String username) {
 		return userRepository.findById(username);
+	}
+	
+	@Transactional
+	public boolean currentUserIsAdmin(HttpServletRequest request) {
+		return request.isUserInRole("admin");
 	}
 }

@@ -15,16 +15,24 @@
  */
 package org.springframework.samples.petclinic.web;
 
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Pet;
+import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.VetService;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,10 +53,14 @@ public class OwnerController {
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
 	private final OwnerService ownerService;
+	private final UserService userService;
+	private final AuthoritiesService authoritiesService;
 
 	@Autowired
 	public OwnerController(OwnerService ownerService, UserService userService, AuthoritiesService authoritiesService) {
+		this.userService = userService;
 		this.ownerService = ownerService;
+		this.authoritiesService = authoritiesService;
 	}
 
 	@InitBinder
@@ -111,6 +123,10 @@ public class OwnerController {
 
 	@GetMapping(value = "/owners/{ownerId}/edit")
 	public String initUpdateOwnerForm(@PathVariable("ownerId") int ownerId, Model model) {
+		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId)) {
+			return "redirect:/owners/{ownerId}";
+		}
+		
 		Owner owner = this.ownerService.findOwnerById(ownerId);
 		model.addAttribute(owner);
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
@@ -119,6 +135,10 @@ public class OwnerController {
 	@PostMapping(value = "/owners/{ownerId}/edit")
 	public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result,
 			@PathVariable("ownerId") int ownerId) {
+		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId)) {
+			return "redirect:/owners/{ownerId}";
+		}
+		
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 		}
@@ -128,17 +148,52 @@ public class OwnerController {
 			return "redirect:/owners/{ownerId}";
 		}
 	}
-
-	/**
-	 * Custom handler for displaying an owner.
-	 * @param ownerId the ID of the owner to display
-	 * @return a ModelMap with the model attributes for the view
-	 */
+	
+	@PreAuthorize("hasRole('admin')")
+	@GetMapping(value = "/owners/{ownerId}/delete")
+	public String deleteOwnerForm(@PathVariable("ownerId") int ownerId) {
+//		if(!this.userService.currentUserIsAdmin()) {
+//			return "redirect:/owners/{ownerId}";
+//		}
+		
+		Owner owner = this.ownerService.findOwnerById(ownerId);
+		this.ownerService.deleteOwner(owner);
+		return "redirect:/owners/find";
+	}
+	
+	
 	@GetMapping("/owners/{ownerId}")
 	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
+//		mav.addObject("isAdmin", this.userService.currentUserIsAdmin());
+		mav.addObject("isCurrentOwner", this.ownerService.ownerIsLoggedOwnerById(ownerId));
 		mav.addObject(this.ownerService.findOwnerById(ownerId));
+		Map<Integer, Boolean> visitsCanBeDeleted = new HashMap<Integer, Boolean>();
+
+		if(this.ownerService.findCurrentOwner() != null) {
+			for(Pet pet: this.ownerService.findCurrentOwner().getPets()) {
+				visitsCanBeDeleted.putAll(listVisitCanBeDeleted(pet.getVisits()));
+			}
+		}
+		
+		mav.addObject("visitsCanBeDeleted", visitsCanBeDeleted);
+		mav.addObject("hasAnyDeletableVisit", visitsCanBeDeleted.containsValue(true));
+
 		return mav;
 	}
-
+	
+    private Map<Integer, Boolean> listVisitCanBeDeleted(List<Visit> visits) {
+    	Map<Integer, Boolean> result = new HashMap<Integer, Boolean>();
+    	
+    	for(Visit visit: visits) {
+        	if(!visit.getDate().isBefore(LocalDate.now())) {
+        		result.put(visit.getId(), true);
+        	} else {
+        		result.put(visit.getId(), false);
+        	}
+    	}
+    	
+    	return result;
+    }
+    
 }

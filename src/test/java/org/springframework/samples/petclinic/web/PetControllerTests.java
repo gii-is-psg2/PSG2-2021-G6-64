@@ -144,5 +144,15 @@ class PetControllerTests {
 				.andExpect(model().attributeHasErrors("pet")).andExpect(status().isOk())
 				.andExpect(view().name("pets/createOrUpdatePetForm"));
 	}
+    
+    @WithMockUser(value = "spring")
+    @Test
+     void testDeletePet() throws Exception {
+     		mockMvc.perform(get("/owners/{ownerId}/pets/{petId}/delete", TEST_OWNER_ID, TEST_PET_ID)).andExpect(status().isFound())
+     				.andExpect(view().name("redirect:/owners/{ownerId}"));
+     	}
+         
+    
+    
 
 }

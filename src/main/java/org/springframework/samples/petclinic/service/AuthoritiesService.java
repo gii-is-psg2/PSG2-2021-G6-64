@@ -23,6 +23,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Authorities;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.repository.AuthoritiesRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,7 +41,7 @@ public class AuthoritiesService {
 	private UserService userService;
 
 	@Autowired
-	public AuthoritiesService(AuthoritiesRepository authoritiesRepository,UserService userService) {
+	public AuthoritiesService(AuthoritiesRepository authoritiesRepository, UserService userService) {
 		this.authoritiesRepository = authoritiesRepository;
 		this.userService = userService;
 	}
@@ -61,6 +63,10 @@ public class AuthoritiesService {
 		}else
 			throw new DataAccessException("User '"+username+"' not found!") {};
 	}
-
+	
+	@Transactional
+	public Authorities findAuthoritiesByRole(String rol) throws DataAccessException {
+		return this.authoritiesRepository.findByRol(rol);
+	}
 
 }

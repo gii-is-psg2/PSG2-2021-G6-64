@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -133,6 +134,16 @@ class OwnerServiceTests {
 		// retrieving new name from database
 		owner = this.ownerService.findOwnerById(1);
 		assertThat(owner.getLastName()).isEqualTo(newLastName);
+	}
+	
+	
+	@Test
+	@Transactional
+	void deleteOwner() {
+		Owner owner = this.ownerService.findOwnerById(1);
+		ownerService.deleteOwner(owner);
+	
+		assertEquals(ownerService.findOwnerById(1), null);
 	}
 
 

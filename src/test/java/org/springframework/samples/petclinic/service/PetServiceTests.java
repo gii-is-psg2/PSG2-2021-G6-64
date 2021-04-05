@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -222,6 +223,16 @@ class PetServiceTests {
 		assertThat(visitArr[0].getPet()).isNotNull();
 		assertThat(visitArr[0].getDate()).isNotNull();
 		assertThat(visitArr[0].getPet().getId()).isEqualTo(7);
+	}
+	
+	
+	@Test
+	@Transactional
+	void deletePet() {
+		Pet pet = this.petService.findPetById(1);
+		petService.deletePet(pet);
+	
+		assertEquals(petService.findPetById(1), null);
 	}
 
 }

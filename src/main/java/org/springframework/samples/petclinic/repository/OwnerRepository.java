@@ -39,6 +39,9 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	 * @see BaseEntity#isNew
 	 */
 	void save(Owner owner) throws DataAccessException;
+	
+	
+	void deleteById(Integer Id) throws DataAccessException;
 
 	/**
 	 * Retrieve <code>Owner</code>s from the data store by last name, returning all owners
@@ -59,5 +62,8 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	 */	
 	@Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id")
 	public Owner findById(@Param("id") int id);
+	
+	@Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.user.username =:username")
+	public Owner findByUsername(@Param("username") String username);
 
 }

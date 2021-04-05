@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -89,5 +90,16 @@ class VetServiceTests {
 		assertThat(vet.getSpecialties().get(1).getName()).isEqualTo("surgery");
 	}
 
+	@Test
+	@Transactional
+	void deleteVet() {
+		Vet vet = this.vetService.findVetById(1);
+		vetService.deleteVet(vet);
+		assertEquals(vetService.findVetById(1), null);
+	}
+
+
+	
+	
 
 }

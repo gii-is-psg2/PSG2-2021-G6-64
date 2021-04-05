@@ -18,21 +18,18 @@ package org.springframework.samples.petclinic.service;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Owner;
-import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.PetType;
-import org.springframework.samples.petclinic.model.Vet;
-import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
+
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 /**
  * Mostly used as a facade for all Petclinic controllers Also a placeholder
@@ -60,7 +57,13 @@ public class OwnerService {
 	public Owner findOwnerById(int id) throws DataAccessException {
 		return ownerRepository.findById(id);
 	}
+	
+	@Transactional(readOnly = true)
+	public Owner findOwnerByUsername(String username) throws DataAccessException {
+		return ownerRepository.findByUsername(username);
+	}
 
+	
 	@Transactional(readOnly = true)
 	public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException {
 		return ownerRepository.findByLastName(lastName);
@@ -74,6 +77,43 @@ public class OwnerService {
 		userService.saveUser(owner.getUser());
 		//creating authorities
 		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
-	}		
+    
+	}
+	
+	@Transactional
+	public Owner findCurrentOwner() throws DataAccessException {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
 
+		if (principal instanceof UserDetails) {
+			username = ((UserDetails) principal).getUsername();
+		} else {
+			username = principal.toString();
+		}
+		Owner owner = this.findOwnerByUsername(username);
+		return owner;
+	}
+	
+	@Transactional
+	public void deleteOwner(Owner owner) throws DataAccessException {
+		
+		ownerRepository.deleteById(owner.getId());
+		
+		//creating owner
+		//ownerRepository.save(owner);		
+		//creating user
+		//userService.saveUser(owner.getUser());
+		//creating authorities
+		//authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
+	}	
+
+	
+	public boolean ownerIsLoggedOwnerById(Integer ownerId) {
+		if(this.findCurrentOwner() == null) {
+			return false;
+		} else {
+			return this.findCurrentOwner().equals(this.findOwnerById(ownerId));
+		}
+	}
+	
 }
