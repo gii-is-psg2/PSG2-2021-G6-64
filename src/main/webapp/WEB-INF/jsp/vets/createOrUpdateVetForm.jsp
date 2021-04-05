@@ -9,7 +9,7 @@
 
 <petclinic:layout pageName="vets">
 	<h2>
-        <c:if test="${vet['new']}">New </c:if> Veterinarians
+        <c:if test="${vet['new']}"><fmt:message key="new"/> </c:if><b> </b><fmt:message key="vet"/>
     </h2>
     <form:form modelAttribute="vet" class="form-horizontal" id="add-vet-form">
         <div class="form-group has-feedback">

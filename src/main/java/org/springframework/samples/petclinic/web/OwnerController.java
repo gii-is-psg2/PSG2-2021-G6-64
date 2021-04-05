@@ -15,13 +15,18 @@
  */
 package org.springframework.samples.petclinic.web;
 
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Pet;
+import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.VetService;
@@ -163,8 +168,32 @@ public class OwnerController {
 //		mav.addObject("isAdmin", this.userService.currentUserIsAdmin());
 		mav.addObject("isCurrentOwner", this.ownerService.ownerIsLoggedOwnerById(ownerId));
 		mav.addObject(this.ownerService.findOwnerById(ownerId));
+		Map<Integer, Boolean> visitsCanBeDeleted = new HashMap<Integer, Boolean>();
+
+		if(this.ownerService.findCurrentOwner() != null) {
+			for(Pet pet: this.ownerService.findCurrentOwner().getPets()) {
+				visitsCanBeDeleted.putAll(listVisitCanBeDeleted(pet.getVisits()));
+			}
+		}
+		
+		mav.addObject("visitsCanBeDeleted", visitsCanBeDeleted);
+		mav.addObject("hasAnyDeletableVisit", visitsCanBeDeleted.containsValue(true));
+
 		return mav;
 	}
 	
-	
+    private Map<Integer, Boolean> listVisitCanBeDeleted(List<Visit> visits) {
+    	Map<Integer, Boolean> result = new HashMap<Integer, Boolean>();
+    	
+    	for(Visit visit: visits) {
+        	if(!visit.getDate().isBefore(LocalDate.now())) {
+        		result.put(visit.getId(), true);
+        	} else {
+        		result.put(visit.getId(), false);
+        	}
+    	}
+    	
+    	return result;
+    }
+    
 }

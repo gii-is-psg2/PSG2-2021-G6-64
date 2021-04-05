@@ -15,7 +15,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <h2><c:if test="${visit['new']}"><fmt:message key="new"/> </c:if><b> </b><fmt:message key="visit.visit"/></h2>
+        <h2><c:if test="${visit['new']}"><fmt:message key="new-female"/></c:if><b> </b> <fmt:message key="visit.visit"/></h2>
 
         <b><fmt:message key="pet.pet"/></b>
         <table class="table table-striped">
