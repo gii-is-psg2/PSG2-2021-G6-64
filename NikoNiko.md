@@ -1,4 +1,4 @@
-+# Niko Niko Calendar of team G6-64
+# Niko Niko Calendar of team G6-64
 ## Introduction
 Some interesting links about what a Niko Niko calendar is and opinions about its use in software development:
 
