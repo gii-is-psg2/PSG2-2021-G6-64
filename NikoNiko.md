@@ -34,14 +34,14 @@ In the retrospective meeting, the team has a discussion about those results.
 
 | Day           |     Álvaro    |    Ismael     |    Marina     |     Borja     |     Stefan    |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| April 6       |    :smiley:   |       -       |               |               |               |
-| April 7       |       -       |       -       |               |               |               |
-| April 8       |       -       |       -       |               |               |               |
-| April 9       |    :smiley:   |    :smiley:   |               |               |               |
-| April 10      |       -       |       -       |               |               |               |
-| April 11      |       -       |       -       |               |               |               |
+| April 6       |    :smiley:   |       -       |               |               |        -      |
+| April 7       |       -       |       -       |               |               |        -      |
+| April 8       |       -       |       -       |               |               |        -      |
+| April 9       |    :smiley:   |    :smiley:   |               |               |    :smiley:   |
+| April 10      |       -       |       -       |               |               |        -      |
+| April 11      |       -       |       -       |               |               |        -      |
 | April 12      |    :smiley:   |       -       |               |               |    :smiley:   |
-| April 13      |               |               |               |               |       -       |
+| April 13      |               |               |               |               |               |
 | April 14      |               |               |               |               |               |
 | April 15      |               |               |               |               |               |
 | April 16      |               |               |               |               |               |
@@ -61,4 +61,4 @@ In the retrospective meeting, the team has a discussion about those results.
 | April 30      |               |               |               |               |               |
 | May 1         |               |               |               |               |               |
 | May 2         |               |               |               |               |               |
-| Day 3         |               |               |               |               |               |
+| May 3         |               |               |               |               |               |
