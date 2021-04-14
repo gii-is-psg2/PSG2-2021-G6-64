@@ -1,8 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,46 +16,27 @@ public class HotelRoomService {
 
 	private HotelRoomRepository hotelRoomRepository;
 	
-	private OwnerService ownerService;
-
 	@Autowired
-	public HotelRoomService(HotelRoomRepository hotelRoomRepository,
-			OwnerService ownerService) {
+	public HotelRoomService(HotelRoomRepository hotelRoomRepository) {
 		this.hotelRoomRepository = hotelRoomRepository;
-		this.ownerService = ownerService;
 	}
 
 
 	@Transactional
 	public void saveHotelRoom(HotelRoom hotelRoom) throws DataAccessException, DuplicatedHotelRoomForDateException {
-		boolean checkRoomIsBooked = false;
-		boolean checkPetHasBookedRoomForDate = false;
-		Collection<HotelRoom> roomsWithTheSameName = this.findAllByHotelRoomName(hotelRoom.getName());
-		Collection<HotelRoom> bookedRoomsByPetId = this.findBookedRoomsByPetId(hotelRoom.getPet().getId());
-		for(HotelRoom room: roomsWithTheSameName) {
-			if(hotelRoom.getStartDate().isBefore(room.getFinishDate()) || hotelRoom.getStartDate().isEqual(room.getFinishDate())) {
-				checkRoomIsBooked = true;
-			}
-		}
-
-		for(HotelRoom room: bookedRoomsByPetId) {
-			if(hotelRoom.getStartDate().isBefore(room.getFinishDate()) || hotelRoom.getStartDate().isEqual(room.getFinishDate())) {
-				checkPetHasBookedRoomForDate = true;
-			}
-		}
+		Collection<HotelRoom> roomsWithTheSameName = this.findAllByHotelRoomByName(hotelRoom.getName());
+		Collection<HotelRoom> roomsWithTheSameNumber = this.findAllByHotelRoomByNumber(hotelRoom.getNumber());
 		
-		if(checkRoomIsBooked) {
-        	throw new DuplicatedHotelRoomForDateException();
-		} else if(checkPetHasBookedRoomForDate) {
-        	throw new DuplicatedHotelRoomForDateException();
-        } else {
+		if(roomsWithTheSameName.isEmpty() && roomsWithTheSameNumber.isEmpty()) {
 			hotelRoomRepository.save(hotelRoom);
+		} else {
+        	throw new DuplicatedHotelRoomForDateException();
 		}
 	}
 
 	@Transactional
-	public Collection<HotelRoom> findBookedRoomsByPetId(int petId) {
-		return hotelRoomRepository.findByPetId(petId);
+	public Collection<HotelRoom> findAll() {
+		return hotelRoomRepository.findAll();
 	}
 	
 	@Transactional
@@ -66,17 +45,12 @@ public class HotelRoomService {
 	}
 	
 	@Transactional
-	public Collection<HotelRoom> findAll() {
-		return hotelRoomRepository.findAll();
+	public Collection<HotelRoom> findAllByHotelRoomByName(String name) {
+		return hotelRoomRepository.findAllByHotelRoomByName(name);
 	}
 	
 	@Transactional
-	public Collection<HotelRoom> findByPetId(Integer petId) {
-		return hotelRoomRepository.findByPetId(petId);
-	}
-	
-	@Transactional
-	public Collection<HotelRoom> findAllByHotelRoomName(String name) {
-		return hotelRoomRepository.findAllByHotelName(name);
+	public Collection<HotelRoom> findAllByHotelRoomByNumber(Integer number) {
+		return hotelRoomRepository.findAllByHotelRoomByNumber(number);
 	}
 }

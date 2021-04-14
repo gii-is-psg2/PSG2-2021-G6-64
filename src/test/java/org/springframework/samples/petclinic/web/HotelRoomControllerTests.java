@@ -24,14 +24,14 @@ import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.User;
-import org.springframework.samples.petclinic.service.HotelRoomService;
+import org.springframework.samples.petclinic.service.HotelRoomBookingService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(controllers = HotelRoomController.class,
+@WebMvcTest(controllers = HotelRoomBookingController.class,
 			excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class),
 			excludeAutoConfiguration= SecurityConfiguration.class)
 class HotelRoomControllerTests {
@@ -41,7 +41,7 @@ class HotelRoomControllerTests {
 
 	
 	@Autowired
-	private HotelRoomController hotelRoomController;
+	private HotelRoomBookingController hotelRoomController;
 
 	@MockBean
 	private OwnerService ownerService;
@@ -51,7 +51,7 @@ class HotelRoomControllerTests {
 
 	
 	@MockBean
-	private HotelRoomService hotelRoomService;
+	private HotelRoomBookingService hotelRoomService;
 	
 	@Autowired
 	private MockMvc mockMvc;
