@@ -29,29 +29,30 @@ public class HotelRoomBookingService {
 
 
 	@Transactional
-	public void saveHotelRoom(HotelRoomBooking hotelRoom) throws DataAccessException, DuplicatedHotelRoomForDateException {
+	public void saveHotelRoom(HotelRoomBooking hotelRoomBooking) throws DataAccessException, DuplicatedHotelRoomForDateException {
 		boolean checkRoomIsBooked = false;
 		boolean checkPetHasBookedRoomForDate = false;
-		Collection<HotelRoomBooking> roomsWithTheSameName = this.findAllByHotelRoomName(hotelRoom.getName());
-		Collection<HotelRoomBooking> bookedRoomsByPetId = this.findBookedRoomsByPetId(hotelRoom.getPet().getId());
-		for(HotelRoomBooking room: roomsWithTheSameName) {
-			if(hotelRoom.getStartDate().isBefore(room.getFinishDate()) || hotelRoom.getStartDate().isEqual(room.getFinishDate())) {
+		Collection<HotelRoomBooking> roomsWithTheSameNameAndNumber = this.findAllByHotelRoomByNameAndNumber(hotelRoomBooking.getHotelRoom().getName(), hotelRoomBooking.getHotelRoom().getNumber());
+		Collection<HotelRoomBooking> bookedRoomsByPetId = this.findBookedRoomsByPetId(hotelRoomBooking.getPet().getId());
+
+		for(HotelRoomBooking room: roomsWithTheSameNameAndNumber) {
+			if(hotelRoomBooking.getStartDate().isBefore(room.getFinishDate()) || hotelRoomBooking.getStartDate().isEqual(room.getFinishDate())) {
 				checkRoomIsBooked = true;
 			}
 		}
 
 		for(HotelRoomBooking room: bookedRoomsByPetId) {
-			if(hotelRoom.getStartDate().isBefore(room.getFinishDate()) || hotelRoom.getStartDate().isEqual(room.getFinishDate())) {
+			if(hotelRoomBooking.getStartDate().isBefore(room.getFinishDate()) || hotelRoomBooking.getStartDate().isEqual(room.getFinishDate())) {
 				checkPetHasBookedRoomForDate = true;
 			}
 		}
-		
+
 		if(checkRoomIsBooked) {
         	throw new DuplicatedHotelRoomForDateException();
 		} else if(checkPetHasBookedRoomForDate) {
         	throw new DuplicatedHotelRoomForDateException();
         } else {
-        	hotelRoomBookingRepository.save(hotelRoom);
+        	hotelRoomBookingRepository.save(hotelRoomBooking);
 		}
 	}
 
@@ -78,5 +79,10 @@ public class HotelRoomBookingService {
 	@Transactional
 	public Collection<HotelRoomBooking> findAllByHotelRoomName(String name) {
 		return hotelRoomBookingRepository.findAllByHotelRoomName(name);
+	}
+	
+	@Transactional
+	public Collection<HotelRoomBooking> findAllByHotelRoomByNameAndNumber(String name, Integer number) {
+		return hotelRoomBookingRepository.findAllByHotelRoomByNameAndNumber(name, number);
 	}
 }

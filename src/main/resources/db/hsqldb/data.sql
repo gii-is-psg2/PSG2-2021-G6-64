@@ -94,6 +94,6 @@ INSERT INTO hotel_rooms(id,name,number) VALUES (1, 'Habitación individual', 1);
 INSERT INTO hotel_rooms(id,name,number) VALUES (2, 'Habitación individual', 2);
 INSERT INTO hotel_rooms(id,name,number) VALUES (3, 'Suite', 804);
 
-INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date,name) VALUES (1, 1, 1, '2013-01-04', '2013-01-04', 'Habitación 23');
-INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date,name) VALUES (2, 1, 1, '2013-01-05', '2013-01-05', 'Habitación 18');
-INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date,name) VALUES (3, 2, 1, '2013-01-05', '2013-01-05', 'Habitación 23');
+INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date) VALUES (1, 1, 1, '2013-01-04', '2013-01-04');
+INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date) VALUES (2, 1, 1, '2013-01-05', '2013-01-05');
+INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date) VALUES (3, 2, 1, '2013-01-05', '2013-01-05');

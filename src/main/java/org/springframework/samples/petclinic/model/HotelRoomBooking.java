@@ -20,9 +20,9 @@ import lombok.Data;
 @Table(name = "hotel_room_bookings")
 public class HotelRoomBooking extends BaseEntity {
 
-	@NotEmpty(message = "No puede estar vacio")
-	@Column(name = "name")
-	private String name;
+//	@NotEmpty(message = "No puede estar vacio")
+//	@Column(name = "name")
+//	private String name;
 	
 	@NotNull(message = "No puede estar vacio")
 	@FutureOrPresent(message = "Debe estar en presente o en futuro")
@@ -44,5 +44,5 @@ public class HotelRoomBooking extends BaseEntity {
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "hotel_room_id")
-	private HotelRoom hotel_room;	
+	private HotelRoom hotelRoom;	
 }
