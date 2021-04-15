@@ -43,7 +43,7 @@ In the retrospective meeting, the team has a discussion about those results.
 | April 12      |    :smiley:   |       -       |               |    :smiley:   |    :smiley:   |
 | April 13      |       -       |               |               |               |               |
 | April 14      |    :smiley:   |               |               |               |               |
-| April 15      |               |               |               |               |               |
+| April 15      |    :smiley:   |               |               |               |               |
 | April 16      |               |               |               |               |               |
 | April 17      |               |               |               |               |               |
 | April 18      |               |               |               |               |               |
