@@ -20,7 +20,7 @@
             	<c:forEach var="room" items="${names}">
 					<c:choose>
 						<c:when test="${selected == room.id}">
-							<form:option selected="true" value="${room.id}" label="${room.name} - Número: ${room.number}"/>selectText
+							<form:option selected="true" value="${room.id}" label="${room.name}, Número: ${room.number}"/>selectText
 						</c:when>
 						<c:otherwise>
 							<form:option value="${room.id}" label="${room.name}, Número ${room.number}"/>selectText

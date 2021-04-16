@@ -60,7 +60,6 @@ public class HotelRoomController {
 					"Ya existe una habitación con este número");
 			return "hotel/rooms/createOrUpdateHotelRoomForm";
 		} else {
-			System.out.println("envia");
 			this.hotelRoomService.saveHotelRoom(hotelRoom);
 			return "redirect:/hotel/rooms";
 		}

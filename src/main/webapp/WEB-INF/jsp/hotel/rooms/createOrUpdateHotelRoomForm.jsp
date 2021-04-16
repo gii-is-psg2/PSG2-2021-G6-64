@@ -24,5 +24,4 @@
             </div>
         </form:form>
     </jsp:body>
-
 </petclinic:layout>

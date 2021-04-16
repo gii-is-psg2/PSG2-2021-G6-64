@@ -19,10 +19,6 @@ import lombok.Data;
 @Entity
 @Table(name = "hotel_room_bookings")
 public class HotelRoomBooking extends BaseEntity {
-
-//	@NotEmpty(message = "No puede estar vacio")
-//	@Column(name = "name")
-//	private String name;
 	
 	@NotNull(message = "No puede estar vacio")
 	@FutureOrPresent(message = "Debe estar en presente o en futuro")
