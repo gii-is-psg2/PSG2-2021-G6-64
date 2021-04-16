@@ -34,16 +34,16 @@ In the retrospective meeting, the team has a discussion about those results.
 
 | Day           |     Álvaro    |    Ismael     |    Marina     |     Borja     |     Stefan    |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| April 6       |    :smiley:   |       -       |               |       -       |        -      |
-| April 7       |       -       |       -       |               |       -       |        -      |
-| April 8       |       -       |       -       |               |       -       |        -      |
-| April 9       |    :smiley:   |    :smiley:   |               |    :smiley:   |    :smiley:   |
+| April 6       |    :smiley:   |       -       |       -       |       -       |        -      |
+| April 7       |       -       |       -       |       -       |       -       |        -      |
+| April 8       |       -       |       -       |       -       |       -       |        -      |
+| April 9       |    :smiley:   |    :smiley:   |   :smiley:    |    :smiley:   |    :smiley:   |
 | April 10      |       -       |       -       |               |        -      |        -      |
 | April 11      |       -       |       -       |               |        -      |        -      |
-| April 12      |    :smiley:   |       -       |               |    :smiley:   |    :smiley:   |
-| April 13      |       -       |               |               |               |               |
-| April 14      |    :smiley:   |               |               |               |               |
-| April 15      |    :smiley:   |               |               |               |               |
+| April 12      |    :smiley:   |       -       |   :smiley:    |    :smiley:   |    :smiley:   |
+| April 13      |       -       |               |   :smiley:    |               |               |
+| April 14      |    :smiley:   |               |       -       |               |               |
+| April 15      |    :smiley:   |               |       -       |               |               |
 | April 16      |               |               |               |               |               |
 | April 17      |               |               |               |               |               |
 | April 18      |               |               |               |               |               |
