@@ -41,10 +41,10 @@ In the retrospective meeting, the team has a discussion about those results.
 | April 10      |       -       |       -       |               |        -      |        -      |
 | April 11      |       -       |       -       |               |        -      |        -      |
 | April 12      |    :smiley:   |       -       |   :smiley:    |    :smiley:   |    :smiley:   |
-| April 13      |       -       |               |   :smiley:    |               |               |
-| April 14      |    :smiley:   |               |       -       |               |               |
-| April 15      |    :smiley:   |               |       -       |               |               |
-| April 16      |               |               |               |               |               |
+| April 13      |       -       |               |   :smiley:    |               |        -      |
+| April 14      |    :smiley:   |               |       -       |               |:neutral_face: |
+| April 15      |    :smiley:   |               |       -       |               |        -      |
+| April 16      |               |               |               |               |    :smiley:   |
 | April 17      |               |               |               |               |               |
 | April 18      |               |               |               |               |               |
 | April 19      |               |               |               |               |               |
