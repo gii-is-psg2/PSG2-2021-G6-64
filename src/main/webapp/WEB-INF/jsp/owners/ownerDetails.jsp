@@ -120,6 +120,30 @@
                                 </spring:url>
                                 <a href="${fn:escapeXml(visitUrl)}"><fmt:message key="visit.add"/></a>
                             </td>
+                            
+                            
+                            
+                            <c:if test="${pet.enAdopcion==false}">
+                            <td>
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/adopt" var="adoptUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(adoptUrl)}"><fmt:message key="pet.adopt"/></a>
+                            </td>
+                            </c:if>
+                            
+                            
+                            <c:if test="${pet.enAdopcion== true}">
+                            <td>
+                                <spring:url value="/owners/{ownerId}/adoptions/{petId}" var="adoptSetUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(adoptSetUrl)}"><fmt:message key="adoption.show"/></a>
+                            </td>
+                            </c:if>
+                            
                         </tr>
                         <c:if test="${isCurrentOwner}">
                         <tr>

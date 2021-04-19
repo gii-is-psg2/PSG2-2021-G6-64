@@ -170,6 +170,35 @@ public class PetController {
     	}
 
    
+        
+        
+        
+        @GetMapping(value = "/pets/{petId}/adopt")
+    	public String adoptPet(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId) {
+        	
+        	Pet pet = this.petService.findPetById(petId);
+        	
+        	pet.setAdoption();
+        	
+        	try {
+				this.petService.savePet(pet);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				throw new RuntimeException();
+			}
+        	
+    		return "redirect:/owners/{ownerId}";
+    		
+    	}
+
+        
+        
+        
+        
+        
+        
+        
+        
 
         @GetMapping(value = "/pets/{petId}/visit/{visitId}/delete")
     	public String deletePetVisit(@PathVariable("visitId") int visitId, @PathVariable("petId") int petId, @PathVariable("ownerId") int ownerId) {

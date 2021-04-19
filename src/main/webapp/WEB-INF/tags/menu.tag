@@ -41,6 +41,14 @@
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span><fmt:message key="vet.vets"/></span>
 				</petclinic:menuItem>
+				
+				
+				<petclinic:menuItem active="${name eq 'adoptions'}" url="/adoptions"
+					title="adoptionPet">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span><fmt:message key="pet.adoption"/></span>
+				</petclinic:menuItem>
+				
 
 				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
 					title="trigger a RuntimeException to see how it is handled">

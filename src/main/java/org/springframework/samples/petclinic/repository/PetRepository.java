@@ -52,11 +52,12 @@ public interface PetRepository extends Repository<Pet, Integer> {
 	 * @param pet the <code>Pet</code> to save
 	 * @see BaseEntity#isNew
 	 */
-	
+	@Query("SELECT p FROM Pet p where p.enAdopcion=TRUE")
+	List<Pet> findAdoptionPets() throws DataAccessException;
 	
 	void deleteById(Integer Id) throws DataAccessException;
 	
-	void save(Pet pet) throws DataAccessException;
+	Pet save(Pet pet) throws DataAccessException;
 	
 	
 	

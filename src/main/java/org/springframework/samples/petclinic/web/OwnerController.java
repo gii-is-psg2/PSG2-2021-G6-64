@@ -24,12 +24,17 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.AdoptionApplication;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.service.AdoptionService;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.OwnerService;
+import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.VetService;
+import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -52,14 +57,18 @@ public class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
+	private final PetService petService;
 	private final OwnerService ownerService;
+	private final AdoptionService adoptionService;
 	private final UserService userService;
 	private final AuthoritiesService authoritiesService;
 
 	@Autowired
-	public OwnerController(OwnerService ownerService, UserService userService, AuthoritiesService authoritiesService) {
+	public OwnerController(OwnerService ownerService, PetService petService, AdoptionService adoptionService,UserService userService, AuthoritiesService authoritiesService) {
 		this.userService = userService;
 		this.ownerService = ownerService;
+		this.adoptionService= adoptionService;
+		this.petService= petService;
 		this.authoritiesService = authoritiesService;
 	}
 
@@ -195,5 +204,64 @@ public class OwnerController {
     	
     	return result;
     }
+    
+
+    @GetMapping("/owners/{ownerId}/adoptions/{petId}")
+	public String showAdoptAppList(Map<String, Object> model, @PathVariable("ownerId") int ownerId, @PathVariable("petId") int petId) {
+		// Here we are returning an object of type 'Vets' rather than a collection of Vet
+		// objects
+		// so it is simpler for Object-Xml mapping
+    
+    	
+    	
+		List<AdoptionApplication> listaPets = adoptionService.findAdoptionsByPet(petId);
+	
+		model.put("listaPets", listaPets);
+		model.put("ownerId", ownerId);
+		
+		return "adoptions/adoptionOwnerPet";
+	}
+    
+    @GetMapping("/owners/{ownerId}/adoptions/{petId}/apply/{applyId}")
+	public String acceptAdoptionRequest(Map<String, Object> model, @PathVariable("applyId") int applyId, @PathVariable("petId") int petId, @PathVariable("ownerId") int ownerId) {
+		// Here we are returning an object of type 'Vets' rather than a collection of Vet
+		// objects
+		// so it is simpler for Object-Xml mapping
+    
+    	Owner owner= adoptionService.findAdoptionsById(applyId).getOwner();
+    	
+    	Pet pet= petService.findPetById(petId);
+    	
+    	Owner owner1= pet.getOwner();
+		owner1.removePet(pet);
+		ownerService.saveOwner(owner1);
+		
+		this.adoptionService.deleteAllAdoptionsApplications(pet.getAdoptionApplication());
+		
+		
+		this.petService.deletePet(pet);
+	
+		
+		Pet pet1=new Pet();
+		pet1.setBirthDate(pet.getBirthDate());
+		pet1.setName(pet.getName());
+		pet1.setType(pet.getType());
+		pet1.setNotAdoption();
+		
+		try {
+			pet1 = this.petService.savePet(pet1);
+		} catch (DataAccessException | DuplicatedPetNameException e) {
+			e.printStackTrace();
+		}
+		
+		owner.addPet(pet1);
+		ownerService.saveOwner(owner);
+		
+		
+		return "redirect:/owners/" + owner1.getId();
+	}
+
+
+    
     
 }
