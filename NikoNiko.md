@@ -38,8 +38,8 @@ In the retrospective meeting, the team has a discussion about those results.
 | April 7       |       -       |       -       |       -       |       -       |        -      |
 | April 8       |       -       |       -       |       -       |       -       |        -      |
 | April 9       |    :smiley:   |    :smiley:   |   :smiley:    |    :smiley:   |    :smiley:   |
-| April 10      |       -       |       -       |               |        -      |        -      |
-| April 11      |       -       |       -       |               |        -      |        -      |
+| April 10      |       -       |       -       |       -       |        -      |        -      |
+| April 11      |       -       |       -       |       -       |        -      |        -      |
 | April 12      |    :smiley:   |   :smiley:    |   :smiley:    |    :smiley:   |    :smiley:   |
 | April 13      |       -       |       -       |   :smiley:    |        -      |        -      |
 | April 14      |    :smiley:   |        -      |       -       |        -      |:neutral_face: |
