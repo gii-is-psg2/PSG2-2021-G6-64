@@ -148,6 +148,11 @@ public class Pet extends NamedEntity {
 	public boolean removeVisit(Visit visit) {
 		return getVisitsInternal().remove(visit);
 	}
+	
+	public void resetAdoption() {
+		this.setNotAdoption();
+		this.adoptionApplication = new HashSet<AdoptionApplication>();
+	}
 
 	
 	

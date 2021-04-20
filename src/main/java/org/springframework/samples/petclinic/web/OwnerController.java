@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -33,11 +34,8 @@ import org.springframework.samples.petclinic.service.AdoptionService;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
-import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,16 +58,13 @@ public class OwnerController {
 	private final PetService petService;
 	private final OwnerService ownerService;
 	private final AdoptionService adoptionService;
-	private final UserService userService;
-	private final AuthoritiesService authoritiesService;
+
 
 	@Autowired
-	public OwnerController(OwnerService ownerService, PetService petService, AdoptionService adoptionService,UserService userService, AuthoritiesService authoritiesService) {
-		this.userService = userService;
+	public OwnerController(OwnerService ownerService, PetService petService, AdoptionService adoptionService) {
 		this.ownerService = ownerService;
 		this.adoptionService= adoptionService;
 		this.petService= petService;
-		this.authoritiesService = authoritiesService;
 	}
 
 	@InitBinder
@@ -191,6 +186,7 @@ public class OwnerController {
 		return mav;
 	}
 	
+	
     private Map<Integer, Boolean> listVisitCanBeDeleted(List<Visit> visits) {
     	Map<Integer, Boolean> result = new HashMap<Integer, Boolean>();
     	
@@ -201,19 +197,14 @@ public class OwnerController {
         		result.put(visit.getId(), false);
         	}
     	}
-    	
+ 
     	return result;
     }
     
 
     @GetMapping("/owners/{ownerId}/adoptions/{petId}")
 	public String showAdoptAppList(Map<String, Object> model, @PathVariable("ownerId") int ownerId, @PathVariable("petId") int petId) {
-		// Here we are returning an object of type 'Vets' rather than a collection of Vet
-		// objects
-		// so it is simpler for Object-Xml mapping
-    
-    	
-    	
+
 		List<AdoptionApplication> listaPets = adoptionService.findAdoptionsByPet(petId);
 	
 		model.put("listaPets", listaPets);
@@ -223,42 +214,29 @@ public class OwnerController {
 	}
     
     @GetMapping("/owners/{ownerId}/adoptions/{petId}/apply/{applyId}")
-	public String acceptAdoptionRequest(Map<String, Object> model, @PathVariable("applyId") int applyId, @PathVariable("petId") int petId, @PathVariable("ownerId") int ownerId) {
-		// Here we are returning an object of type 'Vets' rather than a collection of Vet
-		// objects
-		// so it is simpler for Object-Xml mapping
+	public String acceptAdoptionRequest(Map<String, Object> model, @PathVariable("applyId") int applyId, @PathVariable("petId") int petId, @PathVariable("ownerId") int ownerId) throws Exception {
     
-    	Owner owner= adoptionService.findAdoptionsById(applyId).getOwner();
+    	Owner currentOwner = this.ownerService.findOwnerById(ownerId);
+    	AdoptionApplication apply = this.adoptionService.findAdoptionsById(applyId);
+		
+    	Pet petAdopting = apply.getPet();
+    	Owner newOwner = apply.getOwner();
     	
-    	Pet pet= petService.findPetById(petId);
+    	currentOwner.removePet(petAdopting);
+    	this.ownerService.saveOwner(currentOwner);
     	
-    	Owner owner1= pet.getOwner();
-		owner1.removePet(pet);
-		ownerService.saveOwner(owner1);
-		
-		this.adoptionService.deleteAllAdoptionsApplications(pet.getAdoptionApplication());
-		
-		
-		this.petService.deletePet(pet);
-	
-		
-		Pet pet1=new Pet();
-		pet1.setBirthDate(pet.getBirthDate());
-		pet1.setName(pet.getName());
-		pet1.setType(pet.getType());
-		pet1.setNotAdoption();
-		
-		try {
-			pet1 = this.petService.savePet(pet1);
+    	newOwner.addPet(petAdopting);
+    	this.ownerService.saveOwner(newOwner);
+    	
+    	Set<AdoptionApplication> allApply = petAdopting.getAdoptionApplication();
+    	petAdopting.resetAdoption();
+    	this.adoptionService.deleteAllAdoptionsApplications(allApply);
+    	try {
+			this.petService.savePet(petAdopting);
 		} catch (DataAccessException | DuplicatedPetNameException e) {
-			e.printStackTrace();
+			throw e;
 		}
-		
-		owner.addPet(pet1);
-		ownerService.saveOwner(owner);
-		
-		
-		return "redirect:/owners/" + owner1.getId();
+		return "redirect:/owners/" + ownerId;
 	}
 
 

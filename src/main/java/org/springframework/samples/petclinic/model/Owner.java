@@ -117,6 +117,10 @@ public class Owner extends Person {
 	protected void setPetsInternal(Set<Pet> pets) {
 		this.pets = pets;
 	}
+	
+	public Set<AdoptionApplication> getApplication(){
+		return this.adoptions;
+	}
 
 	public List<Pet> getPets() {
 		List<Pet> sortedPets = new ArrayList<>(getPetsInternal());

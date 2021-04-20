@@ -123,7 +123,7 @@
                             
                             
                             
-                            <c:if test="${pet.enAdopcion==false}">
+                            <c:if test="${pet.enAdopcion==false && isCurrentOwner}">
                             <td>
                                 <spring:url value="/owners/{ownerId}/pets/{petId}/adopt" var="adoptUrl">
                                     <spring:param name="ownerId" value="${owner.id}"/>
@@ -134,7 +134,7 @@
                             </c:if>
                             
                             
-                            <c:if test="${pet.enAdopcion== true}">
+                            <c:if test="${pet.enAdopcion== true && isCurrentOwner}">
                             <td>
                                 <spring:url value="/owners/{ownerId}/adoptions/{petId}" var="adoptSetUrl">
                                     <spring:param name="ownerId" value="${owner.id}"/>

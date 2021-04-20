@@ -69,16 +69,7 @@ public class PetController {
 	public Owner findOwner(@PathVariable("ownerId") int ownerId) {
 		return this.ownerService.findOwnerById(ownerId);
 	}
-        
-        /*@ModelAttribute("pet")
-	public Pet findPet(@PathVariable("petId") Integer petId) {
-            Pet result=null;
-		if(petId!=null)
-                    result=this.clinicService.findPetById(petId);
-                else
-                    result=new Pet();
-            return result;
-	}*/
+     
                 
 	@InitBinder("owner")
 	public void initOwnerBinder(WebDataBinder dataBinder) {
@@ -150,88 +141,77 @@ public class PetController {
                     }
 			return "redirect:/owners/{ownerId}";
 		}
-	}
+    }
     	
         
-        @GetMapping(value = "/pets/{petId}/delete")
-    	public String deletePet(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId) {
-        	
-        	Pet pet = this.petService.findPetById(petId);
-        	Owner owner = this.ownerService.findOwnerById(ownerId);
-        	
-        	if(!petCanBeDeleted(pet)) {
-        		return "redirect:/owners/{ownerId}";
-        	}
-        	
-        	owner.removePet(pet);
-    		this.petService.deletePet(pet);
-    		
+    @GetMapping(value = "/pets/{petId}/delete")
+	public String deletePet(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId) {
+    	
+    	Pet pet = this.petService.findPetById(petId);
+    	Owner owner = this.ownerService.findOwnerById(ownerId);
+    	
+    	if(!petCanBeDeleted(pet)) {
     		return "redirect:/owners/{ownerId}";
     	}
+    	
+    	owner.removePet(pet);
+		this.petService.deletePet(pet);
+		
+		return "redirect:/owners/{ownerId}";
+	}
 
-   
-        
-        
-        
-        @GetMapping(value = "/pets/{petId}/adopt")
-    	public String adoptPet(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId) {
-        	
-        	Pet pet = this.petService.findPetById(petId);
-        	
-        	pet.setAdoption();
-        	
-        	try {
-				this.petService.savePet(pet);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				throw new RuntimeException();
-			}
-        	
-    		return "redirect:/owners/{ownerId}";
-    		
-    	}
+    
+    @GetMapping(value = "/pets/{petId}/adopt")
+	public String adoptPet(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId) {
+    	
+    	Pet pet = this.petService.findPetById(petId);
+    	
+    	pet.setAdoption();
+    	
+    	try {
+			this.petService.savePet(pet);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException();
+		}
+    	
+		return "redirect:/owners/{ownerId}";
+		
+	}
+    
 
-        
-        
-        
-        
-        
-        
-        
-        
-
-        @GetMapping(value = "/pets/{petId}/visit/{visitId}/delete")
-    	public String deletePetVisit(@PathVariable("visitId") int visitId, @PathVariable("petId") int petId, @PathVariable("ownerId") int ownerId) {
-        	Pet mascota= this.petService.findPetById(petId);
-        	Visit visita= this.petService.findVisitById(visitId);
-        	
-        	if(!visitCanBeDeleted(visita) || !this.ownerService.findCurrentOwner().equals(mascota.getOwner())) {
-        		return "redirect:/owners/{ownerId}";
-        	}
-        	
-        	mascota.removeVisit(visita);
-        	this.petService.deleteVisit(visita);
-        	
+    @GetMapping(value = "/pets/{petId}/visit/{visitId}/delete")
+	public String deletePetVisit(@PathVariable("visitId") int visitId, @PathVariable("petId") int petId, @PathVariable("ownerId") int ownerId) {
+    	Pet mascota= this.petService.findPetById(petId);
+    	Visit visita= this.petService.findVisitById(visitId);
+    	
+    	if(!visitCanBeDeleted(visita) || !this.ownerService.findCurrentOwner().equals(mascota.getOwner())) {
     		return "redirect:/owners/{ownerId}";
     	}
+    	
+    	mascota.removeVisit(visita);
+    	this.petService.deleteVisit(visita);
+    	
+		return "redirect:/owners/{ownerId}";
+	}
 
-        private boolean petCanBeDeleted(Pet pet) {
-        	boolean result = false;
-        	
-        	if(pet.getOwner().equals(this.ownerService.findCurrentOwner())) {
-        		result = true;
-        	}
-        	
-        	return result;
-        }
-        
-        private boolean visitCanBeDeleted(Visit visit) {
-        	boolean result = false;
-        	
-        	if(!visit.getDate().isBefore(LocalDate.now())) {
-        		result = true;
-        	}
-        	
-        	return result;
-        }
+    private boolean petCanBeDeleted(Pet pet) {
+    	boolean result = false;
+    	
+    	if(pet.getOwner().equals(this.ownerService.findCurrentOwner())) {
+    		result = true;
+    	}
+    	
+    	return result;
+    }
+    
+    private boolean visitCanBeDeleted(Visit visit) {
+    	boolean result = false;
+    	
+    	if(!visit.getDate().isBefore(LocalDate.now())) {
+    		result = true;
+    	}
+    	
+    	return result;
+    }
 }
