@@ -45,11 +45,11 @@ In the retrospective meeting, the team has a discussion about those results.
 | April 14      |    :smiley:   |        -      |       -       |        -      |:neutral_face: |
 | April 15      |    :smiley:   |         -     |       -       |        -      |        -      |
 | April 16      |    :worried:  |  :worried:    |   :smiley:    |    :smiley:   |    :smiley:   |
-| April 17      |       -       |   :smiley:    |       -       |               |       -       |
-| April 18      |       -       |   :smiley:    |       -       |               |:neutral_face: |
-| April 19      |    :smiley:   |   :smiley:    |   :smiley:    |               |    :smiley:   |
-| April 20      |               |         -     |   :smiley:    |               |    :smiley:   |
-| April 21      |               |    :smiley:   |               |               |               |
+| April 17      |       -       |   :smiley:    |       -       |    :smiley:   |       -       |
+| April 18      |       -       |   :smiley:    |       -       |    :smiley:   |:neutral_face: |
+| April 19      |    :smiley:   |   :smiley:    |   :smiley:    |    :smiley:   |    :smiley:   |
+| April 20      |               |         -     |   :smiley:    |        -      |    :smiley:   |
+| April 21      |               |    :smiley:   |               |        -      |               |
 | April 22      |               |               |               |               |               |
 | April 23      |               |               |               |               |               |
 | April 24      |               |               |               |               |               |
