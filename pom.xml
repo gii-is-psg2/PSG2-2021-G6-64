@@ -93,7 +93,11 @@
 
 		<jacoco.version>0.8.5</jacoco.version>
 		<spring-format.version>0.0.19</spring-format.version>
-
+		
+		<!-- Sonar properties -->
+		<sonar.projectKey>gii-is-psg2_PSG2-2021-G6-64</sonar.projectKey>
+		<sonar.organization>gii-is-psg2</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
 	<dependencies>
@@ -207,6 +211,15 @@
 
 	<build>
 		<plugins>
+			<plugin>
+			    <artifactId>maven-surefire-plugin</artifactId>
+			    <version>2.20</version>
+			    
+			    <configuration>
+			        <testFailureIgnore>true</testFailureIgnore>
+			        
+			    </configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
