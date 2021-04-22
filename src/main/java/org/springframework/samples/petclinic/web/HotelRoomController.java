@@ -9,9 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.HotelRoom;
-import org.springframework.samples.petclinic.model.Vets;
 import org.springframework.samples.petclinic.service.HotelRoomService;
-import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedHotelRoomForDateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -50,10 +48,6 @@ public class HotelRoomController {
 		modelMap.addAttribute("hotelRooms", hotelRooms);
 		
 		if (result.hasErrors()) {
-			return "hotel/rooms/createOrUpdateHotelRoomForm";
-		} else if (!hotelRoomService.findAllByHotelRoomByName(hotelRoom.getName()).isEmpty()) {
-			result.rejectValue("name", "error.name",
-					"Ya existe una habitación con este nombre");
 			return "hotel/rooms/createOrUpdateHotelRoomForm";
 		} else if (!hotelRoomService.findAllByHotelRoomByNumber(hotelRoom.getNumber()).isEmpty()) {
 			result.rejectValue("number", "error.number",

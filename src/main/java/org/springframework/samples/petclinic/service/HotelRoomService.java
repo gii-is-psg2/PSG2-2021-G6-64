@@ -24,10 +24,9 @@ public class HotelRoomService {
 
 	@Transactional
 	public void saveHotelRoom(HotelRoom hotelRoom) throws DataAccessException, DuplicatedHotelRoomForDateException {
-		Collection<HotelRoom> roomsWithTheSameName = this.findAllByHotelRoomByName(hotelRoom.getName());
 		Collection<HotelRoom> roomsWithTheSameNumber = this.findAllByHotelRoomByNumber(hotelRoom.getNumber());
 		
-		if(roomsWithTheSameName.isEmpty() && roomsWithTheSameNumber.isEmpty()) {
+		if(roomsWithTheSameNumber.isEmpty()) {
 			hotelRoomRepository.save(hotelRoom);
 		} else {
         	throw new DuplicatedHotelRoomForDateException();
