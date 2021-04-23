@@ -80,9 +80,9 @@ public class AdoptionController {
 
 	
 	@GetMapping(value = {"/adoptions/{petId}/apply" })
-	public String applyAdopt(Map<String, Object> model, @PathVariable("petId") int petId) {
+	public String InitApplyAdoptForm(Map<String, Object> model, @PathVariable("petId") int petId) {
 		AdoptionApplication adopApp= new AdoptionApplication();
-		Pet pet= this.petService.findPetById(petId);
+		Pet pet = this.petService.findPetById(petId);
 		
 		model.put("pet", pet);
 		model.put("adoptionApply", adopApp);
@@ -93,7 +93,7 @@ public class AdoptionController {
 	
 
 	@PostMapping(value =  "/adoptions/{petId}/apply" )
-	public String processCreationForm(@Valid AdoptionApplication adopApp, BindingResult result, ModelMap model,@PathVariable("petId") int petId) {		
+	public String processApplyAdoptForm(@Valid AdoptionApplication adopApp, BindingResult result, ModelMap model,@PathVariable("petId") int petId) {		
 		if (result.hasErrors()) {
 			model.put("adoptionApply", adopApp);
 			return "redirect: /adoptions/{petId}/apply";
