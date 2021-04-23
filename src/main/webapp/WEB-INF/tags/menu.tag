@@ -24,37 +24,44 @@
 		<div class="navbar-collapse collapse" id="main-navbar">
 			<ul class="nav navbar-nav">
 
-				<petclinic:menuItem active="${name eq 'home'}" url="/"
-					title="home page">
+				<petclinic:menuItem active="${name eq 'home'}" url="/" title="home page">
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 					<span><fmt:message key="home"/></span>
 				</petclinic:menuItem>
 
-				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
-					title="find owners">
+				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find" title="find owners">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					<span><fmt:message key="owner.find"/></span>
 				</petclinic:menuItem>
 
-				<petclinic:menuItem active="${name eq 'vets'}" url="/vets"
-					title="veterinarians">
+				<petclinic:menuItem active="${name eq 'vets'}" url="/vets" title="veterinarians">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span><fmt:message key="vet.vets"/></span>
 				</petclinic:menuItem>
-				
 				
 				<petclinic:menuItem active="${name eq 'adoptions'}" url="/adoptions"
 					title="adoptionPet">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span><fmt:message key="pet.adoption"/></span>
 				</petclinic:menuItem>
-				
 
-				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
+				<petclinic:menuItem active="${name eq 'causes'}" url="/causes" title="causes">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+	 <!--		<span><fmt:message key="cause.causes"/></span>   -->
+          <span>Causas</span>      
+				</petclinic:menuItem>
+
+				<petclinic:menuItem active="${name eq 'rooms'}" url="/hotel/rooms"
+					title="hotel rooms">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span><fmt:message key="rooms"/></span>
+				</petclinic:menuItem>
+
+<%-- 				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
 					title="trigger a RuntimeException to see how it is handled">
 					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
 					<span>Error</span>
-				</petclinic:menuItem>
+				</petclinic:menuItem> --%>
 
 			</ul>
 
@@ -68,7 +75,7 @@
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> 
+						data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span>Â 
 							<strong><sec:authentication property="name" /></strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
@@ -87,7 +94,7 @@
 											</p>
 											<p class="text-left">
 												<a href="<c:url value="/logout" />"
-													class="btn btn-primary btn-block btn-sm">Cerrar sesión</a>
+													class="btn btn-primary btn-block btn-sm">Cerrar sesiÃ³n</a>
 											</p>
 										</div>
 									</div>

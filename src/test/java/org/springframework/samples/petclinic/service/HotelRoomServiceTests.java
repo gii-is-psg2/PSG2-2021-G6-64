@@ -15,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.HotelRoom;
+import org.springframework.samples.petclinic.model.HotelRoomBooking;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedHotelRoomForDateException;
 import org.springframework.stereotype.Service;
@@ -29,32 +30,35 @@ class HotelRoomServiceTests {
 	@Autowired
 	protected PetService petService;
     @Autowired
-	protected OwnerService ownerService;	
+	protected OwnerService ownerService;
     @Autowired
 	protected HotelRoomService hotelRoomService;
+    @Autowired
+	protected HotelRoomBookingService hotelRoomBookingService;
     
 	@Test
 	void shouldFindHotelRoomWithCorrectId() {
-		HotelRoom hotelRoom1 = this.hotelRoomService.findById(1).get();
-		assertThat(hotelRoom1.getName()).startsWith("Habitación 23");
-		assertThat(hotelRoom1.getStartDate().toString()).isEqualTo("2013-01-04");
-		assertThat(hotelRoom1.getFinishDate().toString()).isEqualTo("2013-01-04");
+		HotelRoomBooking hotelRoomBooking1 = this.hotelRoomBookingService.findById(1).get();
+		assertThat(hotelRoomBooking1.getHotelRoom().getName()).isEqualTo("Habitación individual");
+		assertThat(hotelRoomBooking1.getHotelRoom().getNumber()).isEqualTo(1);
+		assertThat(hotelRoomBooking1.getStartDate().toString()).isEqualTo("2013-01-04");
+		assertThat(hotelRoomBooking1.getFinishDate().toString()).isEqualTo("2013-01-04");
 	}
 
 	@Test
-	void shouldFindAllHotelRoomsByName() {
-		HotelRoom hotelRoom1 = this.hotelRoomService.findById(1).get();
-		HotelRoom hotelRoom3 = this.hotelRoomService.findById(3).get();
-		Collection<HotelRoom> hotelRooms = this.hotelRoomService.findAllByHotelRoomName("Habitación 23");
+	void shouldFindAllHotelRoomBookingsByName() {
+		HotelRoomBooking hotelRoom1 = this.hotelRoomBookingService.findById(1).get();
+		HotelRoomBooking hotelRoom2 = this.hotelRoomBookingService.findById(2).get();
+		Collection<HotelRoomBooking> hotelRooms = this.hotelRoomBookingService.findAllByHotelRoomName("Habitación individual");
 		assertTrue(hotelRooms.contains(hotelRoom1));
-		assertTrue(hotelRooms.contains(hotelRoom3));
+		assertTrue(hotelRooms.contains(hotelRoom2));
 	}
 
 	@Test
 	void shouldFindAllBookedHotelRoomsByPetId() {
-		HotelRoom hotelRoom1 = this.hotelRoomService.findById(1).get();
-		HotelRoom hotelRoom2 = this.hotelRoomService.findById(2).get();
-		Collection<HotelRoom> hotelRooms = this.hotelRoomService.findBookedRoomsByPetId(1);
+		HotelRoomBooking hotelRoom1 = this.hotelRoomBookingService.findById(1).get();
+		HotelRoomBooking hotelRoom2 = this.hotelRoomBookingService.findById(2).get();
+		Collection<HotelRoomBooking> hotelRooms = this.hotelRoomBookingService.findBookedRoomsByPetId(1);
 		assertTrue(hotelRooms.contains(hotelRoom1));
 		assertTrue(hotelRooms.contains(hotelRoom2));
 	}
@@ -68,21 +72,21 @@ class HotelRoomServiceTests {
 	@Transactional
 	public void shouldInsertHotelRoomIntoDatabaseAndGenerateId() {
 		Pet pet1 = this.petService.findPetById(1);
-		
-		HotelRoom hotelRoom = new HotelRoom();
-		hotelRoom.setName("Habitación 42");
-		hotelRoom.setStartDate(LocalDate.now().plusDays(7));
-		hotelRoom.setFinishDate(LocalDate.now().plusDays(8));
-		hotelRoom.setPet(pet1);
+		HotelRoom hotelRoom = this.hotelRoomService.findById(1).get();
+		HotelRoomBooking hotelRoomBooking = new HotelRoomBooking();
+		hotelRoomBooking.setHotelRoom(hotelRoom);
+		hotelRoomBooking.setStartDate(LocalDate.now().plusDays(7));
+		hotelRoomBooking.setFinishDate(LocalDate.now().plusDays(8));
+		hotelRoomBooking.setPet(pet1);
 		
 		try {
-			this.hotelRoomService.saveHotelRoom(hotelRoom);
+			this.hotelRoomBookingService.saveHotelRoom(hotelRoomBooking);
 		} catch (DuplicatedHotelRoomForDateException exception) {
             Logger.getLogger(HotelRoomServiceTests.class.getName()).log(Level.SEVERE, null, exception);
         }
 		
-		HotelRoom hotelRoom4 = this.hotelRoomService.findById(4).get();
-		assertThat(hotelRoom4).isEqualTo(hotelRoom);
+		HotelRoomBooking hotelRoom4 = this.hotelRoomBookingService.findById(4).get();
+		assertThat(hotelRoom4.getHotelRoom()).isEqualTo(hotelRoom);
 		assertThat(hotelRoom4.getPet()).isEqualTo(pet1);
 		assertThat(hotelRoom4.getId()).isNotNull();
 	}
@@ -92,25 +96,25 @@ class HotelRoomServiceTests {
 	public void shouldThrowExceptionHotelRoomIsAlreadyBooked() throws DataAccessException, DuplicatedHotelRoomForDateException {
 
 		Pet pet1 = this.petService.findPetById(1);
-		
-		HotelRoom hotelRoomForPet1 = new HotelRoom();
-		hotelRoomForPet1.setName("Habitación 42");
+		HotelRoom hotelRoom2 = this.hotelRoomService.findById(2).get();
+
+		HotelRoomBooking hotelRoomForPet1 = new HotelRoomBooking();
+		hotelRoomForPet1.setHotelRoom(hotelRoom2);
 		hotelRoomForPet1.setStartDate(LocalDate.now());
 		hotelRoomForPet1.setFinishDate(LocalDate.now().plusDays(1));
 		hotelRoomForPet1.setPet(pet1);
 		
 		Pet pet2 = this.petService.findPetById(2);
 		
-		HotelRoom hotelRoomForPet2 = new HotelRoom();
-		hotelRoomForPet2.setName("Habitación 42");
+		HotelRoomBooking hotelRoomForPet2 = new HotelRoomBooking();
+		hotelRoomForPet2.setHotelRoom(hotelRoom2);
 		hotelRoomForPet2.setStartDate(LocalDate.now());
 		hotelRoomForPet2.setFinishDate(LocalDate.now().plusDays(1));
 		hotelRoomForPet2.setPet(pet2);
 		
-		this.hotelRoomService.saveHotelRoom(hotelRoomForPet1);
-
+		this.hotelRoomBookingService.saveHotelRoom(hotelRoomForPet1);
 		Assertions.assertThrows(DuplicatedHotelRoomForDateException.class, () ->{
-			this.hotelRoomService.saveHotelRoom(hotelRoomForPet2);
+			this.hotelRoomBookingService.saveHotelRoom(hotelRoomForPet2);
 		});		
 	}
 	
@@ -118,23 +122,25 @@ class HotelRoomServiceTests {
 	@Transactional
 	public void shouldThrowExceptionHotelRoomPetHasBookedRoomForSelectedDate() throws DataAccessException, DuplicatedHotelRoomForDateException {
 		Pet pet1 = this.petService.findPetById(1);
-		
-		HotelRoom hotelRoom1 = new HotelRoom();
-		hotelRoom1.setName("Habitación 31");
-		hotelRoom1.setStartDate(LocalDate.now());
-		hotelRoom1.setFinishDate(LocalDate.now().plusDays(1));
-		hotelRoom1.setPet(pet1);
+		HotelRoom hotelRoom1 = this.hotelRoomService.findById(1).get();
+		HotelRoom hotelRoom2 = this.hotelRoomService.findById(2).get();
+
+		HotelRoomBooking hotelRoomBooking1 = new HotelRoomBooking();
+		hotelRoomBooking1.setHotelRoom(hotelRoom1);
+		hotelRoomBooking1.setStartDate(LocalDate.now());
+		hotelRoomBooking1.setFinishDate(LocalDate.now().plusDays(1));
+		hotelRoomBooking1.setPet(pet1);
 				
-		HotelRoom hotelRoom2 = new HotelRoom();
-		hotelRoom2.setName("Habitación 42");
-		hotelRoom2.setStartDate(LocalDate.now());
-		hotelRoom2.setFinishDate(LocalDate.now().plusDays(1));
-		hotelRoom2.setPet(pet1);
+		HotelRoomBooking hotelRoomBooking2 = new HotelRoomBooking();
+		hotelRoomBooking2.setHotelRoom(hotelRoom2);
+		hotelRoomBooking2.setStartDate(LocalDate.now());
+		hotelRoomBooking2.setFinishDate(LocalDate.now().plusDays(1));
+		hotelRoomBooking2.setPet(pet1);
 		
-		this.hotelRoomService.saveHotelRoom(hotelRoom1);
+		this.hotelRoomBookingService.saveHotelRoom(hotelRoomBooking1);
 
 		Assertions.assertThrows(DuplicatedHotelRoomForDateException.class, () ->{
-			this.hotelRoomService.saveHotelRoom(hotelRoom2);
+			this.hotelRoomBookingService.saveHotelRoom(hotelRoomBooking2);
 		});	
 	}
 }

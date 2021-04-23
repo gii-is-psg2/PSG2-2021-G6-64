@@ -20,11 +20,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.model.HotelRoom;
+import org.springframework.samples.petclinic.model.HotelRoomBooking;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Visit;
-import org.springframework.samples.petclinic.repository.HotelRoomRepository;
+import org.springframework.samples.petclinic.repository.HotelRoomBookingRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
@@ -45,12 +45,12 @@ public class PetService {
 	
 	private VisitRepository visitRepository;
 	
-	private HotelRoomRepository hotelRoomRepository;
+	private HotelRoomBookingRepository hotelRoomRepository;
 
 	@Autowired
 	public PetService(PetRepository petRepository,
 			VisitRepository visitRepository,
-			HotelRoomRepository hotelRoomRepository) {
+			HotelRoomBookingRepository hotelRoomRepository) {
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
 		this.hotelRoomRepository = hotelRoomRepository;
