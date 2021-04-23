@@ -41,8 +41,7 @@
 				
 				<petclinic:menuItem active="${name eq 'causes'}" url="/causes" title="causes">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-	 <!--			<span><fmt:message key="cause.causes"/></span>   -->
-                    <span>Causas</span>      
+					<span><fmt:message key="cause.causes"/></span>       
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'rooms'}" url="/hotel/rooms"

@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -23,31 +24,26 @@ public class Cause extends NamedEntity {
 
 	@Column(name = "budget_target")
 	@NotNull
+	@Digits(integer = 10, fraction = 2)
 	@Positive
 	private Double budgetTarget;
 	
-	@Column(name = "budget_achieved")
-	@NotNull
-	@Min(value = 0)
-	private Double budgetAchieved;
 
 	@Column(name = "organization")
 	@NotEmpty
 	private String organization;
 
-	@Column(name = "closed")
-	private boolean closed;
 	
-//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cause")
-//	private Set<Donation> donations;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cause")
+	private List<Donation> donations;
 	
-//	public Set<Donation> getDonation() {
-//		return donations;
-//	}
+	public List<Donation> getDonation() {
+		return donations;
+	}
 	
-//	public void setDonations(Set<Donation> donations) {
-//		this.donations = donations;
-//	}
+	public void setDonations(List<Donation> donations) {
+		this.donations = donations;
+	}
 
 	public String getDescription() {
 		return this.description;
@@ -57,7 +53,6 @@ public class Cause extends NamedEntity {
 		this.description = description;
 	}
 
-
 	public String getOrganization() {
 		return this.organization;
 	}
@@ -66,21 +61,22 @@ public class Cause extends NamedEntity {
 		this.organization = organization;
 	}
 
-	public boolean isClosed() {
-		return this.closed;
+	public boolean getClosed() {
+		return getBudgetAchieved() >= budgetTarget;
 	}
 
-	public void setClosed(final boolean closed) {
-		this.closed = closed;
-	}
-	
+
 	public Double getBudgetAchieved() {
-		return budgetAchieved;
+		
+		double result = 0.0;
+		for (Donation donation : donations) {
+			result += donation.getAmount();
+		}
+		
+		result = (double) Math.round(result * 100) / 100;
+		return result;
 	}
 
-	public void setBudgetAchieved(Double budgetAchieved) {
-		this.budgetAchieved = budgetAchieved;
-	}
 	
 	public Double getBudgetTarget() {
 		return budgetTarget;
@@ -89,4 +85,10 @@ public class Cause extends NamedEntity {
 	public void setBudgetTarget(Double budgetTarget) {
 		this.budgetTarget = budgetTarget;
 	}
+	
+	public void addDonation(Donation donation) {
+		this.donations.add(donation);
+		donation.setCause(this);
+	}
+	
 }

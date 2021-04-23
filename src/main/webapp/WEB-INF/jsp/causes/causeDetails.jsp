@@ -7,31 +7,46 @@
 
 <petclinic:layout pageName="causes">
 
-    <h2>Información de Causas</h2>
+    <h2><fmt:message key="cause.info"/></h2>
 
     <table class="table table-striped">
+    	<tr>
+            <th><fmt:message key="name"/></th>
+            <td><b><c:out value="${cause.name}"/></b></td>
+        </tr>
         <tr>
-            <th>Descripción</th>
+            <th><fmt:message key="desc"/></th>
             <td><b><c:out value="${cause.description}"/></b></td>
         </tr>
         <tr>
-            <th>Objetivo del presupuesto</th>
-            <td><c:out value="${cause.budgetTarget}"/></td>
+            <th><fmt:message key="cause.objetive"/></th>
+            <td><c:out value="${cause.budgetTarget}"/> $ </td>
         </tr>
         <tr>
-            <th>Organización</th>
+            <th><fmt:message key="cause.reach"/></th>
+            <td><c:out value="${cause.budgetAchieved}"/> $ <progress max="${cause.budgetTarget}" value="${cause.budgetAchieved}"> </progress></td>
+        </tr>
+        <tr>
+            <th><fmt:message key="org"/></th>
             <td><c:out value="${cause.organization}"/></td>
         </tr>
         <tr>
-            <th>Estado de la causa</th>
-            <td><c:out value="${cause.closed}"/></td>
+            <th><fmt:message key="cause.state"/></th>
+            <td>
+	            <c:choose>
+	            	<c:when test="${cause.closed}">
+	                    <b><fmt:message key="close"/></b>
+	                </c:when>
+	                <c:otherwise>
+	                   	<b><fmt:message key="open"/></b>
+	                </c:otherwise>
+	            </c:choose>
+            </td>
         </tr>
     </table>
-
      <spring:url value="/causes/{causeId}/donations" var="donationsUrl">
         <spring:param name="causeId" value="${cause.id}"/>
     </spring:url>
-    
-    <a href="${fn:escapeXml(donationsUrl)}" class="btn btn-default">Ver donaciones</a> 
-
+    <a href="${fn:escapeXml(donationsUrl)}" class="btn btn-default"><fmt:message key="donation.show"/></a> 
+	
 </petclinic:layout>
