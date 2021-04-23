@@ -51,7 +51,7 @@ In the retrospective meeting, the team has a discussion about those results.
 | April 20      |       -       |         -     |   :smiley:    |        -      |    :smiley:   |
 | April 21      |       -       |    :smiley:   |       -       |        -      |       -       |
 | April 22      |    :smiley:   |       -       |       -       |    :smiley:   |    :smiley:   |
-| April 23      |               |  :heart_eyes: |   :smiley:    |    :smiley:   |               |
+| April 23      |               |  :heart_eyes: |   :smiley:    |    :smiley:   |    :smiley:   |
 | April 24      |               |               |               |               |               |
 | April 25      |               |               |               |               |               |
 | April 26      |               |               |               |               |               |
