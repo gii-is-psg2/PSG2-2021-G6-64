@@ -7,8 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "causes")
@@ -20,7 +23,13 @@ public class Cause extends NamedEntity {
 
 	@Column(name = "budget_target")
 	@NotNull
-	private double budgetTarget;
+	@Positive
+	private Double budgetTarget;
+	
+	@Column(name = "budget_achieved")
+	@NotNull
+	@Min(value = 0)
+	private Double budgetAchieved;
 
 	@Column(name = "organization")
 	@NotEmpty
@@ -48,13 +57,6 @@ public class Cause extends NamedEntity {
 		this.description = description;
 	}
 
-	public double getBudgetTarget() {
-		return this.budgetTarget;
-	}
-
-	public void setBudgetTarget(final double budgetTarget) {
-		this.budgetTarget = budgetTarget;
-	}
 
 	public String getOrganization() {
 		return this.organization;
@@ -70,5 +72,21 @@ public class Cause extends NamedEntity {
 
 	public void setClosed(final boolean closed) {
 		this.closed = closed;
+	}
+	
+	public Double getBudgetAchieved() {
+		return budgetAchieved;
+	}
+
+	public void setBudgetAchieved(Double budgetAchieved) {
+		this.budgetAchieved = budgetAchieved;
+	}
+	
+	public Double getBudgetTarget() {
+		return budgetTarget;
+	}
+
+	public void setBudgetTarget(Double budgetTarget) {
+		this.budgetTarget = budgetTarget;
 	}
 }

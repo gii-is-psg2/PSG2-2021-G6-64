@@ -8,7 +8,7 @@
 
 <petclinic:layout pageName="causes">
     <h2>
-        <c:if test="${cause['new']}">Causa</c:if>Nueva
+        <c:if test="${cause['new']}">Nueva</c:if>Causa
     </h2>
     <form:form modelAttribute="cause" class="form-horizontal" id="add-cause-form">
         <div class="form-group has-feedback">
@@ -16,6 +16,7 @@
             <petclinic:inputField label="Descripcion" name="description"/>
             <petclinic:inputField label="Objetivo del presupuesto" name="budgetTarget"/>   
             <petclinic:inputField label="Organizacion" name="organization"/>
+            <input type="hidden" name="budgetAchieved" value="${0.0}"/>
             <c:if test="${!cause['new']}">
                 <label class="col-sm-2 control-label">Causa Cerrada</label>
                 <input type="checkbox" name="closed" path="closed"/>

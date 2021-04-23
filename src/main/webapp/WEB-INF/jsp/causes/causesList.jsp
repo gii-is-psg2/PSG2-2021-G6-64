@@ -16,7 +16,8 @@
             <th>Organización</th>
             <th>Objetivo del presupuesto</th>
             <th>Total donado</th>
-            <th>Donar</th>
+            <th>Info</th>
+            <th>Donar</th> 
         </tr>
         </thead>
         <tbody>
@@ -39,12 +40,20 @@
                 </td>
                 <td>
                 <c:if test= "${cause.budgetTarget > cause.budgetAchieved}">
+   				    <spring:url value= "/causes/{causeId}/" var= "editUrl">
+   				    <spring:param name= "causeId" value= "${cause.id}"/>
+ 				    </spring:url>
+  				    <a href= "${fn:escapeXml(editUrl)}">Ver causa</a> 
+    			    </c:if>
+                </td>
+                <td>
+                <c:if test= "${cause.budgetTarget > cause.budgetAchieved}">
    				    <spring:url value= "/causes/{causeId}/donations/new" var= "donateUrl">
    				    <spring:param name= "causeId" value= "${cause.id}"/>
  				    </spring:url>
   				    <a href= "${fn:escapeXml(donateUrl)}">Donar</a> 
     			    </c:if>
-                </td>
+                </td>                
             </tr>
         </c:forEach>
         </tbody>
