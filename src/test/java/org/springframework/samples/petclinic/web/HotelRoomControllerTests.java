@@ -4,12 +4,13 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,10 +21,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.model.Authorities;
+import org.springframework.samples.petclinic.model.HotelRoom;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.User;
+import org.springframework.samples.petclinic.service.HotelRoomBookingService;
 import org.springframework.samples.petclinic.service.HotelRoomService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
@@ -31,7 +34,7 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(controllers = HotelRoomController.class,
+@WebMvcTest(controllers = HotelRoomBookingController.class,
 			excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class),
 			excludeAutoConfiguration= SecurityConfiguration.class)
 class HotelRoomControllerTests {
@@ -41,7 +44,7 @@ class HotelRoomControllerTests {
 
 	
 	@Autowired
-	private HotelRoomController hotelRoomController;
+	private HotelRoomBookingController hotelRoomController;
 
 	@MockBean
 	private OwnerService ownerService;
@@ -49,6 +52,8 @@ class HotelRoomControllerTests {
 	@MockBean
 	private PetService petService;
 
+	@MockBean
+	private HotelRoomBookingService hotelRoomBookingService;
 	
 	@MockBean
 	private HotelRoomService hotelRoomService;
@@ -93,10 +98,20 @@ class HotelRoomControllerTests {
 		return pet;
 	}
 	
+	private HotelRoom dummyHotelRoom(Integer hotelRoomId) {
+		HotelRoom hr = new HotelRoom();
+		hr.setId(1);
+		hr.setName("Habitación doble");
+		hr.setNumber(1);
+		
+		return hr;
+	}
+	
 	private Owner dummyOwner;
 	private Owner badOwner;
 	private Pet dummyPet;
-
+	private Optional<HotelRoom> dummyHotelRoom;
+	
 	@BeforeEach
 	void setup() {
 		dummyOwner = dummyOwner(TEST_OWNER_ID);
@@ -104,10 +119,13 @@ class HotelRoomControllerTests {
 		dummyOwner.addPet(dummyPet);
 		badOwner = dummyOwner(2);
 		badOwner.getUser().setUsername("badUsername");
+		dummyHotelRoom = Optional.of(dummyHotelRoom(1));
 		
 		given(this.ownerService.findOwnerById(TEST_OWNER_ID)).willReturn(dummyOwner);
 		given(this.petService.findPetById(TEST_PET_ID)).willReturn(dummyPet);
-		given(this.hotelRoomService.findByPetId(TEST_PET_ID)).willReturn(Collections.emptyList());
+		given(this.hotelRoomBookingService.findByPetId(TEST_PET_ID)).willReturn(Collections.emptyList());
+		given(this.hotelRoomService.findById(1)).willReturn(dummyHotelRoom);
+
 	}
 
     
@@ -123,7 +141,7 @@ class HotelRoomControllerTests {
                 .param("hotelRoom.pet.owner.user.username", "dummyUsername")
                 .param("hotelRoom.pet.name", "Dummy pet"))
 		        .andExpect(status().isOk())
-				.andExpect(view().name("pets/createOrUpdateHotelRoomForm")
+				.andExpect(view().name("pets/createOrUpdateHotelRoomBookingForm")
             );
 	}
     
@@ -147,7 +165,7 @@ class HotelRoomControllerTests {
 		
 	mockMvc.perform(post("/owners/{ownerId}/pets/{petId}/hotel-rooms/new", TEST_OWNER_ID, TEST_PET_ID)
 			.with(csrf())
-			.param("name", "Habitación 18")
+			.param("hotelRoom.id", "1")
 			.param("startDate", "2030/01/04")
 			.param("finishDate", "2030/01/04")
 			.param("pet.id", dummyPet.getId().toString()))                                
@@ -162,12 +180,12 @@ class HotelRoomControllerTests {
 		
 	mockMvc.perform(post("/owners/{ownerId}/pets/{petId}/hotel-rooms/new", TEST_OWNER_ID, TEST_PET_ID)
 			.with(csrf())
-			.param("name", "Habitación 18")
 			.param("startDate", "2010/01/04")
 			.param("finishDate", "2010/01/04")
+			.param("hotelRoom.id", dummyHotelRoom.get().getId().toString())
 			.param("pet.id", dummyPet.getId().toString()))                                
-			.andExpect(model().attributeHasErrors("hotelRoom"))
+			.andExpect(model().attributeHasErrors("hotelRoomBooking"))
 		    .andExpect(status().isOk())
-			.andExpect(view().name("pets/createOrUpdateHotelRoomForm"));
+			.andExpect(view().name("pets/createOrUpdateHotelRoomBookingForm"));
 	}
 }

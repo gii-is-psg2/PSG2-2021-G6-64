@@ -21,8 +21,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,7 +57,21 @@ public class UserService {
 	}
 	
 	@Transactional
-	public boolean currentUserIsAdmin(HttpServletRequest request) {
-		return request.isUserInRole("admin");
+	public boolean currentUserIsAdmin() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+
+		if (principal instanceof UserDetails) {
+			username = ((UserDetails) principal).getUsername();
+		} else {
+			username = principal.toString();
+		}
+		Optional<User> user = this.findUser(username);
+		
+		if(!user.isPresent()) {
+			return false;
+		}
+		
+		return user.get().getAuthorities().contains("ADMIN");
 	}
 }
