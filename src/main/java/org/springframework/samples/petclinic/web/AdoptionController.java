@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.web;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -64,10 +65,12 @@ public class AdoptionController {
 		Owner owner = this.ownerService.findCurrentOwner();
 
 		int currentOwnerId = 0;
+		Set<Pet> idPetsApply = new HashSet<>();
 		if(owner != null) {
 			currentOwnerId = owner.getId();
+			idPetsApply = owner.getApplication().stream().map(x -> x.getPet()).collect(Collectors.toSet());
 		}
-		Set<Pet> idPetsApply = owner.getApplication().stream().map(x -> x.getPet()).collect(Collectors.toSet());
+
 		model.put("currentApplications",idPetsApply);
 		model.put("currentOwnerId",currentOwnerId);
 		model.put("listaPets", listaPets);
