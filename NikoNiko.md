@@ -28,6 +28,11 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day 3         |    :neutral_face:  (Meaning that I feel I had to struggle, but the assigned work was fair and the day productive)          |:fearful:
 | Day 4         |    :worried: (Meaning that I feel I have serious difficulties to accomplish the task, or the productivity of my day was awful)           |
 | Day 5         |    :fearful:   (I´m desperate, I need help)        |
+| Day 6         |    :hankey:   (Pff)        |
+| Day 7         |    :heart_eyes:   (Ohh)        |
+| Day 8         |   🤯 ( Saturada )   |
+| Day 9         |   😪 ( Triste/Desganada )   |
+| Day 10        |   🤔 ( Viendo cómo organizarme )   |
 
 
 ## Sprint Template
@@ -46,16 +51,16 @@ In the retrospective meeting, the team has a discussion about those results.
 | April 15      |    :smiley:   |    :hankey:   |       -       |        -      |        -      |
 | April 16      |    :worried:  |  :worried:    |   :smiley:    |    :smiley:   |    :smiley:   |
 | April 17      |       -       |   :smiley:    |       -       |    :smiley:   |       -       |
-| April 18      |       -       |   :smiley:    |       -       |    :smiley:   |:neutral_face: |
+| April 18      |       -       |   :smiley:    |     😪        |    :smiley:   |:neutral_face: |
 | April 19      |    :smiley:   |   :smiley:    |   :smiley:    |    :smiley:   |    :smiley:   |
 | April 20      |       -       |         -     |   :smiley:    |        -      |    :smiley:   |
 | April 21      |       -       |    :smiley:   |       -       |        -      |       -       |
 | April 22      |    :smiley:   |       -       |       -       |    :smiley:   |    :smiley:   |
 | April 23      |    :smiley:   |  :heart_eyes: |   :smiley:    |    :smiley:   |    :smiley:   |
-| April 24      |               |               |               |               |               |
-| April 25      |               |               |               |               |               |
-| April 26      |               |               |               |               |               |
-| April 27      |               |               |               |               |               |
+| April 24      |               |               |     🤯       |               |               |
+| April 25      |               |               |     🤯       |               |               |
+| April 26      |               |               |     🤔       |               |               |
+| April 27      |               |               |   :smiley:    |               |               |
 | April 28      |               |               |               |               |               |
 | April 29      |               |               |               |               |               |
 | April 30      |               |               |               |               |               |
