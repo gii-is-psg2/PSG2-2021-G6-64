@@ -39,29 +39,29 @@ In the retrospective meeting, the team has a discussion about those results.
 
 | Day           |     Álvaro    |    Ismael     |    Marina     |     Borja     |     Stefan    |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| April 6       |    :smiley:   |       -       |       -       |       -       |        -      |
-| April 7       |       -       |       -       |       -       |       -       |        -      |
-| April 8       |       -       |       -       |       -       |       -       |        -      |
+| April 6       |    :smiley:   |       -       | :smiley:☕    |       -       |        -      |
+| April 7       |       -       |       -       | :smiley:☕    |       -       |        -      |
+| April 8       |       -       |       -       | :smiley:☕    |       -       |        -      |
 | April 9       |    :smiley:   |    :smiley:   |   :smiley:    |    :smiley:   |    :smiley:   |
-| April 10      |       -       |       -       |       -       |        -      |        -      |
-| April 11      |       -       |       -       |       -       |        -      |        -      |
+| April 10      |       -       |       -       | :smiley:☕    |        -      |        -      |
+| April 11      |       -       |       -       | :smiley:☕    |        -      |        -      |
 | April 12      |    :smiley:   |   :smiley:    |   :smiley:    |    :smiley:   |    :smiley:   |
 | April 13      |       -       |       -       |   :smiley:    |        -      |        -      |
-| April 14      |    :smiley:   |        -      |       -       |        -      |:neutral_face: |
-| April 15      |    :smiley:   |    :hankey:   |       -       |        -      |        -      |
+| April 14      |    :smiley:   |        -      | :smiley:☕    |        -      |:neutral_face: |
+| April 15      |    :smiley:   |    :hankey:   | :smiley:☕    |        -      |        -      |
 | April 16      |    :worried:  |  :worried:    |   :smiley:    |    :smiley:   |    :smiley:   |
-| April 17      |       -       |   :smiley:    |       -       |    :smiley:   |       -       |
+| April 17      |       -       |   :smiley:    | :smiley:☕    |    :smiley:   |       -       |
 | April 18      |       -       |   :smiley:    |     😪        |    :smiley:   |:neutral_face: |
 | April 19      |    :smiley:   |   :smiley:    |   :smiley:    |    :smiley:   |    :smiley:   |
 | April 20      |       -       |         -     |   :smiley:    |        -      |    :smiley:   |
-| April 21      |       -       |    :smiley:   |       -       |        -      |       -       |
-| April 22      |    :smiley:   |       -       |       -       |    :smiley:   |    :smiley:   |
+| April 21      |       -       |    :smiley:   |  :smiley:☕   |        -      |       -       |
+| April 22      |    :smiley:   |       -       |  :smiley:☕   |    :smiley:   |    :smiley:   |
 | April 23      |    :smiley:   |  :heart_eyes: |   :smiley:    |    :smiley:   |    :smiley:   |
 | April 24      |               |               |     🤯       |               |               |
 | April 25      |               |               |     🤯       |               |               |
 | April 26      |               |               |     🤔       |               |               |
 | April 27      |               |               |   :smiley:    |               |               |
-| April 28      |               |               |               |               |               |
+| April 28      |               |               |  :smiley:☕  |               |               |
 | April 29      |               |               |               |               |               |
 | April 30      |               |               |               |               |               |
 | May 1         |               |               |               |               |               |
