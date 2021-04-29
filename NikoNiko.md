@@ -57,12 +57,12 @@ In the retrospective meeting, the team has a discussion about those results.
 | April 21      |       -       |    :smiley:   |  :smiley:☕  |        -      |       -       |
 | April 22      |      🤓       |       -       |  :smiley:☕  |    :smiley:   |    :smiley:   |
 | April 23      |      🤓       |  :heart_eyes: |     🤓       |    :smiley:   |    :smiley:   |
-| April 24      |               |               |     🤯       |               |               |
-| April 25      |               |               |     🤯       |               |               |
-| April 26      |               |               |     🤔       |               |               |
-| April 27      |               |               |     🤓       |               |               |
-| April 28      |               |               |  :smiley:☕  |               |               |
-| April 29      |               |               |               |               |               |
+| April 24      |     🤯☕     |               |     🤯       |               |               |
+| April 25      |     🤯☕     |               |     🤯       |               |               |
+| April 26      |     🤯☕     |               |     🤔       |               |               |
+| April 27      |     🤯☕     |               |     🤓       |               |               |
+| April 28      |      🤯      |               |  :smiley:☕  |               |               |
+| April 29      |      🤓       |               |               |               |               |
 | April 30      |               |               |               |               |               |
 | May 1         |               |               |               |               |               |
 | May 2         |               |               |               |               |               |
