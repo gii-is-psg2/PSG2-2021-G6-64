@@ -63,6 +63,12 @@ public class Owner extends Person {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
 	private Set<Pet> pets;
 	
+	
+	
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	private Set<AdoptionApplication> adoptions;
+	
 	//
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
@@ -110,6 +116,10 @@ public class Owner extends Person {
 
 	protected void setPetsInternal(Set<Pet> pets) {
 		this.pets = pets;
+	}
+	
+	public Set<AdoptionApplication> getApplication(){
+		return this.adoptions;
 	}
 
 	public List<Pet> getPets() {

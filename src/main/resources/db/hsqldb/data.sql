@@ -71,25 +71,31 @@ INSERT INTO owners VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '
 INSERT INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', 'owner9');
 INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'owner10');
 
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (1, 'Leo', '2010-09-07', 1, 1);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (2, 'Basil', '2012-08-06', 6, 2);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (3, 'Rosy', '2011-04-17', 2, 3);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (4, 'Jewel', '2010-03-07', 2, 3);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (5, 'Iggy', '2010-11-30', 3, 4);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (6, 'George', '2010-01-20', 4, 5);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (7, 'Samantha', '2012-09-04', 1, 6);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (8, 'Max', '2012-09-04', 1, 6);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (9, 'Lucky', '2011-08-06', 5, 7);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (10, 'Mulligan', '2007-02-24', 2, 8);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (11, 'Freddy', '2010-03-09', 5, 9);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (12, 'Lucky', '2010-06-24', 2, 10);
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (13, 'Sly', '2012-06-08', 1, 10);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (1, 'Leo', '2010-09-07', 1, 1,false);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (2, 'Basil', '2012-08-06', 6, 2,false);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (3, 'Rosy', '2011-04-17', 2, 3,false);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (4, 'Jewel', '2010-03-07', 2, 3,true);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (5, 'Iggy', '2010-11-30', 3, 4,false);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (6, 'George', '2010-01-20', 4, 5,false);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (7, 'Samantha', '2012-09-04', 1, 6,false);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (8, 'Max', '2012-09-04', 1, 6,true);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (9, 'Lucky', '2011-08-06', 5, 7,false);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (10, 'Mulligan', '2007-02-24', 2, 8,false);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (11, 'Freddy', '2010-03-09', 5, 9,false);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (12, 'Lucky', '2010-06-24', 2, 10,false);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id, en_adopcion) VALUES (13, 'Sly', '2012-06-08', 1, 10,false);
 
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (1, 7, '2013-01-01', 'rabies shot');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02', 'rabies shot');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
-INSERT INTO hotel_rooms(id,pet_id,start_date,finish_date,name) VALUES (1, 1, '2013-01-04', '2013-01-04', 'Habitación 23');
-INSERT INTO hotel_rooms(id,pet_id,start_date,finish_date,name) VALUES (2, 1, '2013-01-05', '2013-01-05', 'Habitación 18');
-INSERT INTO hotel_rooms(id,pet_id,start_date,finish_date,name) VALUES (3, 2, '2013-01-05', '2013-01-05', 'Habitación 23');
+INSERT INTO hotel_rooms(id,name,number) VALUES (1, 'Habitacion individual', 1);
+INSERT INTO hotel_rooms(id,name,number) VALUES (2, 'Habitacion individual', 2);
+INSERT INTO hotel_rooms(id,name,number) VALUES (3, 'Suite', 804);
+
+INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date) VALUES (1, 1, 1, '2013-01-04', '2013-01-04');
+INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date) VALUES (2, 1, 1, '2013-01-05', '2013-01-05');
+INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date) VALUES (3, 2, 1, '2013-01-05', '2013-01-05');
+
+INSERT INTO causes(id,name,description,budget_target,organization) VALUES (1,'WorldDomination', 'Test of description', 1200.30,'RedWar');

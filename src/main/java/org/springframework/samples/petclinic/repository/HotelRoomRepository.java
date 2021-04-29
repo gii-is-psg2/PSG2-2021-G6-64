@@ -12,16 +12,15 @@ import org.springframework.samples.petclinic.model.HotelRoom;
 
 public interface HotelRoomRepository extends CrudRepository<HotelRoom, Integer> {
 
-	@Query("SELECT ALL h from HotelRoom h")
+	@Query("SELECT ALL h from HotelRoom h order by h.number")
 	List<HotelRoom> findAll();
 	
 	@Query("SELECT ALL h from HotelRoom h where h.id = :id")
 	Optional<HotelRoom> findById(Integer id);
-	
-	@Query("SELECT ALL h from HotelRoom h where h.pet.id = :petId")
-	List<HotelRoom> findByPetId(Integer petId);
-		
+			
 	@Query("SELECT ALL h from HotelRoom h where h.name = :name")
-	Collection<HotelRoom> findAllByHotelName(@Param("name") String name) throws DataAccessException;
+	Collection<HotelRoom> findAllByHotelRoomByName(@Param("name") String name) throws DataAccessException;
 	
+	@Query("SELECT ALL h from HotelRoom h where h.number = :number")
+	Collection<HotelRoom> findAllByHotelRoomByNumber(@Param("number") Integer number) throws DataAccessException;
 }
