@@ -50,6 +50,10 @@ public class Pet extends NamedEntity {
 	@Column(name = "birth_date")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate birthDate;
+	
+	@Column(name="en_adopcion")
+	private Boolean enAdopcion;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "type_id")
@@ -64,6 +68,18 @@ public class Pet extends NamedEntity {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
 	private Set<@Valid HotelRoomBooking> hotelRooms;
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
+	private Set<@Valid AdoptionApplication> adoptionApplication;
+	
+	
+
+	
+	public Boolean getEnAdopcion() {
+		return this.enAdopcion;
+	}
+	
 	
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
@@ -81,6 +97,12 @@ public class Pet extends NamedEntity {
 		this.type = type;
 	}
 
+	public Set<AdoptionApplication> getAdoptionApplication() {
+		return this.adoptionApplication;
+	}
+	
+	
+	
 	public Owner getOwner() {
 		return this.owner;
 	}
@@ -89,6 +111,18 @@ public class Pet extends NamedEntity {
 		this.owner = owner;
 	}
 
+	
+	
+	public void setAdoption() {
+		this.enAdopcion = true ;
+	}
+
+	
+	public void setNotAdoption() {
+		this.enAdopcion = false ;
+	}
+	
+	
 	protected Set<Visit> getVisitsInternal() {
 		if (this.visits == null) {
 			this.visits = new HashSet<>();
@@ -113,6 +147,11 @@ public class Pet extends NamedEntity {
 	
 	public boolean removeVisit(Visit visit) {
 		return getVisitsInternal().remove(visit);
+	}
+	
+	public void resetAdoption() {
+		this.setNotAdoption();
+		this.adoptionApplication = new HashSet<AdoptionApplication>();
 	}
 
 	
