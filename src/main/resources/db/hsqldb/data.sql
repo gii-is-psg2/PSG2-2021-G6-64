@@ -97,3 +97,5 @@ INSERT INTO hotel_rooms(id,name,number) VALUES (3, 'Suite', 804);
 INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date) VALUES (1, 1, 1, '2013-01-04', '2013-01-04');
 INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date) VALUES (2, 1, 1, '2013-01-05', '2013-01-05');
 INSERT INTO hotel_room_bookings(id,pet_id,hotel_room_id,start_date,finish_date) VALUES (3, 2, 1, '2013-01-05', '2013-01-05');
+
+INSERT INTO causes(id,name,description,budget_target,organization) VALUES (1,'WorldDomination', 'Test of description', 1200.30,'RedWar');

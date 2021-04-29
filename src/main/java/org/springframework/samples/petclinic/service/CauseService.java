@@ -22,6 +22,7 @@ public class CauseService {
     
     @Transactional
     public void saveCause(Cause cause) throws DataAccessException {
+    	
     	this.causeRepository.save(cause);
     }
     
