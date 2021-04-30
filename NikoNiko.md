@@ -33,6 +33,8 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day 8         |   🤯 ( Saturada )   |
 | Day 9         |   😪 ( Triste/Desganada )   |
 | Day 10        |   🤔 ( Viendo cómo organizarme )   |
+| Day 11        |   💻 ( Examen )
+| Day 12        |   👫 ( Pair Programming )
 
 
 ## Sprint Template
@@ -62,8 +64,8 @@ In the retrospective meeting, the team has a discussion about those results.
 | April 26      |     🤯☕       |       -       |      🤔        |               |      😪       |
 | April 27      |     🤯☕       |       -       |      🤓        |               |      🤯       |
 | April 28      |      🤯       |        -      |   :smiley:☕    |               |:neutral_face: |
-| April 29      |      🤓       |    :smiley:   |       🤓       |               |      😪       |
-| April 30      |      🤓       |   :smiley:    |       🤓       |               |      🤯       |
+| April 29      |      👫       |    :smiley:   |       👫       |               |       😪       |
+| April 30      |      💻       |   :smiley:💻 |       💻       |       💻      |      💻🤯     |
 | May 1         |               |               |                |               |               |
 | May 2         |               |               |                |               |               |
 | May 3         |               |               |                |               |               |
