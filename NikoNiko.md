@@ -58,12 +58,12 @@ In the retrospective meeting, the team has a discussion about those results.
 | April 21      |       -       |    :smiley:   |        -        |       -      |       -       |
 | April 22      |      🤓       |  -   |        -        |    :smiley:   |    :smiley:   |
 | April 23      |      🤓       |  :smiley:     |      🤓        |    :smiley:   |    :smiley:   |
-| April 24      |     🤯☕       | :smiley:☕    |      🤯        |               |      🤓       |
-| April 25      |     🤯☕       |  :smiley:☕    |      🤯        |               |      🤓       |
-| April 26      |     🤯☕       |   :smiley:☕  |      🤔        |               |      😪       |
-| April 27      |     🤯☕       |  :smiley:☕    |      🤓        |               |      🤯       |
-| April 28      |      🤯       |   :smiley:☕   |   :smiley:☕    |               |:neutral_face: |
-| April 29      |      👫       |    :smiley:   |       👫       |               |       😪       |
+| April 24      |     🤯☕       | :smiley:☕    |      🤯        |    :smiley:☕   |      🤓       |
+| April 25      |     🤯☕       |  🤯    |      🤯        |   :smiley:☕   |      🤓       |
+| April 26      |     🤯☕       |   🤯  |      🤔        |         🤯      |      😪       |
+| April 27      |     🤯☕       |  🤯    |      🤓        |        🤯       |      🤯       |
+| April 28      |      🤯       |   🤯   |   :smiley:☕    |         🤯      |:neutral_face: |
+| April 29      |      👫       |    🤯   |       👫       |   :smiley:☕    |       😪       |
 | April 30      |      💻       |   :neutral_face:💻 |       💻       |       💻      |      💻🤯     |
 | May 1         |      👫       |   :neutral_face:  |      👫        |               |               |
 | May 2         |               |               |                |               |               |
