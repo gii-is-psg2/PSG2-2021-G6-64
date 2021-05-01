@@ -29,12 +29,11 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day 4         |    :worried: (Meaning that I feel I have serious difficulties to accomplish the task, or the productivity of my day was awful)           |
 | Day 5         |    :fearful:   (I´m desperate, I need help)        |
 | Day 6         |    :hankey:   (Pff)        |
-| Day 7         |    :heart_eyes:   (Ohh)        |
-| Day 8         |   🤯 ( Saturada )   |
-| Day 9         |   😪 ( Triste/Desganada )   |
-| Day 10        |   🤔 ( Viendo cómo organizarme )   |
-| Day 11        |   💻 ( Examen )
-| Day 12        |   👫 ( Pair Programming )
+| Day 7         |   🤯 ( Saturada )   |
+| Day 8         |   😪 ( Triste/Desganada )   |
+| Day 9        |   🤔 ( Viendo cómo organizarme )   |
+| Day 10        |   💻 ( Examen )
+| Day 11        |   👫 ( Pair Programming )
 
 
 ## Sprint Template
