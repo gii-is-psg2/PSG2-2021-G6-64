@@ -22,10 +22,7 @@ import java.util.Optional;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.samples.petclinic.model.Owner;
-import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 
@@ -54,7 +51,7 @@ public interface VetRepository extends CrudRepository<Vet, Integer>{
 	Vet save(Vet vet) throws DataAccessException;
 	
 	
-	void deleteById(Integer Id) throws DataAccessException;
+	void deleteById(Integer id) throws DataAccessException;
 	
 
 	@Query("SELECT vet FROM Vet vet WHERE vet.id =:id")

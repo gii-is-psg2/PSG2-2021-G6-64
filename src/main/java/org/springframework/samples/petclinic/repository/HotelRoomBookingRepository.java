@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.HotelRoomBooking;
-import org.springframework.samples.petclinic.model.HotelRoom;
 
 public interface HotelRoomBookingRepository extends CrudRepository<HotelRoomBooking, Integer> {
 
@@ -27,8 +26,5 @@ public interface HotelRoomBookingRepository extends CrudRepository<HotelRoomBook
 	
 	@Query("SELECT ALL h from HotelRoomBooking h where h.hotelRoom.name = :name and h.hotelRoom.number = :number")
 	Collection<HotelRoomBooking> findAllByHotelRoomByNameAndNumber(@Param("name") String name, @Param("number") Integer number) throws DataAccessException;
-//	
-//	@Query("SELECT ALL hb from HotelRoomBooking hb, HotelRoom h where hb.h.name = :name")
-//	Collection<HotelRoomBooking> findAllByHotelRoomName(@Param("name") String name) throws DataAccessException;
-	
+
 }

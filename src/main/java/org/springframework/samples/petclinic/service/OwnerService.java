@@ -21,11 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
-
-import org.springframework.samples.petclinic.repository.PetRepository;
-import org.springframework.samples.petclinic.repository.VetRepository;
-import org.springframework.samples.petclinic.repository.VisitRepository;
-import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -71,11 +66,9 @@ public class OwnerService {
 
 	@Transactional
 	public void saveOwner(Owner owner) throws DataAccessException {
-		//creating owner
+
 		ownerRepository.save(owner);		
-		//creating user
 		userService.saveUser(owner.getUser());
-		//creating authorities
 		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
     
 	}
@@ -90,21 +83,13 @@ public class OwnerService {
 		} else {
 			username = principal.toString();
 		}
-		Owner owner = this.findOwnerByUsername(username);
-		return owner;
+		return this.findOwnerByUsername(username);
 	}
 	
 	@Transactional
 	public void deleteOwner(Owner owner) throws DataAccessException {
 		
 		ownerRepository.deleteById(owner.getId());
-		
-		//creating owner
-		//ownerRepository.save(owner);		
-		//creating user
-		//userService.saveUser(owner.getUser());
-		//creating authorities
-		//authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
 	}	
 
 	

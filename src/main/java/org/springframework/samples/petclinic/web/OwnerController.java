@@ -31,17 +31,18 @@ import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.service.AdoptionService;
-import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -59,7 +60,7 @@ public class OwnerController {
 	private final OwnerService ownerService;
 	private final AdoptionService adoptionService;
 
-
+	private final String REDIRECT_OWNERS_ID = "redirect:/owners/";
 	@Autowired
 	public OwnerController(OwnerService ownerService, PetService petService, AdoptionService adoptionService) {
 		this.ownerService = ownerService;
@@ -88,7 +89,7 @@ public class OwnerController {
 			//creating owner, user and authorities
 			this.ownerService.saveOwner(owner);
 			
-			return "redirect:/owners/" + owner.getId();
+			return REDIRECT_OWNERS_ID + owner.getId();
 		}
 	}
 
@@ -116,7 +117,7 @@ public class OwnerController {
 		else if (results.size() == 1) {
 			// 1 owner found
 			owner = results.iterator().next();
-			return "redirect:/owners/" + owner.getId();
+			return REDIRECT_OWNERS_ID + owner.getId();
 		}
 		else {
 			// multiple owners found
@@ -128,7 +129,7 @@ public class OwnerController {
 	@GetMapping(value = "/owners/{ownerId}/edit")
 	public String initUpdateOwnerForm(@PathVariable("ownerId") int ownerId, Model model) {
 		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId)) {
-			return "redirect:/owners/{ownerId}";
+			return REDIRECT_OWNERS_ID + ownerId;
 		}
 		
 		Owner owner = this.ownerService.findOwnerById(ownerId);
@@ -139,27 +140,23 @@ public class OwnerController {
 	@PostMapping(value = "/owners/{ownerId}/edit")
 	public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result,
 			@PathVariable("ownerId") int ownerId) {
-		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId)) {
-			return "redirect:/owners/{ownerId}";
-		}
 		
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 		}
+		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId)) {
+			return REDIRECT_OWNERS_ID + ownerId;
+		}
 		else {
 			owner.setId(ownerId);
 			this.ownerService.saveOwner(owner);
-			return "redirect:/owners/{ownerId}";
+			return REDIRECT_OWNERS_ID + ownerId;
 		}
 	}
 	
 	@PreAuthorize("hasRole('admin')")
 	@GetMapping(value = "/owners/{ownerId}/delete")
-	public String deleteOwnerForm(@PathVariable("ownerId") int ownerId) {
-//		if(!this.userService.currentUserIsAdmin()) {
-//			return "redirect:/owners/{ownerId}";
-//		}
-		
+	public String deleteOwnerForm(@PathVariable("ownerId") int ownerId) {		
 		Owner owner = this.ownerService.findOwnerById(ownerId);
 		this.ownerService.deleteOwner(owner);
 		return "redirect:/owners/find";
@@ -169,10 +166,9 @@ public class OwnerController {
 	@GetMapping("/owners/{ownerId}")
 	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
-//		mav.addObject("isAdmin", this.userService.currentUserIsAdmin());
 		mav.addObject("isCurrentOwner", this.ownerService.ownerIsLoggedOwnerById(ownerId));
 		mav.addObject(this.ownerService.findOwnerById(ownerId));
-		Map<Integer, Boolean> visitsCanBeDeleted = new HashMap<Integer, Boolean>();
+		Map<Integer, Boolean> visitsCanBeDeleted = new HashMap<>();
 
 		if(this.ownerService.findCurrentOwner() != null) {
 			for(Pet pet: this.ownerService.findCurrentOwner().getPets()) {
@@ -188,14 +184,10 @@ public class OwnerController {
 	
 	
     private Map<Integer, Boolean> listVisitCanBeDeleted(List<Visit> visits) {
-    	Map<Integer, Boolean> result = new HashMap<Integer, Boolean>();
+    	Map<Integer, Boolean> result = new HashMap<>();
     	
     	for(Visit visit: visits) {
-        	if(!visit.getDate().isBefore(LocalDate.now())) {
-        		result.put(visit.getId(), true);
-        	} else {
-        		result.put(visit.getId(), false);
-        	}
+    		result.put(visit.getId(), !visit.getDate().isBefore(LocalDate.now()));
     	}
  
     	return result;
@@ -233,7 +225,7 @@ public class OwnerController {
     	this.adoptionService.deleteAllAdoptionsApplications(allApply);
     	try {
 			this.petService.savePet(petAdopting);
-		} catch (DataAccessException | DuplicatedPetNameException e) {
+		} catch (DuplicatedPetNameException e) {
 			throw e;
 		}
 		return "redirect:/owners/" + ownerId;

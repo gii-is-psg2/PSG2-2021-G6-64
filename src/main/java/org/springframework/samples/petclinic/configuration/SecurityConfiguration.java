@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -30,6 +29,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource dataSource;
 	
+	final String ADMIN = "admin";
+	final String OWNER = "owner";
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
@@ -37,13 +39,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
 				.antMatchers("/users/new").permitAll()
 				.antMatchers("/adoptions/**").permitAll()
-				.antMatchers("/admin/**").hasAnyAuthority("admin")
-				.antMatchers("/owners/**").hasAnyAuthority("owner","admin")
+				.antMatchers("/admin/**").hasAnyAuthority(ADMIN)
+				.antMatchers("/owners/**").hasAnyAuthority(OWNER,ADMIN)
 				.antMatchers("/vets/**").authenticated()
-				.antMatchers("/vet/**").hasAnyAuthority("admin")
+				.antMatchers("/vet/**").hasAnyAuthority(ADMIN)
 				.antMatchers("/causes/**").permitAll()
 				.antMatchers("/hotel/rooms").permitAll()
-				.antMatchers("/hotel/rooms/**").hasAnyAuthority("admin")
+				.antMatchers("/hotel/rooms/**").hasAnyAuthority(ADMIN)
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()

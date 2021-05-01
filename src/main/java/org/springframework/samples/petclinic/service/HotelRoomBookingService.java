@@ -1,8 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +16,10 @@ public class HotelRoomBookingService {
 
 	private HotelRoomBookingRepository hotelRoomBookingRepository;
 	
-	private OwnerService ownerService;
 
 	@Autowired
-	public HotelRoomBookingService(HotelRoomBookingRepository hotelRoomBookingRepository,
-			OwnerService ownerService) {
+	public HotelRoomBookingService(HotelRoomBookingRepository hotelRoomBookingRepository) {
 		this.hotelRoomBookingRepository = hotelRoomBookingRepository;
-		this.ownerService = ownerService;
 	}
 
 

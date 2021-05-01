@@ -39,17 +39,17 @@ class HotelRoomServiceTests {
 	@Test
 	void shouldFindHotelRoomWithCorrectId() {
 		HotelRoomBooking hotelRoomBooking1 = this.hotelRoomBookingService.findById(1).get();
-		assertThat(hotelRoomBooking1.getHotelRoom().getName()).isEqualTo("Habitación individual");
+		assertThat(hotelRoomBooking1.getHotelRoom().getName()).hasToString("Habitacion individual");
 		assertThat(hotelRoomBooking1.getHotelRoom().getNumber()).isEqualTo(1);
-		assertThat(hotelRoomBooking1.getStartDate().toString()).isEqualTo("2013-01-04");
-		assertThat(hotelRoomBooking1.getFinishDate().toString()).isEqualTo("2013-01-04");
+		assertThat(hotelRoomBooking1.getStartDate().toString()).hasToString("2013-01-04");
+		assertThat(hotelRoomBooking1.getFinishDate().toString()).hasToString("2013-01-04");
 	}
 
 	@Test
 	void shouldFindAllHotelRoomBookingsByName() {
 		HotelRoomBooking hotelRoom1 = this.hotelRoomBookingService.findById(1).get();
 		HotelRoomBooking hotelRoom2 = this.hotelRoomBookingService.findById(2).get();
-		Collection<HotelRoomBooking> hotelRooms = this.hotelRoomBookingService.findAllByHotelRoomName("Habitación individual");
+		Collection<HotelRoomBooking> hotelRooms = this.hotelRoomBookingService.findAllByHotelRoomName("Habitacion individual");
 		assertTrue(hotelRooms.contains(hotelRoom1));
 		assertTrue(hotelRooms.contains(hotelRoom2));
 	}
@@ -61,11 +61,6 @@ class HotelRoomServiceTests {
 		Collection<HotelRoomBooking> hotelRooms = this.hotelRoomBookingService.findBookedRoomsByPetId(1);
 		assertTrue(hotelRooms.contains(hotelRoom1));
 		assertTrue(hotelRooms.contains(hotelRoom2));
-	}
-	
-	@Test
-	void shouldFindAllHotelRooms() {
-		//TODO
 	}
 	
 	@Test

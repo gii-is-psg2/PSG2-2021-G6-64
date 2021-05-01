@@ -69,7 +69,7 @@ public class DonationController {
 				causeService.saveCause(cause);
 				return "redirect:/causes/" + causeId;
 			} else {
-				throw new RuntimeException();
+				return "donations/createDonationForm";
 			}
 
 		}
