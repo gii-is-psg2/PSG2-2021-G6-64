@@ -66,6 +66,6 @@ In the retrospective meeting, the team has a discussion about those results.
 | April 28      |      🤯       |        -      |   :smiley:☕    |               |:neutral_face: |
 | April 29      |      👫       |    :smiley:   |       👫       |               |       😪       |
 | April 30      |      💻       |   :smiley:💻 |       💻       |       💻      |      💻🤯     |
-| May 1         |               |               |                |               |               |
+| May 1         |      👫       |               |      👫        |               |               |
 | May 2         |               |               |                |               |               |
 | May 3         |               |               |                |               |               |
