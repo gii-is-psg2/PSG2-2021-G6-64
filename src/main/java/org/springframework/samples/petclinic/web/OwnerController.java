@@ -60,6 +60,7 @@ public class OwnerController {
 	private final AdoptionService adoptionService;
 
 	private static final String REDIRECT_OWNERS_ID = "redirect:/owners/";
+	
 	@Autowired
 	public OwnerController(OwnerService ownerService, PetService petService, AdoptionService adoptionService) {
 		this.ownerService = ownerService;
@@ -225,7 +226,7 @@ public class OwnerController {
 
 		this.petService.savePet(petAdopting);
 		
-		return "redirect:/owners/" + ownerId;
+		return REDIRECT_OWNERS_ID + ownerId;
 	}
 
 

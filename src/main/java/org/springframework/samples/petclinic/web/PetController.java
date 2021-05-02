@@ -98,14 +98,14 @@ public class PetController {
 			return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 		}
 		else {
-                    try{
-                    	owner.addPet(pet);
-                    	this.petService.savePet(pet);
-                    }catch(DuplicatedPetNameException ex){
-                        result.rejectValue("name", "duplicate", "already exists");
-                        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
-                    }
-                    return REDIRECT_OWNERS;
+            try{
+            	owner.addPet(pet);
+            	this.petService.savePet(pet);
+            }catch(DuplicatedPetNameException ex){
+                result.rejectValue("name", "duplicate", "already exists");
+                return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+            }
+            return REDIRECT_OWNERS;
 		}
 	}
 
@@ -181,12 +181,10 @@ public class PetController {
     	Pet mascota= this.petService.findPetById(petId);
     	Visit visita= this.petService.findVisitById(visitId);
     	
-    	if(!visitCanBeDeleted(visita) || !this.ownerService.findCurrentOwner().equals(mascota.getOwner())) {
-    		return REDIRECT_OWNERS;
+    	if(visitCanBeDeleted(visita) && this.ownerService.findCurrentOwner().equals(mascota.getOwner())) {
+    		mascota.removeVisit(visita);
+        	this.petService.deleteVisit(visita);
     	}
-    	
-    	mascota.removeVisit(visita);
-    	this.petService.deleteVisit(visita);
     	
 		return REDIRECT_OWNERS;
 	}
