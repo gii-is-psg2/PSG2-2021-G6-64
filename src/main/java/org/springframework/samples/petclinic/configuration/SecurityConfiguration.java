@@ -29,8 +29,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource dataSource;
 	
-	final String ADMIN = "admin";
-	final String OWNER = "owner";
+	static final String ADMIN = "admin";
+	static final String OWNER = "owner";
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -79,8 +79,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {	    
-		PasswordEncoder encoder =  NoOpPasswordEncoder.getInstance();
-	    return encoder;
+
+	    return NoOpPasswordEncoder.getInstance();
 	}
 	
 }

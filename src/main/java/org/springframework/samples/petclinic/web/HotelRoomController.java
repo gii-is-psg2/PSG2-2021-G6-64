@@ -25,7 +25,7 @@ public class HotelRoomController {
 	@Autowired
 	private HotelRoomService hotelRoomService;
 	
-	private final String CREATE_OR_UPDATE_HOTEL_ROOM_FORM = "hotel/rooms/createOrUpdateHotelRoomForm";
+	private static final String CREATE_OR_UPDATE_HOTEL_ROOM_FORM = "hotel/rooms/createOrUpdateHotelRoomForm";
 	
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {

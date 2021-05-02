@@ -25,7 +25,6 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.AdoptionApplication;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
@@ -60,7 +59,7 @@ public class OwnerController {
 	private final OwnerService ownerService;
 	private final AdoptionService adoptionService;
 
-	private final String REDIRECT_OWNERS_ID = "redirect:/owners/";
+	private static final String REDIRECT_OWNERS_ID = "redirect:/owners/";
 	@Autowired
 	public OwnerController(OwnerService ownerService, PetService petService, AdoptionService adoptionService) {
 		this.ownerService = ownerService;
@@ -206,7 +205,7 @@ public class OwnerController {
 	}
     
     @GetMapping("/owners/{ownerId}/adoptions/{petId}/apply/{applyId}")
-	public String acceptAdoptionRequest(Map<String, Object> model, @PathVariable("applyId") int applyId, @PathVariable("petId") int petId, @PathVariable("ownerId") int ownerId) throws Exception {
+	public String acceptAdoptionRequest(Map<String, Object> model, @PathVariable("applyId") int applyId, @PathVariable("petId") int petId, @PathVariable("ownerId") int ownerId) throws DuplicatedPetNameException {
     
     	Owner currentOwner = this.ownerService.findOwnerById(ownerId);
     	AdoptionApplication apply = this.adoptionService.findAdoptionsById(applyId);
@@ -223,11 +222,9 @@ public class OwnerController {
     	Set<AdoptionApplication> allApply = petAdopting.getAdoptionApplication();
     	petAdopting.resetAdoption();
     	this.adoptionService.deleteAllAdoptionsApplications(allApply);
-    	try {
-			this.petService.savePet(petAdopting);
-		} catch (DuplicatedPetNameException e) {
-			throw e;
-		}
+
+		this.petService.savePet(petAdopting);
+		
 		return "redirect:/owners/" + ownerId;
 	}
 

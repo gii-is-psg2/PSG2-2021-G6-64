@@ -31,6 +31,8 @@ public class DonationController {
 
 	@Autowired
 	private OwnerService ownerService;
+	
+	private static final String CREATE_DONATION_FORM = "donations/createDonationForm";
 
 	@GetMapping()
 	public String showDonationsList(Map<String, Object> model, @PathVariable("causeId") Integer causeId) {
@@ -48,7 +50,7 @@ public class DonationController {
 		donation.setAmount(0.1);
 		model.put("donation", donation);
 
-		return "donations/createDonationForm";
+		return CREATE_DONATION_FORM;
 	}
 
 	@PostMapping(value = "/new")
@@ -56,7 +58,7 @@ public class DonationController {
 			@PathVariable("causeId") Integer causeId, final ModelMap model) {
 		if (result.hasErrors()) {
 			model.put("donation", donation);
-			return "donations/createDonationForm";
+			return CREATE_DONATION_FORM;
 		} else if (this.causeService.findCauseById(causeId).getClosed()) {
 			return "redirect:/causes/" + causeId;
 		} else {
@@ -69,7 +71,7 @@ public class DonationController {
 				causeService.saveCause(cause);
 				return "redirect:/causes/" + causeId;
 			} else {
-				return "donations/createDonationForm";
+				return CREATE_DONATION_FORM;
 			}
 
 		}

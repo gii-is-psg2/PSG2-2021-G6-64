@@ -143,7 +143,7 @@ class OwnerServiceTests {
 		Owner owner = this.ownerService.findOwnerById(1);
 		ownerService.deleteOwner(owner);
 	
-		assertEquals(ownerService.findOwnerById(1), null);
+		assertThat(ownerService.findOwnerById(1)).isNull();
 	}
 
 

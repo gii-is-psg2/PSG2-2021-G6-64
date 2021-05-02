@@ -51,10 +51,10 @@ public class PetController {
 
 	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
-		private final PetService petService;
-        private final OwnerService ownerService;
-        
-        private final String REDIRECT_OWNERS = "redirect:/owners/{ownerId}";
+	private final PetService petService;
+    private final OwnerService ownerService;
+    
+    private static final String REDIRECT_OWNERS = "redirect:/owners/{ownerId}";
 
 	@Autowired
 	public PetController(PetService petService, OwnerService ownerService) {
@@ -164,7 +164,7 @@ public class PetController {
 
     
     @GetMapping(value = "/pets/{petId}/adopt")
-	public String adoptPet(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId) throws Exception {
+	public String adoptPet(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId) throws DuplicatedPetNameException {
     	
     	Pet pet = this.petService.findPetById(petId);
     	pet.setAdoption();
