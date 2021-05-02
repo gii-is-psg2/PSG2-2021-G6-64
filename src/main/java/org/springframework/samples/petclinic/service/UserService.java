@@ -19,6 +19,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.Authorities;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -52,7 +53,6 @@ public class UserService {
 		return userRepository.findById(username);
 	}
 	
-	@SuppressWarnings("unlikely-arg-type")
 	@Transactional
 	public boolean currentUserIsAdmin() {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -69,6 +69,6 @@ public class UserService {
 			return false;
 		}
 		
-		return user.get().getAuthorities().contains("ADMIN");
+		return user.get().getAuthorities().stream().map(Authorities::getAuthority).anyMatch(x -> x.equals("ADMIN"));
 	}
 }

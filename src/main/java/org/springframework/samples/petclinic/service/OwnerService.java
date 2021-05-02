@@ -92,7 +92,7 @@ public class OwnerService {
 		ownerRepository.deleteById(owner.getId());
 	}	
 
-	
+	@Transactional
 	public boolean ownerIsLoggedOwnerById(Integer ownerId) {
 		if(this.findCurrentOwner() == null) {
 			return false;
