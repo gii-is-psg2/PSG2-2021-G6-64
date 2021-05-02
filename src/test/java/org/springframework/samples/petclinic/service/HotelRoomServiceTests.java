@@ -65,7 +65,7 @@ class HotelRoomServiceTests {
 	
 	@Test
 	@Transactional
-	public void shouldInsertHotelRoomIntoDatabaseAndGenerateId() {
+	void shouldInsertHotelRoomIntoDatabaseAndGenerateId() {
 		Pet pet1 = this.petService.findPetById(1);
 		HotelRoom hotelRoom = this.hotelRoomService.findById(1).get();
 		HotelRoomBooking hotelRoomBooking = new HotelRoomBooking();
@@ -88,7 +88,7 @@ class HotelRoomServiceTests {
 	
 	@Test
 	@Transactional
-	public void shouldThrowExceptionHotelRoomIsAlreadyBooked() throws DataAccessException, DuplicatedHotelRoomForDateException {
+	void shouldThrowExceptionHotelRoomIsAlreadyBooked() throws DataAccessException, DuplicatedHotelRoomForDateException {
 
 		Pet pet1 = this.petService.findPetById(1);
 		HotelRoom hotelRoom2 = this.hotelRoomService.findById(2).get();
@@ -115,7 +115,7 @@ class HotelRoomServiceTests {
 	
 	@Test
 	@Transactional
-	public void shouldThrowExceptionHotelRoomPetHasBookedRoomForSelectedDate() throws DataAccessException, DuplicatedHotelRoomForDateException {
+	void shouldThrowExceptionHotelRoomPetHasBookedRoomForSelectedDate() throws DataAccessException, DuplicatedHotelRoomForDateException {
 		Pet pet1 = this.petService.findPetById(1);
 		HotelRoom hotelRoom1 = this.hotelRoomService.findById(1).get();
 		HotelRoom hotelRoom2 = this.hotelRoomService.findById(2).get();

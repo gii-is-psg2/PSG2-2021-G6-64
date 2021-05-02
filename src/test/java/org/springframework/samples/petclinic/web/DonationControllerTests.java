@@ -32,7 +32,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest(controllers = DonationController.class,
 	excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class),
 	excludeAutoConfiguration= SecurityConfiguration.class)
-public class DonationControllerTests {
+class DonationControllerTests {
 	
 	@MockBean
 	private DonationService donationService;

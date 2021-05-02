@@ -82,7 +82,7 @@ class PetServiceTests {
 	void shouldFindPetWithCorrectId() {
 		Pet pet7 = this.petService.findPetById(7);
 		assertThat(pet7.getName()).startsWith("Samantha");
-		assertThat(pet7.getOwner().getFirstName()).isEqualTo("Jean");
+		assertThat(pet7.getOwner().getFirstName()).hasToString("Jean");
 
 	}
 
@@ -98,7 +98,7 @@ class PetServiceTests {
 
 	@Test
 	@Transactional
-	public void shouldInsertPetIntoDatabaseAndGenerateId() {
+	void shouldInsertPetIntoDatabaseAndGenerateId() {
 		Owner owner6 = this.ownerService.findOwnerById(6);
 		int found = owner6.getPets().size();
 
@@ -108,7 +108,7 @@ class PetServiceTests {
 		pet.setType(EntityUtils.getById(types, PetType.class, 2));
 		pet.setBirthDate(LocalDate.now());
 		owner6.addPet(pet);
-		assertThat(owner6.getPets().size()).isEqualTo(found + 1);
+		assertThat(owner6.getPets()).hasSize(found + 1);
 
             try {
                 this.petService.savePet(pet);
@@ -118,14 +118,14 @@ class PetServiceTests {
 		this.ownerService.saveOwner(owner6);
 
 		owner6 = this.ownerService.findOwnerById(6);
-		assertThat(owner6.getPets().size()).isEqualTo(found + 1);
+		assertThat(owner6.getPets()).hasSize(found + 1);
 		// checks that id has been generated
 		assertThat(pet.getId()).isNotNull();
 	}
 	
 	@Test
 	@Transactional
-	public void shouldThrowExceptionInsertingPetsWithTheSameName() {
+	void shouldThrowExceptionInsertingPetsWithTheSameName() {
 		Owner owner6 = this.ownerService.findOwnerById(6);
 		Pet pet = new Pet();
 		pet.setName("wario");
@@ -152,7 +152,7 @@ class PetServiceTests {
 
 	@Test
 	@Transactional
-	public void shouldUpdatePetName() throws Exception {
+	void shouldUpdatePetName() throws Exception {
 		Pet pet7 = this.petService.findPetById(7);
 		String oldName = pet7.getName();
 
@@ -161,12 +161,12 @@ class PetServiceTests {
 		this.petService.savePet(pet7);
 
 		pet7 = this.petService.findPetById(7);
-		assertThat(pet7.getName()).isEqualTo(newName);
+		assertThat(pet7.getName()).hasToString(newName);
 	}
 	
 	@Test
 	@Transactional
-	public void shouldThrowExceptionUpdatingPetsWithTheSameName() {
+	void shouldThrowExceptionUpdatingPetsWithTheSameName() {
 		Owner owner6 = this.ownerService.findOwnerById(6);
 		Pet pet = new Pet();
 		pet.setName("wario");
@@ -197,7 +197,7 @@ class PetServiceTests {
 
 	@Test
 	@Transactional
-	public void shouldAddNewVisitForPet() {
+	void shouldAddNewVisitForPet() {
 		Pet pet7 = this.petService.findPetById(7);
 		int found = pet7.getVisits().size();
 		Visit visit = new Visit();
@@ -211,14 +211,14 @@ class PetServiceTests {
             }
 
 		pet7 = this.petService.findPetById(7);
-		assertThat(pet7.getVisits().size()).isEqualTo(found + 1);
+		assertThat(pet7.getVisits()).hasSize(found + 1);
 		assertThat(visit.getId()).isNotNull();
 	}
 
 	@Test
 	void shouldFindVisitsByPetId() throws Exception {
 		Collection<Visit> visits = this.petService.findVisitsByPetId(7);
-		assertThat(visits.size()).isEqualTo(2);
+		assertThat(visits).hasSize(2);
 		Visit[] visitArr = visits.toArray(new Visit[visits.size()]);
 		assertThat(visitArr[0].getPet()).isNotNull();
 		assertThat(visitArr[0].getDate()).isNotNull();
@@ -232,7 +232,7 @@ class PetServiceTests {
 		Pet pet = this.petService.findPetById(1);
 		petService.deletePet(pet);
 	
-		assertEquals(petService.findPetById(1), null);
+		assertThat(petService.findPetById(1)).isNull();
 	}
 
 }
