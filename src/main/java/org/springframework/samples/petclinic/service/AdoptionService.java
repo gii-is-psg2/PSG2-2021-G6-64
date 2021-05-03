@@ -2,14 +2,11 @@ package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.AdoptionApplication;
-import org.springframework.samples.petclinic.model.HotelRoom;
 import org.springframework.samples.petclinic.repository.AdoptionApplicationRepository;
-import org.springframework.samples.petclinic.repository.HotelRoomRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -32,7 +32,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest(controllers = DonationController.class,
 	excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class),
 	excludeAutoConfiguration= SecurityConfiguration.class)
-public class DonationControllerTests {
+class DonationControllerTests {
 	
 	@MockBean
 	private DonationService donationService;
@@ -118,7 +118,7 @@ public class DonationControllerTests {
 			.param("description", "Test Desc")
 			.param("amount", "10.02"))                                
 			.andExpect(status().is3xxRedirection())
-			.andExpect(view().name("redirect:/causes/"+TEST_CAUSE_ID+"/donations"));
+			.andExpect(view().name("redirect:/causes/"+TEST_CAUSE_ID));
 	}
 	
 	@WithMockUser(value = "spring")
@@ -143,7 +143,6 @@ public class DonationControllerTests {
 				.with(csrf())
 				.param("description", "Test Desc")
 				.param("amount", "10.02"))  
-				.andExpect(status().is3xxRedirection())
-				.andExpect(view().name("redirect:/causes"));
+				.andExpect(status().isOk());
 	}
 }

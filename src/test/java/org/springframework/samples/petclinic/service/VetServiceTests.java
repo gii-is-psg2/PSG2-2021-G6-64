@@ -84,10 +84,10 @@ class VetServiceTests {
 		Collection<Vet> vets = this.vetService.findVets();
 
 		Vet vet = EntityUtils.getById(vets, Vet.class, 3);
-		assertThat(vet.getLastName()).isEqualTo("Douglas");
+		assertThat(vet.getLastName()).hasToString("Douglas");
 		assertThat(vet.getNrOfSpecialties()).isEqualTo(2);
-		assertThat(vet.getSpecialties().get(0).getName()).isEqualTo("dentistry");
-		assertThat(vet.getSpecialties().get(1).getName()).isEqualTo("surgery");
+		assertThat(vet.getSpecialties().get(0).getName()).hasToString("dentistry");
+		assertThat(vet.getSpecialties().get(1).getName()).hasToString("surgery");
 	}
 
 	@Test
@@ -95,7 +95,7 @@ class VetServiceTests {
 	void deleteVet() {
 		Vet vet = this.vetService.findVetById(1);
 		vetService.deleteVet(vet);
-		assertEquals(vetService.findVetById(1), null);
+		assertThat(vetService.findVetById(1)).isNull();
 	}
 
 

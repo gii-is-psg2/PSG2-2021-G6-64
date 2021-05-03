@@ -30,14 +30,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Vets {
 
-	private List<Vet> vets;
+	private List<Vet> veterinaries;
 
 	@XmlElement
 	public List<Vet> getVetList() {
-		if (vets == null) {
-			vets = new ArrayList<>();
+		if (veterinaries == null) {
+			veterinaries = new ArrayList<>();
 		}
-		return vets;
+		return veterinaries;
 	}
 
 }

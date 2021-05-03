@@ -25,6 +25,8 @@ public class HotelRoomController {
 	@Autowired
 	private HotelRoomService hotelRoomService;
 	
+	private static final String CREATE_OR_UPDATE_HOTEL_ROOM_FORM = "hotel/rooms/createOrUpdateHotelRoomForm";
+	
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
@@ -36,7 +38,7 @@ public class HotelRoomController {
 		
 		modelMap.addAttribute("hotelRoom", hotelRoom);
 
-		return "hotel/rooms/createOrUpdateHotelRoomForm";
+		return CREATE_OR_UPDATE_HOTEL_ROOM_FORM;
 	}
 
 	@PostMapping(value = "/hotel/rooms/new")
@@ -48,11 +50,11 @@ public class HotelRoomController {
 		modelMap.addAttribute("hotelRooms", hotelRooms);
 		
 		if (result.hasErrors()) {
-			return "hotel/rooms/createOrUpdateHotelRoomForm";
+			return CREATE_OR_UPDATE_HOTEL_ROOM_FORM;
 		} else if (!hotelRoomService.findAllByHotelRoomByNumber(hotelRoom.getNumber()).isEmpty()) {
 			result.rejectValue("number", "error.number",
 					"Ya existe una habitación con este número");
-			return "hotel/rooms/createOrUpdateHotelRoomForm";
+			return CREATE_OR_UPDATE_HOTEL_ROOM_FORM;
 		} else {
 			this.hotelRoomService.saveHotelRoom(hotelRoom);
 			return "redirect:/hotel/rooms";

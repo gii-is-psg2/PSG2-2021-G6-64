@@ -151,32 +151,7 @@ public class Pet extends NamedEntity {
 	
 	public void resetAdoption() {
 		this.setNotAdoption();
-		this.adoptionApplication = new HashSet<AdoptionApplication>();
+		this.adoptionApplication = new HashSet<>();
 	}
-
-	
-	
-//	
-//	protected Set<HotelRoom> getHotelRoomsInternal() {
-//		if (this.hotelRooms == null) {
-//			this.hotelRooms = new HashSet<>();
-//		}
-//		return this.hotelRooms;
-//	}
-//
-//	protected void setHotelRoomssInternal(Set<HotelRoom> hotelRooms) {
-//		this.hotelRooms = hotelRooms;
-//	}
-//
-//	public List<HotelRoom> getHotelRooms() {
-//		List<HotelRoom> sortedHotelRooms = new ArrayList<>(getHotelRoomsInternal());
-//		PropertyComparator.sort(sortedHotelRooms, new MutableSortDefinition("date", false, false));
-//		return Collections.unmodifiableList(sortedHotelRooms);
-//	}
-//
-//	public void addHotelRooms(HotelRoom hotelRoom) {
-//		getHotelRoomsInternal().add(hotelRoom);
-//		hotelRoom.setPet(this);
-//	}
 
 }

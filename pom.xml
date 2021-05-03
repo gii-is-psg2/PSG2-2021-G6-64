@@ -7,7 +7,7 @@
    
     <groupId>es.us.psg2</groupId>
     <artifactId>spring-petclinic.psg2.2021-G6-64</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.1</version>
 	
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -211,15 +211,6 @@
 
 	<build>
 		<plugins>
-			<plugin>
-			    <artifactId>maven-surefire-plugin</artifactId>
-			    <version>2.20</version>
-			    
-			    <configuration>
-			        <testFailureIgnore>true</testFailureIgnore>
-			        
-			    </configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
