@@ -17,11 +17,9 @@ package org.springframework.samples.petclinic.service;
 
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Authorities;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,7 +37,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
 	private UserRepository userRepository;
-	private OwnerService ownerService;
 	
 	@Autowired
 	public UserService(UserRepository userRepository) {
@@ -72,6 +69,6 @@ public class UserService {
 			return false;
 		}
 		
-		return user.get().getAuthorities().contains("ADMIN");
+		return user.get().getAuthorities().stream().map(Authorities::getAuthority).anyMatch(x -> x.equals("ADMIN"));
 	}
 }

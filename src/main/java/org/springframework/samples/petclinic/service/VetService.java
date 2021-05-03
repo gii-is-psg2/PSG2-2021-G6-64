@@ -71,7 +71,7 @@ public class VetService {
 	
 	@Transactional(readOnly = true)
 	public Specialty findSpecialtyByName(String name)throws DataAccessException{
-		return vetRepository.findSpecialtyByName(name).orElseGet(null);
+		return vetRepository.findSpecialtyByName(name).orElse(null);
 	}
 
 	

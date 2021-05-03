@@ -24,8 +24,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Vets;
-import org.springframework.samples.petclinic.service.AuthoritiesService;
-import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -49,14 +47,10 @@ public class VetController {
 	private static final String VIEWS_VET_CREATE_OR_UPDATE_FORM = "vets/createOrUpdateVetForm";
 	
 	private final VetService vetService;
-	private final UserService userService;
-	private final AuthoritiesService authoritiesService;
 	
 	@Autowired
-	public VetController(VetService clinicService, UserService userService, AuthoritiesService authoritiesService) {
+	public VetController(VetService clinicService) {
 		this.vetService = clinicService;
-		this.userService = userService;
-		this.authoritiesService = authoritiesService;
 	}
 	
 	@ModelAttribute("specialities")

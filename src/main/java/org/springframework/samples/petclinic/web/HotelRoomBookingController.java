@@ -35,6 +35,8 @@ public class HotelRoomBookingController {
 	private HotelRoomService hotelRoomService;
 	@Autowired
 	private HotelRoomBookingService hotelRoomBookingService;
+	
+	private static final String CREATE_OR_UPDATE_FORM = "pets/createOrUpdateHotelRoomBookingForm";
 
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
@@ -60,7 +62,7 @@ public class HotelRoomBookingController {
 		modelMap.addAttribute("hotelRooms", hotelRooms);
 		modelMap.addAttribute("pet", pet);
 
-		return "pets/createOrUpdateHotelRoomBookingForm";
+		return CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/owners/{ownerId}/pets/{petId}/hotel-rooms/new")
@@ -72,20 +74,22 @@ public class HotelRoomBookingController {
 
 		modelMap.addAttribute("hotelRoomBookings", hotelRoomBookings);
 		modelMap.addAttribute("hotelRooms", hotelRooms);
-
+		
+		final String ERROR_STARTDATE = "error.startDate";
+		
 		if (result.hasErrors()) {
-			return "pets/createOrUpdateHotelRoomBookingForm";
+			return CREATE_OR_UPDATE_FORM;
 		} else if (hotelRoomBooking.getFinishDate().isBefore(hotelRoomBooking.getStartDate())) {
-			result.rejectValue("startDate", "error.startDate",
+			result.rejectValue("startDate", ERROR_STARTDATE,
 					"La fecha de inicio no puede ser anterior a la fecha de finalización");
-			return "pets/createOrUpdateHotelRoomBookingForm";
+			return CREATE_OR_UPDATE_FORM;
 		} else if (roomIsBooked(hotelRoomBooking)) {
-			result.rejectValue("hotelRoom", "error.startDate", "La habitación esta reservada para la fecha indicada");
-			return "pets/createOrUpdateHotelRoomBookingForm";
+			result.rejectValue("hotelRoom", ERROR_STARTDATE, "La habitación esta reservada para la fecha indicada");
+			return CREATE_OR_UPDATE_FORM;
 		} else if (petHasBookedRoom(hotelRoomBooking)) {
-			result.rejectValue("startDate", "error.startDate",
+			result.rejectValue("startDate", ERROR_STARTDATE,
 					"Esta mascota ya tiene una habitación reservada para la fecha indicada");
-			return "pets/createOrUpdateHotelRoomBookingForm";
+			return CREATE_OR_UPDATE_FORM;
 		} else {
 			this.hotelRoomBookingService.saveHotelRoom(hotelRoomBooking);
 			return "redirect:/owners/{ownerId}";

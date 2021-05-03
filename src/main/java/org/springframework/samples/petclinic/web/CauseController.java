@@ -55,7 +55,7 @@ public class CauseController {
 	
 	@GetMapping(value = {"/causes"})
 	public String showCausesList(Map<String, Object> model) {
-		Collection<Cause> causes = new ArrayList<Cause>();
+		Collection<Cause> causes = new ArrayList<>();
 		causes.addAll(this.causeService.findcause());
 		model.put("causes", causes);
 		return "causes/causesList";

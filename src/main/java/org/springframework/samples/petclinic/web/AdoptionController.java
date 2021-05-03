@@ -68,7 +68,7 @@ public class AdoptionController {
 		Set<Pet> idPetsApply = new HashSet<>();
 		if(owner != null) {
 			currentOwnerId = owner.getId();
-			idPetsApply = owner.getApplication().stream().map(x -> x.getPet()).collect(Collectors.toSet());
+			idPetsApply = owner.getApplication().stream().map(AdoptionApplication::getPet).collect(Collectors.toSet());
 		}
 
 		model.put("currentApplications",idPetsApply);
@@ -80,7 +80,7 @@ public class AdoptionController {
 
 	
 	@GetMapping(value = {"/adoptions/{petId}/apply" })
-	public String InitApplyAdoptForm(Map<String, Object> model, @PathVariable("petId") int petId) {
+	public String initApplyAdoptForm(Map<String, Object> model, @PathVariable("petId") int petId) {
 		AdoptionApplication adopApp= new AdoptionApplication();
 		Pet pet = this.petService.findPetById(petId);
 		

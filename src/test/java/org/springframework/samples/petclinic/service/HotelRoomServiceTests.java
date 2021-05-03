@@ -39,17 +39,17 @@ class HotelRoomServiceTests {
 	@Test
 	void shouldFindHotelRoomWithCorrectId() {
 		HotelRoomBooking hotelRoomBooking1 = this.hotelRoomBookingService.findById(1).get();
-		assertThat(hotelRoomBooking1.getHotelRoom().getName()).isEqualTo("Habitación individual");
+		assertThat(hotelRoomBooking1.getHotelRoom().getName()).hasToString("Habitacion individual");
 		assertThat(hotelRoomBooking1.getHotelRoom().getNumber()).isEqualTo(1);
-		assertThat(hotelRoomBooking1.getStartDate().toString()).isEqualTo("2013-01-04");
-		assertThat(hotelRoomBooking1.getFinishDate().toString()).isEqualTo("2013-01-04");
+		assertThat(hotelRoomBooking1.getStartDate().toString()).hasToString("2013-01-04");
+		assertThat(hotelRoomBooking1.getFinishDate().toString()).hasToString("2013-01-04");
 	}
 
 	@Test
 	void shouldFindAllHotelRoomBookingsByName() {
 		HotelRoomBooking hotelRoom1 = this.hotelRoomBookingService.findById(1).get();
 		HotelRoomBooking hotelRoom2 = this.hotelRoomBookingService.findById(2).get();
-		Collection<HotelRoomBooking> hotelRooms = this.hotelRoomBookingService.findAllByHotelRoomName("Habitación individual");
+		Collection<HotelRoomBooking> hotelRooms = this.hotelRoomBookingService.findAllByHotelRoomName("Habitacion individual");
 		assertTrue(hotelRooms.contains(hotelRoom1));
 		assertTrue(hotelRooms.contains(hotelRoom2));
 	}
@@ -64,13 +64,8 @@ class HotelRoomServiceTests {
 	}
 	
 	@Test
-	void shouldFindAllHotelRooms() {
-		//TODO
-	}
-	
-	@Test
 	@Transactional
-	public void shouldInsertHotelRoomIntoDatabaseAndGenerateId() {
+	void shouldInsertHotelRoomIntoDatabaseAndGenerateId() {
 		Pet pet1 = this.petService.findPetById(1);
 		HotelRoom hotelRoom = this.hotelRoomService.findById(1).get();
 		HotelRoomBooking hotelRoomBooking = new HotelRoomBooking();
@@ -93,7 +88,7 @@ class HotelRoomServiceTests {
 	
 	@Test
 	@Transactional
-	public void shouldThrowExceptionHotelRoomIsAlreadyBooked() throws DataAccessException, DuplicatedHotelRoomForDateException {
+	void shouldThrowExceptionHotelRoomIsAlreadyBooked() throws DataAccessException, DuplicatedHotelRoomForDateException {
 
 		Pet pet1 = this.petService.findPetById(1);
 		HotelRoom hotelRoom2 = this.hotelRoomService.findById(2).get();
@@ -120,7 +115,7 @@ class HotelRoomServiceTests {
 	
 	@Test
 	@Transactional
-	public void shouldThrowExceptionHotelRoomPetHasBookedRoomForSelectedDate() throws DataAccessException, DuplicatedHotelRoomForDateException {
+	void shouldThrowExceptionHotelRoomPetHasBookedRoomForSelectedDate() throws DataAccessException, DuplicatedHotelRoomForDateException {
 		Pet pet1 = this.petService.findPetById(1);
 		HotelRoom hotelRoom1 = this.hotelRoomService.findById(1).get();
 		HotelRoom hotelRoom2 = this.hotelRoomService.findById(2).get();
