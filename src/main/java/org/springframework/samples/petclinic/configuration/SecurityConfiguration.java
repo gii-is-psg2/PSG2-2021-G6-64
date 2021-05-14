@@ -46,6 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/causes/**").permitAll()
 				.antMatchers("/hotel/rooms").permitAll()
 				.antMatchers("/hotel/rooms/**").hasAnyAuthority(ADMIN)
+				.antMatchers("/manage/**").permitAll()
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()
