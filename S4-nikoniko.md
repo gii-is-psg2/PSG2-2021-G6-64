@@ -40,8 +40,8 @@ In the retrospective meeting, the team has a discussion about those results.
 
 | Day           |     Álvaro    |    Ismael     |    Marina     |     Borja     |     Stefan    |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| May 4         |               |               |               |               |               |
-| May 5         |               |               |               |               |               |
+| May 4         |      🤓      |               |               |               |               |
+| May 5         |      🤓      |               |               |               |               |
 | May 6         |               |               |               |               |               |
 | May 7         |               |               |               |               |               |
 | May 8         |               |               |               |               |               |
