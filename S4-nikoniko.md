@@ -34,6 +34,7 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day 9        |   🤔 ( Viendo cómo organizarme )   |
 | Day 10        |   💻 ( Examen )
 | Day 11        |   👫 ( Pair Programming )
+| Day 12        |  🥵 ( Muerta de caló)
 
 
 ## Sprint Template
@@ -52,5 +53,5 @@ In the retrospective meeting, the team has a discussion about those results.
 | May 13        |               |               |               |               |               |
 | May 14        |      👫       |               |      👫      |               |               |
 | May 15        |      👫       |               |      👫      |               |               |
-| May 16        |               |               |               |               |               |
+| May 16        |               |               |    🥵🤓      |               |               |
 | May 17        |               |               |               |               |               |
