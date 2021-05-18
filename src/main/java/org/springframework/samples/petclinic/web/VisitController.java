@@ -20,10 +20,13 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -78,9 +81,22 @@ public class VisitController {
 	@GetMapping(value = "/owners/{ownerId}/pets/{petId}/visits/new")
 	public String initNewVisitForm(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId, Map<String, Object> model) {
 		
-		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId)) {
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		
+		if (principal instanceof UserDetails) {
+			username = ((UserDetails) principal).getUsername();
+		} else {
+			username = principal.toString();
+		}
+		
+		Owner owner = this.ownerService.findOwnerByUsername(username);		
+		
+		if(owner.getId() != ownerId) {
 			return REDIRECT_OWNERS;
 		}	
+		
 		return "pets/createOrUpdateVisitForm";
 	}
 
