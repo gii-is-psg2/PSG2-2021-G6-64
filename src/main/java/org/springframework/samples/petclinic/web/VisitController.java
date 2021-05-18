@@ -80,11 +80,10 @@ public class VisitController {
 	// Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
 	@GetMapping(value = "/owners/{ownerId}/pets/{petId}/visits/new")
 	public String initNewVisitForm(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId, Map<String, Object> model) {
-		
-		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username;
-		
+		Pet pet = this.petService.findPetById(petId);
+
 		if (principal instanceof UserDetails) {
 			username = ((UserDetails) principal).getUsername();
 		} else {
@@ -93,9 +92,9 @@ public class VisitController {
 		
 		Owner owner = this.ownerService.findOwnerByUsername(username);		
 		
-		if(owner.getId() != ownerId) {
+		if(owner.getId() != ownerId || owner.getId() != pet.getOwner().getId()) {
 			return REDIRECT_OWNERS;
-		}	
+		}
 		
 		return "pets/createOrUpdateVisitForm";
 	}
