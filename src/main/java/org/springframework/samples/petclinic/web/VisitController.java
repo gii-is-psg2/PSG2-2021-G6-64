@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -42,10 +43,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class VisitController {
 
 	private final PetService petService;
+	private final OwnerService ownerService;
 
+	private static final String REDIRECT_OWNERS = "redirect:/owners/{ownerId}";
+	
 	@Autowired
-	public VisitController(PetService petService) {
+	public VisitController(PetService petService, OwnerService ownerService) {
 		this.petService = petService;
+		this.ownerService = ownerService;
 	}
 
 	@InitBinder
@@ -70,8 +75,12 @@ public class VisitController {
 	}
 
 	// Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
-	@GetMapping(value = "/owners/*/pets/{petId}/visits/new")
-	public String initNewVisitForm(@PathVariable("petId") int petId, Map<String, Object> model) {
+	@GetMapping(value = "/owners/{ownerId}/pets/{petId}/visits/new")
+	public String initNewVisitForm(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId, Map<String, Object> model) {
+		
+		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId)) {
+			return REDIRECT_OWNERS;
+		}	
 		return "pets/createOrUpdateVisitForm";
 	}
 
@@ -83,7 +92,7 @@ public class VisitController {
 		}
 		else {
 			this.petService.saveVisit(visit);
-			return "redirect:/owners/{ownerId}";
+			return REDIRECT_OWNERS;
 		}
 	}
 

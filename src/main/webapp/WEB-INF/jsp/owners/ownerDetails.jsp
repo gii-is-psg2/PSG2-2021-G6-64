@@ -106,23 +106,26 @@
                             </tr>
                         </c:forEach>
                         <tr>
+                        
                             <td>
-                                <spring:url value="/owners/{ownerId}/pets/{petId}/edit" var="petUrl">
-                                    <spring:param name="ownerId" value="${owner.id}"/>
-                                    <spring:param name="petId" value="${pet.id}"/>
-                                </spring:url>
-                                <a href="${fn:escapeXml(petUrl)}"><fmt:message key="pet.update"/></a>
+                            	<c:if test="${isCurrentOwner}">
+	                                <spring:url value="/owners/{ownerId}/pets/{petId}/edit" var="petUrl">
+	                                    <spring:param name="ownerId" value="${owner.id}"/>
+	                                    <spring:param name="petId" value="${pet.id}"/>
+	                                </spring:url>
+	                                <a href="${fn:escapeXml(petUrl)}"><fmt:message key="pet.update"/></a>
+                             	</c:if>
                             </td>
                             <td>
-                                <spring:url value="/owners/{ownerId}/pets/{petId}/visits/new" var="visitUrl">
-                                    <spring:param name="ownerId" value="${owner.id}"/>
-                                    <spring:param name="petId" value="${pet.id}"/>
-                                </spring:url>
-                                <a href="${fn:escapeXml(visitUrl)}"><fmt:message key="visit.add"/></a>
+                            	<c:if test="${isCurrentOwner}">
+	                                <spring:url value="/owners/{ownerId}/pets/{petId}/visits/new" var="visitUrl">
+	                                    <spring:param name="ownerId" value="${owner.id}"/>
+	                                    <spring:param name="petId" value="${pet.id}"/>
+	                                </spring:url>
+	                                <a href="${fn:escapeXml(visitUrl)}"><fmt:message key="visit.add"/></a>
+                                </c:if>
                             </td>
-                            
-                            
-                            
+                                                                                    
                             <c:if test="${pet.enAdopcion==false && isCurrentOwner}">
                             <td>
                                 <spring:url value="/owners/{ownerId}/pets/{petId}/adopt" var="adoptUrl">

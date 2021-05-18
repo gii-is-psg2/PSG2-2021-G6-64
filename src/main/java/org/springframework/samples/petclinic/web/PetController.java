@@ -110,7 +110,12 @@ public class PetController {
 	}
 
 	@GetMapping(value = "/pets/{petId}/edit")
-	public String initUpdateForm(@PathVariable("petId") int petId, ModelMap model) {
+	public String initUpdateForm(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId, ModelMap model) {
+
+		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId)) {
+			return REDIRECT_OWNERS;
+		}
+		
 		Pet pet = this.petService.findPetById(petId);
 		model.put("pet", pet);
 		return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
