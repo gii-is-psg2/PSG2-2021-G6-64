@@ -53,8 +53,8 @@ In the retrospective meeting, the team has a discussion about those results.
 | May 13        |               |   :smiley:    |               |                |               |
 | May 14        |      👫       |   :smiley:    |       👫      |  :smiley:      |               |
 | May 15        |      👫       |      -        |       👫      |       🤔       |       🤓       |
-| May 16        |               |    :smiley:   |     🥵🤓      |       🤔       |               |
-| May 17        |               |    :smiley:   |               |  :smiley:☕    |   :smiley:☕   |
+| May 16        |               |    :smiley:   |     🥵🤓      |       🤔       |   :smiley:☕   |
+| May 17        |               |    :smiley:   |               |  :smiley:☕    |   :smiley:    |
 | May 18        |       👫      |   :smiley:    |       👫      |   :smiley:     |       🤓       |
 | May 19        |               |               |               |                |               |
 | May 20        |               |               |               |                |               |
