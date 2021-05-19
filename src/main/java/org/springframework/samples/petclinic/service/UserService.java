@@ -71,4 +71,9 @@ public class UserService {
 		
 		return user.get().getAuthorities().stream().map(Authorities::getAuthority).anyMatch(x -> x.equals("ADMIN"));
 	}
+	
+	@Transactional
+	public boolean usernameIsAlreadyRegistered(String username) {
+		return this.findUser(username).isPresent();
+	}
 }

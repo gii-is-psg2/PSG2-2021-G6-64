@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.OwnerService;
+import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -40,10 +41,12 @@ public class UserController {
 
 	private static final String VIEWS_OWNER_CREATE_FORM = "users/createOwnerForm";
 
+	private final UserService userService;
 	private final OwnerService ownerService;
 
 	@Autowired
-	public UserController(OwnerService clinicService) {
+	public UserController(UserService userService, OwnerService clinicService) {
+		this.userService = userService;
 		this.ownerService = clinicService;
 	}
 
@@ -61,12 +64,21 @@ public class UserController {
 
 	@PostMapping(value = "/users/new")
 	public String processCreationForm(@Valid Owner owner, BindingResult result) {
-		if (result.hasErrors()) {
+		if (result.hasErrors() || owner.getUser().getUsername().isEmpty() || owner.getUser().getPassword().isEmpty()) {
+			if(owner.getUser().getUsername().isEmpty()) {
+				result.rejectValue("user.username", "error.username.empty", "no puede estar vacío");
+			}
+			if(owner.getUser().getPassword().isEmpty()) {
+				result.rejectValue("user.password", "error.password.emtpy", "no puede estar vacío");
+			}
 			return VIEWS_OWNER_CREATE_FORM;
-		}
-		else {
-			//creating owner, user, and authority
+		} else if (this.userService.usernameIsAlreadyRegistered(owner.getUser().getUsername())) {
+			result.rejectValue("user.username", "error.username", "El nombre de usuario ya esta registrado");
+			return VIEWS_OWNER_CREATE_FORM;
+		} else {
+			// creating owner, user and authorities
 			this.ownerService.saveOwner(owner);
+
 			return "redirect:/";
 		}
 	}
