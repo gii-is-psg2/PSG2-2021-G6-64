@@ -93,14 +93,25 @@ public class PetController {
 
 	@PostMapping(value = "/pets/new")
 	public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model) {		
-		if (result.hasErrors()) {
+		
+		
+		if (result.hasErrors() || !comprobacionNacimiento(pet)) { // Fecha en futuro -> !(false) -> true
+		
+			owner.addPet(pet);
 			model.put("pet", pet);
+			
+			if(!comprobacionNacimiento(pet)) {
+				result.rejectValue("birthDate", "error.birthDate",
+						"La fecha no puede ser en futuro");
+			}
+			
 			return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 		}
 		else {
             try{
             	owner.addPet(pet);
             	this.petService.savePet(pet);
+            	
             }catch(DuplicatedPetNameException ex){
                 result.rejectValue("name", "duplicate", "already exists");
                 return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
@@ -134,8 +145,15 @@ public class PetController {
      */
         @PostMapping(value = "/pets/{petId}/edit")
 	public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner,@PathVariable("petId") int petId, ModelMap model) {
-		if (result.hasErrors()) {
-			model.put("pet", pet);
+        	if (result.hasErrors() || !comprobacionNacimiento(pet)) { // Fecha en futuro -> !(false) -> true
+        		
+    			owner.addPet(pet);
+    			model.put("pet", pet);
+    			
+    			if(!comprobacionNacimiento(pet)) {
+    				result.rejectValue("birthDate", "error.birthDate",
+    						"La fecha no puede ser en futuro");
+    			}
 			return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 		}
 		else {
@@ -213,5 +231,13 @@ public class PetController {
     	}
     	
     	return result;
+    }
+    
+    private boolean comprobacionNacimiento(Pet pet) {
+    	if(pet.getBirthDate().isAfter(LocalDate.now())) {
+    		   		return false;
+    	}else {
+    		return true;
+    	}
     }
 }

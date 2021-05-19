@@ -31,6 +31,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
@@ -47,8 +49,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "pets")
 public class Pet extends NamedEntity {
 
-	@Column(name = "birth_date")
+	@Column(name = "birth_date") 
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	//@PastOrPresent(message = "La fecha no puede ser en futuro")
 	private LocalDate birthDate;
 	
 	@Column(name="en_adopcion")
