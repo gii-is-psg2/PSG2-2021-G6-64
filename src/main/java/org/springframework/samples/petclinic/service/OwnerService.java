@@ -35,30 +35,29 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class OwnerService {
 
-	private OwnerRepository ownerRepository;	
-	
+	private OwnerRepository ownerRepository;
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private AuthoritiesService authoritiesService;
 
 	@Autowired
 	public OwnerService(OwnerRepository ownerRepository) {
 		this.ownerRepository = ownerRepository;
-	}	
+	}
 
 	@Transactional(readOnly = true)
 	public Owner findOwnerById(int id) throws DataAccessException {
 		return ownerRepository.findById(id);
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Owner findOwnerByUsername(String username) throws DataAccessException {
 		return ownerRepository.findByUsername(username);
 	}
 
-	
 	@Transactional(readOnly = true)
 	public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException {
 		return ownerRepository.findByLastName(lastName);
@@ -67,12 +66,12 @@ public class OwnerService {
 	@Transactional
 	public void saveOwner(Owner owner) throws DataAccessException {
 
-		ownerRepository.save(owner);		
+		ownerRepository.save(owner);
 		userService.saveUser(owner.getUser());
 		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
-    
+
 	}
-	
+
 	@Transactional
 	public Owner findCurrentOwner() throws DataAccessException {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -85,20 +84,20 @@ public class OwnerService {
 		}
 		return this.findOwnerByUsername(username);
 	}
-	
+
 	@Transactional
 	public void deleteOwner(Owner owner) throws DataAccessException {
-		
+
 		ownerRepository.deleteById(owner.getId());
-	}	
+	}
 
 	@Transactional
 	public boolean ownerIsLoggedOwnerById(Integer ownerId) {
-		if(this.findCurrentOwner() == null) {
+		if (this.findCurrentOwner() == null) {
 			return false;
 		} else {
 			return this.findCurrentOwner().equals(this.findOwnerById(ownerId));
 		}
 	}
-	
+
 }
