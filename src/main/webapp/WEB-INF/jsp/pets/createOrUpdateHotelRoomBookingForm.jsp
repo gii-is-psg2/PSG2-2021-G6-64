@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="false" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -42,7 +43,7 @@
 
         <form:form modelAttribute="hotelRoomBooking" class="form-horizontal">
             <div class="form-group has-feedback">
-            	<petclinic:selectFieldWithCustomName label="Habitación" name="hotelRoom" names="${hotelRooms}" selected="${hotelRoomBooking.hotelRoom.id}">
+            	<petclinic:selectFieldWithCustomName label="HabitaciÃ³n" name="hotelRoom" names="${hotelRooms}" selected="${hotelRoomBooking.hotelRoom.id}">
             	</petclinic:selectFieldWithCustomName>
     	        <fmt:message var="start" key="hotel.start"/>
             	<fmt:message var="finish" key="hotel.finish"/>				
