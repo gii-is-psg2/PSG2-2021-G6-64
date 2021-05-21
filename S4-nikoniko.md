@@ -42,12 +42,12 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day           |     Álvaro    |    Ismael     |    Marina     |     Borja     |     Stefan    |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | May 4         |       🤓      |      🤔        |       🤓      |      🤓       |       🤓      |
-| May 5         |       🤓      |       -        |       🤓      |      🤓       |       🤓      |
-| May 6         |       👫      |      -         |        👫     |      🤓       |       🤓      |
+| May 5         |       🤓      |  :smiley:☕     |       🤓      |      🤓       |       🤓      |
+| May 6         |       👫      |    :smiley:☕  |        👫     |      🤓       |       🤓      |
 | May 7         |               |      🤔        |               |              |               |
-| May 8         |               |      -         |               |              |               |
-| May 9         |               |       -        |               |              |               |
-| May 10        |               |        -       |               |              |               |
+| May 8         |               |   :smiley:☕  |               |              |               |
+| May 9         |               |   :smiley:☕   |               |              |               |
+| May 10        |               |    :smiley:☕  |               |              |               |
 | May 11        |      👫       |     :smiley:   |       👫      | :smiley:☕     |               |
 | May 12        |      💻       |       💻       |       💻      |      💻        |               |
 | May 13        |               |   :smiley:    |               |                |               |
@@ -56,7 +56,7 @@ In the retrospective meeting, the team has a discussion about those results.
 | May 16        |               |    :smiley:   |     🥵🤓      |       🤔       |   :smiley:☕   |
 | May 17        |               |    :smiley:   |               |  :smiley:☕    |   :smiley:    |
 | May 18        |       👫      |   :smiley:    |       👫      |   :smiley:     |       🤓       |
-| May 19        |               |               |       🤓      |                |:neutral_face: |
-| May 20        |       👫      |               |      👫       |                |   :smiley:    |
-| May 21        |       🤓      |               |      🤓       |                |   :smiley:    |
-| May 22        |               |               |              |                |               |
+| May 19        |               |      🤓       |       🤓      |                |:neutral_face: |
+| May 20        |       👫      |      🤓      |      👫       |                |   :smiley:    |
+| May 21        |       🤓      |      🤓      |      🤓       |                |   :smiley:    |
+| May 22        |               |       🤓      |              |                |               |
