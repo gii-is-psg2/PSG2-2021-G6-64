@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.service;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -104,4 +105,14 @@ public class PetService {
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
 	}
+	 
+	public boolean esReptil(Pet pet) {
+    	boolean result = false;
+    	
+    	if(pet.getType().toString().equals("lizard") || pet.getType().toString().equals("snake")){
+    		result = true;
+    	}
+    	
+    	return result;
+    }
 }
