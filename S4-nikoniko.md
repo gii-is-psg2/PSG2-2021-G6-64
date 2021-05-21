@@ -58,5 +58,5 @@ In the retrospective meeting, the team has a discussion about those results.
 | May 18        |       👫      |   :smiley:    |       👫      |   :smiley:     |       🤓       |
 | May 19        |               |               |               |                |:neutral_face: |
 | May 20        |               |               |               |                |               |
-| May 21        |               |               |               |                |               |
+| May 21        |               |               |               |                |   :smiley:    |
 | May 22        |               |               |               |                |               |
