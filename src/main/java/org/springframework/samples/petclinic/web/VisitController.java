@@ -80,18 +80,12 @@ public class VisitController {
 	// Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
 	@GetMapping(value = "/owners/{ownerId}/pets/{petId}/visits/new")
 	public String initNewVisitForm(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId, Map<String, Object> model) {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username;
-		Pet pet = this.petService.findPetById(petId);
 
-		if (principal instanceof UserDetails) {
-			username = ((UserDetails) principal).getUsername();
-		} else {
-			username = principal.toString();
-		}
+		Pet pet = this.petService.findPetById(petId);
+		String username = this.getCurrentUsername();
 		
 		Owner owner = this.ownerService.findOwnerByUsername(username);		
-		
+			
 		if(owner.getId() != ownerId || owner.getId() != pet.getOwner().getId()) {
 			return REDIRECT_OWNERS;
 		}
@@ -115,6 +109,22 @@ public class VisitController {
 	public String showVisits(@PathVariable int petId, Map<String, Object> model) {
 		model.put("visits", this.petService.findPetById(petId).getVisits());
 		return "visitList";
+	}
+	
+	public String getCurrentUsername() {
+		
+
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		
+		
+		if (principal instanceof UserDetails) {
+			username = ((UserDetails) principal).getUsername();
+		} else {
+			username = principal.toString();
+		}
+		
+		return username;
 	}
 
 }

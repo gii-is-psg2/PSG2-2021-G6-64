@@ -126,6 +126,7 @@ public class PetController {
 		Pet pet = this.petService.findPetById(petId);
 		
 		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId) || !pet.getOwner().equals(currentOwner)) {
+			System.out.println(pet.getOwner());
 			return REDIRECT_OWNERS;
 		}
 		
