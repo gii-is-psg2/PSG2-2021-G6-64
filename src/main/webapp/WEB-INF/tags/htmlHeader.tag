@@ -13,7 +13,7 @@ PetClinic :: a Spring Framework demonstration
 
     <spring:url value="/resources/images/favicon.png" var="favicon"/>
     <link rel="shortcut icon" type="image/x-icon" href="${favicon}">
-
+	<script src="https://kit.fontawesome.com/752f93bb69.js" crossorigin="anonymous"></script>
     <title>PetClinic :: a Spring Framework demonstration</title>
 
     <%-- CSS generated from LESS --%>
