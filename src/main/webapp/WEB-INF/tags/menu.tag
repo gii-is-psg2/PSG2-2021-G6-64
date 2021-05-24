@@ -68,21 +68,6 @@
 
 
 			<ul class="nav navbar-nav navbar-right">
-    <a
-        class="btn btn-link btn-floating btn-lg text-dark m-1"
-        href="/?lang=es"
-        role="button"
-        data-mdb-ripple-color="dark"
-        ><img alt="ES" height="32" width="36" align="middle" src="/resources/images/es.svg">
-	</a>
-    <a
-        class="btn btn-link btn-floating btn-lg text-dark m-1"
-        href="/?lang=en"
-        role="button"
-        data-mdb-ripple-color="dark"
-        ><img alt="ES" height="32" width="36" align="middle" src="/resources/images/gb.svg">
-        
-    </a>
 				<sec:authorize access="!isAuthenticated()">
 					<li><a href="<c:url value="/login" />">Login</a></li>
 					<li><a href="<c:url value="/users/new" />">Registrarse</a></li>
