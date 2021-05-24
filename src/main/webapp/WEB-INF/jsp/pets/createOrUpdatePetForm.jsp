@@ -30,10 +30,11 @@
                 </div>
                 <fmt:message var="name" key="name"/>
                 <fmt:message var="birth" key="birth"/>
+                <fmt:message var="type" key="type"/>
                 <petclinic:inputField label="${name}" name="name"/>
                 <petclinic:inputField label="${birth}" name="birthDate"/>
                 <div class="control-group">
-                    <petclinic:selectField name="type" label="Tipo " names="${types}" size="5"/>
+                    <petclinic:selectField name="type" label="${type}" names="${types}" size="5"/>
                 </div>
             </div>
             <div class="form-group">
