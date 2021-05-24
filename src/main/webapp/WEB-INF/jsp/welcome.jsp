@@ -7,7 +7,7 @@
 <petclinic:layout pageName="home">
     <div class="alert alert-danger" role="alert">
     <span class="glyphicon glyphicon-alert"></span>
-    COVID-19: "Por las restricciones actuales no es posible adoptar reptiles, lo sentimos."
+    	<fmt:message key="alert"/>
     </div>
     <h2><fmt:message key="welcome"/></h2> 
     <h3> PSG2-2021-G6-64 </h3>

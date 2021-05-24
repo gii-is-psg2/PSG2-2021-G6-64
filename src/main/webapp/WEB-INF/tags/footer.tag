@@ -12,4 +12,26 @@
 <spring:url value="/webjars/bootstrap/3.3.6/js/bootstrap.min.js" var="bootstrapJs"/>
 <script src="${bootstrapJs}"></script>
 
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<footer class="navbar navbar-default text-center text-white">
+  <div class="container pt-4">
+    <section class="mb-4">
+    <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="/?lang=es"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><img alt="ES" height="32" width="36" align="middle" src="/resources/images/es.svg">
+	</a>
+    <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="/?lang=en"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><img alt="ES" height="32" width="36" align="middle" src="/resources/images/gb.svg">
+        
+    </a>
+    </section>
+  </div>
+</footer>
