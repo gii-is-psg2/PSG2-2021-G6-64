@@ -43,20 +43,28 @@ In the retrospective meeting, the team has a discussion about those results.
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | May 4         |       🤓      |      🤔        |       🤓      |      🤓       |       🤓      |
 | May 5         |       🤓      |  :smiley:☕     |       🤓      |      🤓       |       🤓      |
-| May 6         |       👫      |    :smiley:☕  |        👫     |      🤓       |       🤓      |
-| May 7         |               |      🤔        |     :smiley:   |              |               |
-| May 8         |               |   :smiley:☕  |      :smiley:   |              |               |
-| May 9         |               |   :smiley:☕   |    :smiley:     |              |               |
-| May 10        |               |    :smiley:☕  |     :smiley:    |              |               |
+| May 6         |       👫      |    :smiley:☕   |        👫     |      🤓       |       🤓      |
+| May 7         |               |      🤔        |    :smiley:   |              |               |
+| May 8         |               |   :smiley:☕   |     :smiley:   |              |               |
+| May 9         |               |   :smiley:☕   |   :smiley:     |              |               |
+| May 10        |               |    :smiley:☕  |    :smiley:    |              |               |
 | May 11        |      👫       |     :smiley:   |       👫      | :smiley:☕     |               |
 | May 12        |      💻       |       💻       |       💻      |      💻        |               |
-| May 13        |               |   :smiley:    |     :smiley:    |                |               |
+| May 13        |               |   :smiley:    |   :smiley:    |                |               |
 | May 14        |      👫       |   :smiley:    |       👫      |  :smiley:      |               |
-| May 15        |      👫       |  :smiley:☕   |       👫      |       🤔       |       🤓       |
-| May 16        |               |    :smiley:   |     🥵🤓      |       🤔       |   :smiley:☕   |
-| May 17        |               |    :smiley:   |   :smiley:     |  :smiley:☕    |   :smiley:    |
-| May 18        |       👫      |   :smiley:    |       👫      |   :smiley:     |       🤓       |
-| May 19        |               |      🤓       |       🤓      |       🤓      |:neutral_face: |
-| May 20        |       👫      |      🤓      |      👫        |       🤓      |   :smiley:    |
-| May 21        |       🤓      |      🤓      |      🤓       |       🤓      |   :smiley:    |
+| May 15        |      👫       |  :smiley:☕    |       👫      |       🤔       |       🤓       |
+| May 16        |               |    :smiley:   |     🥵🤓      |        🤔       |   :smiley:☕   |
+| May 17        |               |    :smiley:   |   :smiley:    |   :smiley:☕    |   :smiley:    |
+| May 18        |       👫      |   :smiley:    |       👫       |   :smiley:     |       🤓      |
+| May 19        |               |      🤓       |       🤓       |       🤓       |:neutral_face: |
+| May 20        |       👫      |      🤓       |      👫        |       🤓       |   :smiley:    |
+| May 21        |       🤓      |      🤓       |      🤓        |       🤓       |   :smiley:    |
 | May 22        |               |            |              |                |               |
+| May 23        |               |            |              |                |  :smiley:☕    |
+| May 24        |               |            |              |                |   :smiley:    |
+| May 25        |               |            |              |                |               |
+| May 26        |               |            |              |                |               |
+| May 27        |               |            |              |                |               |
+| May 28        |               |            |              |                |               |
+| May 29        |               |            |              |                |               |
+| May 30        |               |            |              |                |               |
