@@ -52,7 +52,9 @@
 	   				    <spring:url value= "/causes/{causeId}/donations/new" var= "donateUrl">
 	   				    	<spring:param name= "causeId" value= "${cause.id}"/>
 	 				    </spring:url>
-	  				    <a href= "${fn:escapeXml(donateUrl)}"><fmt:message key="donation.donate"/></a> 
+	  				    <a href= "${fn:escapeXml(donateUrl)}"><img src="../resources/images/money.png" width = 30px></a>
+	  				    
+	  				    <!-- <fmt:message key="donation.donate"/> -->
   				    </sec:authorize>
     			</c:if>
                 </td>                
