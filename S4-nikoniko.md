@@ -62,8 +62,8 @@ In the retrospective meeting, the team has a discussion about those results.
 | May 22        |               |               |              |                |  :smiley:☕    |
 | May 23        |               |               |              |                |  :smiley:☕    |
 | May 24        |               |               |              |                |   :smiley:    |
-| May 25        |               |               |              |                |               |
-| May 26        |               |               |              |                |               |
+| May 25        |               |               |              |                |       💻      |
+| May 26        |               |               |              |                |       🤓      |
 | May 27        |               |               |              |                |               |
 | May 28        |               |               |              |                |               |
 | May 29        |               |               |              |                |               |
