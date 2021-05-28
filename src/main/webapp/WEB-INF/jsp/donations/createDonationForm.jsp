@@ -13,8 +13,10 @@
     </h2>
     <form:form modelAttribute="donation" class="form-horizontal" id="add-donation-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="Descripcion" name="description"/>
-            <petclinic:inputField label="Cantidad" name="amount"/> 
+        	<fmt:message var="desc" key="desc"/>
+        	<fmt:message var="amount" key="donation.amount"/>
+            <petclinic:inputField label="${desc}" name="description"/>
+            <petclinic:inputField label="${amount}" name="amount"/> 
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

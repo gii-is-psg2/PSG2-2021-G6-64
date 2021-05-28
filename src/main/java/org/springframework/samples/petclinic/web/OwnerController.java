@@ -177,6 +177,9 @@ public class OwnerController {
 		}
 		
 		mav.addObject("visitsCanBeDeleted", visitsCanBeDeleted);
+		if(this.ownerService.findCurrentOwner() != null) {
+			mav.addObject("petCanBeAdopted", listPetsReptiles(this.ownerService.findOwnerById(ownerId).getPets()));
+		}
 		mav.addObject("hasAnyDeletableVisit", visitsCanBeDeleted.containsValue(true));
 
 		return mav;
@@ -188,6 +191,16 @@ public class OwnerController {
     	
     	for(Visit visit: visits) {
     		result.put(visit.getId(), !visit.getDate().isBefore(LocalDate.now()));
+    	}
+ 
+    	return result;
+    }
+    
+    private Map<Integer, Boolean> listPetsReptiles(List<Pet> pets) {
+    	Map<Integer, Boolean> result = new HashMap<>();
+    	
+    	for(Pet pet: pets) {
+    		result.put(pet.getId(), this.petService.esReptil(pet));
     	}
  
     	return result;

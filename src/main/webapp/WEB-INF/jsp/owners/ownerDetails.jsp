@@ -127,6 +127,7 @@
                             </td>
                                                                                     
                             <c:if test="${pet.enAdopcion==false && isCurrentOwner}">
+                            <c:if test="${!petCanBeAdopted.get(pet.id)}">
                             <td>
                                 <spring:url value="/owners/{ownerId}/pets/{petId}/adopt" var="adoptUrl">
                                     <spring:param name="ownerId" value="${owner.id}"/>
@@ -135,9 +136,10 @@
                                 <a href="${fn:escapeXml(adoptUrl)}"><fmt:message key="pet.adopt"/></a>
                             </td>
                             </c:if>
-                            
+                            </c:if>
                             
                             <c:if test="${pet.enAdopcion== true && isCurrentOwner}">
+                            <c:if test="${!petCanBeAdopted.get(pet.id)}">
                             <td>
                                 <spring:url value="/owners/{ownerId}/adoptions/{petId}" var="adoptSetUrl">
                                     <spring:param name="ownerId" value="${owner.id}"/>
@@ -145,6 +147,7 @@
                                 </spring:url>
                                 <a href="${fn:escapeXml(adoptSetUrl)}"><fmt:message key="adoption.show"/></a>
                             </td>
+                            </c:if>
                             </c:if>
                             
                         </tr>

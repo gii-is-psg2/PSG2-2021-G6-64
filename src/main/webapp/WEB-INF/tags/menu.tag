@@ -10,7 +10,7 @@
 	description="Name of the active menu: home, owners, vets or error"%>
 
 <nav class="navbar navbar-default" role="navigation">
-	<div class="container">
+	<div class="container-lg">
 		<div class="navbar-header">
 			<a class="navbar-brand"
 				href="<spring:url value="/" htmlEscape="true" />"><span></span></a>
@@ -35,32 +35,32 @@
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'vets'}" url="/vets" title="veterinarians">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span class="fas fa-syringe" aria-hidden="true"></span>
 					<span><fmt:message key="vet.vets"/></span>
 				</petclinic:menuItem>
 				
 				<petclinic:menuItem active="${name eq 'adoptions'}" url="/adoptions"
 					title="adoptionPet">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span class="fas fa-paw" aria-hidden="true"></span>
 					<span><fmt:message key="pet.adoption"/></span>
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'causes'}" url="/causes" title="causes">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span class="fas fa-hand-holding-usd" aria-hidden="true"></span>
 					<span><fmt:message key="cause.causes"/></span>             
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'rooms'}" url="/hotel/rooms"
 					title="hotel rooms">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span class="fas fa-hotel" aria-hidden="true"></span>
 					<span><fmt:message key="rooms"/></span>
 				</petclinic:menuItem>
 
-<%-- 				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
-					title="trigger a RuntimeException to see how it is handled">
-					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-					<span>Error</span>
-				</petclinic:menuItem> --%>
+				<petclinic:menuItem active="${name eq 'health'}" url="/health"
+					title="health">
+					<span class='glyphicon glyphicon-heart' aria-hidden="true"></span>
+					<span><fmt:message key="health"/></span>
+				</petclinic:menuItem>
 
 			</ul>
 

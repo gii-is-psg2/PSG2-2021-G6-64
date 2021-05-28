@@ -126,6 +126,7 @@ public class PetController {
 		Pet pet = this.petService.findPetById(petId);
 		
 		if(!this.ownerService.ownerIsLoggedOwnerById(ownerId) || !pet.getOwner().equals(currentOwner)) {
+			System.out.println(pet.getOwner());
 			return REDIRECT_OWNERS;
 		}
 		
@@ -159,7 +160,8 @@ public class PetController {
 		else {
                         Pet petToUpdate=this.petService.findPetById(petId);
 			BeanUtils.copyProperties(pet, petToUpdate, "id","owner","visits");                                                                                  
-                    try {                    
+                    try {  
+                    	petToUpdate.setNotAdoption();
                         this.petService.savePet(petToUpdate);                    
                     } catch (DuplicatedPetNameException ex) {
                         result.rejectValue("name", "duplicate", "already exists");
@@ -190,13 +192,12 @@ public class PetController {
     @GetMapping(value = "/pets/{petId}/adopt")
 	public String adoptPet(@PathVariable("petId") int petId,@PathVariable("ownerId") int ownerId) throws DuplicatedPetNameException {
     	
-    	Pet pet = this.petService.findPetById(petId);
-    	pet.setAdoption();
-		this.petService.savePet(pet);
-		
-    	
+        Pet pet = this.petService.findPetById(petId);
+        if (!this.petService.esReptil(pet)) {
+        	pet.setAdoption();
+    		this.petService.savePet(pet);
+        }
 		return REDIRECT_OWNERS;
-		
 	}
     
 
