@@ -10,15 +10,12 @@ import lombok.Data;
 @Data
 public class Contact{
 
-	@Column(name = "name")
 	@NotBlank
 	private String name;
 
-	@Column(name = "email")
 	@NotBlank
 	private String email;
 
-	@Column(name = "phone")
 	@NotBlank
 	private String phone;
 
