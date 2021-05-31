@@ -62,6 +62,11 @@
 					<span><fmt:message key="health"/></span>
 				</petclinic:menuItem>
 
+				<petclinic:menuItem active="${name eq 'iTop'}" url="/itop"
+					title="causes">
+					<i class="fas fa-phone-square-alt"></i>
+					<span class="option-text"><fmt:message key="iTop"/></span>
+				</petclinic:menuItem>
 			</ul>
 
 
