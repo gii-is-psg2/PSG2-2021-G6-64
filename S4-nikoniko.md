@@ -59,7 +59,7 @@ In the retrospective meeting, the team has a discussion about those results.
 | May 19        |               |      🤓       |       🤓      |       🤓       |:neutral_face: |
 | May 20        |       👫      |      🤓       |      👫       |       🤓       |   :smiley:    |
 | May 21        |       🤓      |      🤓       |      🤓       |       🤓       |   :smiley:    |
-| May 22        |               |               |      🤓      |                |  :smiley:☕    |
+| May 22        |               |               |      🤓      |                |       😪      |
 | May 23        |               |               |       🤓     |                |  :smiley:☕    |
 | May 24        |               |               |       🤓     |                |   :smiley:    |
 | May 25        |               |               |      🤓      |                |       💻      |
