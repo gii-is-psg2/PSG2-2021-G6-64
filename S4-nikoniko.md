@@ -59,13 +59,13 @@ In the retrospective meeting, the team has a discussion about those results.
 | May 19        |               |      🤓       |       🤓      |       🤓       |:neutral_face: |
 | May 20        |       👫      |      🤓       |      👫       |       🤓       |   :smiley:    |
 | May 21        |       🤓      |      🤓       |      🤓       |       🤓       |   :smiley:    |
-| May 22        |               |               |        🤓      |                |  :smiley:☕    |
-| May 23        |               |               |         🤓     |                |  :smiley:☕    |
-| May 24        |               |               |         🤓     |                |   :smiley:    |
-| May 25        |               |               |        🤓      |                |       💻      |
-| May 26        |               |               |        🤓      |                |       🤓      |
-| May 27        |               |               |         🤓     |                |   :smiley:    |
+| May 22        |               |               |      🤓      |                |  :smiley:☕    |
+| May 23        |               |               |       🤓     |                |  :smiley:☕    |
+| May 24        |               |               |       🤓     |                |   :smiley:    |
+| May 25        |               |               |      🤓      |                |       💻      |
+| May 26        |               |               |      🤓      |                |       🤓      |
+| May 27        |               |               |       🤓     |                |   :smiley:    |
 | May 28        |               |               |      🤯      |                | 💻 :smiley:   |
-| May 29        |               |               |     🤯     |                |               |
-| May 30        |               |               |    😪        |                |               |
-| May 31        |               |               |  :fearful:   |                |               |
+| May 29        |               |               |      🤯      |                |               |
+| May 30        |               |               |      😪      |                |               |
+| May 31        |               |               |   :fearful:  |                |:neutral_face: |
