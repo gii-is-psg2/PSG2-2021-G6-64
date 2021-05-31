@@ -20,7 +20,7 @@ public class HealthController {
 		Health health = new Health();
 
 		try {
-            URL url = new URL("http://localhost:8080/manage/health");
+            URL url = new URL("http://psg2-2021-g6-64.herokuapp.com/manage/health");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
