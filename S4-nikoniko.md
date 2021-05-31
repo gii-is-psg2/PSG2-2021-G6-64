@@ -45,11 +45,11 @@ In the retrospective meeting, the team has a discussion about those results.
 | May 5         |       🤓      |  :smiley:☕    |       🤓      |      🤓       |       🤓      |
 | May 6         |       👫      |    :smiley:☕  |        👫     |      🤓       |       🤓      |
 | May 7         |               |      🤔       |   :smiley:    |               |   :smiley:    |
-| May 8         |               |   :smiley:☕   |   :smiley:   |               |               |
-| May 9         |               |   :smiley:☕   |   :smiley:   |               |               |
+| May 8         |               |   :smiley:☕   |   :smiley:   |               |   :smiley:☕   |
+| May 9         |               |   :smiley:☕   |   :smiley:   |               |   :smiley:☕   |
 | May 10        |               |    :smiley:☕  |   :smiley:   |               |               |
 | May 11        |      👫       |     :smiley:  |       👫      | :smiley:☕     |               |
-| May 12        |      💻       |       💻      |       💻      |      💻        |               |
+| May 12        |      💻       |       💻      |       💻      |      💻        |       💻      |
 | May 13        |               |   :smiley:    |   :smiley:   |                |               |
 | May 14        |      👫       |   :smiley:    |       👫      |  :smiley:      |   :smiley:    |
 | May 15        |      👫       |  :smiley:☕    |       👫      |       🤔       |       🤓      |
