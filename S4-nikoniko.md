@@ -55,9 +55,9 @@ In the retrospective meeting, the team has a discussion about those results.
 | May 15        |      👫       |  :smiley:☕    |       👫      |       🤔       |       🤓      |
 | May 16        |               |    :smiley:   |     🥵🤓      |       🤔       |   :smiley:☕   |
 | May 17        |               |    :smiley:   |   :smiley:   |   :smiley:☕    |   :smiley:    |
-| May 18        |       👫      |   :smiley:    |       👫      |   :smiley:     |       🤓      |
-| May 19        |               |      🤓       |       🤓      |       🤓       |:neutral_face: |
-| May 20        |       👫      |      🤓       |      👫       |       🤓       |   :smiley:    |
+| May 18        |       👫      |   :smiley:    |       👫      |   :smiley:     |:neutral_face: |
+| May 19        |               |      🤓       |       🤓      |       🤓       |      😪       |
+| May 20        |       👫      |      🤓       |      👫       |       🤓       |:neutral_face: |
 | May 21        |       🤓      |      🤓       |      🤓       |       🤓       |   :smiley:    |
 | May 22        |               |               |      🤓      |                |       😪      |
 | May 23        |               |               |       🤓     |                |       😪      |
